@@ -35,7 +35,7 @@
   		                <div class="col-lg-12 col-md-12">
 							<?php
 								foreach($TURMA as $t) {
-									echo anchor("cadastro/v_cadastrar_materiasII".$t->idTURMA, "$t->SERIE, $t->idCURSO").br();
+									echo anchor(base_url("cadastro/v_cadastrar_materiasII/".$t->idTURMA), "$t->SERIE, $t->idCURSO").br();
 								}
 							?>
 											

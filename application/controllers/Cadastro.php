@@ -16,32 +16,10 @@
 			$this->parser->parse('cadastro', $data);
 		}
 
-
-		public function v_cadastrar_materias(){
-			$data['TURMA'] = $this->db->get('TURMA')->result();
-			$data['url'] = base_url();
-			$this->parser->parse('listagem_turmas', $data);
-		}
-
-		public function v_cadastrar_materiasII($idTURMA){
-			$data['TURMA'] = $this->db->get('TURMA')->result();
-			$data['id'] = $idTURMA;
-			$data['url'] = base_url();
-			$this->parser->parse('cadastro_materias', $data);
-		}
-
-		public function cadastro_materias(){
-			$data['NOME'] = $this->input->post('txt_materia');
-			$data['QTD_AULAS'] = $this->input->post('txt_qtd');
-			$this->db->insert('MATERIA', $data);
-		
-		}
-
-
 		public function cadastro(){
 			$data['LOGIN'] = $this->input->post('txt_login');
 			$data['SENHA'] = $this->input->post('txt_senha');
-			$data['TIPO_USUARIO'] = $this->input->post('txt_tipo');
+			$data['TIPO'] = $this->input->post('txt_tipo');
 			$senha = $this->input->post('txt_confirmarsenha');
 			if(!$this->db->where('LOGIN', $data['LOGIN'])){
 			 $data['modal'] = "$(window).on('load',function(){
@@ -72,7 +50,7 @@
 		public function edit(){
 			$data['LOGIN'] = $this->input->post('txt_login');
 			$data['SENHA'] = $this->input->post('txt_senha');
-			$data['TIPO_USUARIO'] = $this->input->post('txt_tipo');
+			$data['TIPO'] = $this->input->post('txt_tipo');
 			$data['idUSUARIO'] = $this->input->post('id');
 			$senha = $this->input->post('txt_confirmarsenha');
 			if($this->db->where('LOGIN', $data['LOGIN'])){

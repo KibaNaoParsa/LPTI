@@ -36,13 +36,11 @@
 							<?php
 								$atributos = array('name'=>'formulario_cadastro', 'id'=>'formulario_cadastro');
 								$btn = array('name'=>'btm_cadastrar', 'id'=>'btn_cadastro', 'class'=>'btn btn-lg btn-primary');
-								echo  form_open('cadastro/cadastro_materias', $atributos).
+								echo  form_open('materia/cadastro_materias', $atributos).
 									form_label("Disciplina: ", "txt_materia").br().
 									form_input('txt_materia').br().
 									form_label("Quantidade de Aulas: ", "txt_qtd").br().
-									form_input('txt_qtd').br().
-									form_label("Ano: ", "txt_ano").br().
-									form_password('txt_ano').br().
+									form_input('txt_qtd').br().br().
 									form_submit("btn_cadastrar", "Cadastrar", $btn).
 									form_close();
 							?>

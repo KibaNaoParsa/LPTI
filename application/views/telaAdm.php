@@ -125,7 +125,19 @@
                             <a href="../Cadastro/editar">Editar usuários</a>
                         </li>
 						<li>
-                           <a href="../Cadastro/v_cadastrar_materias">Turmas e Disciplinas</a>
+                            <a href="#">Turmas e Disciplinas<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="../Materia/v_cadastrar_materias">Cadastrar disciplinas </a>
+                                </li>
+                                <li>
+                                    <a href="../Materia/v_listar_materias">Listar disciplinas</a>
+                                </li>
+                                <li>
+                                    <a href="../Materia/v_associar_materias">Associar disciplinas</a>
+                                </li>
+                            </ul>
+                            <!-- /.nav-second-level -->
                         </li>
                     </ul>
                 </div>

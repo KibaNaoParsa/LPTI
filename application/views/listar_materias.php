@@ -34,16 +34,10 @@
               <div class="row">
   		        	<div class="col-lg-12 col-md-12" id="btn">
 									<?php
-										foreach($USUARIO as $band){
-											echo "Login: " . $band->LOGIN.br();
-											if($band->TIPO == '1')
-												echo "Tipo: " . "Administrador" .br();
-											else if($band->TIPO == '2')
-												echo "Tipo: " . "Estagiário" .br();
-											else if($band->TIPO == '0')
-												echo "Tipo: " . "Coordenador" .br();
-											echo anchor("Cadastro/editor/".$band->idUSUARIO, " Editar ", 'class="btn btn-primary"').
-													 anchor("Cadastro/excluir/".$band->idUSUARIO, "Excluir ", 'class="btn btn-danger"').br();
+										foreach($MATERIA as $m){
+											echo "Disciplina: " . $m->NOME.br()."Quantidade de Aulas: " . $m->QTD_AULAS.br();
+											echo anchor("Materia/v_editar/".$m->idMATERIA, " Editar ", 'class="btn btn-primary"').
+													br().br();
 										}
 									?>
 					</div>

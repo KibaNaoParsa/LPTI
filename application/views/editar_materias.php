@@ -140,19 +140,15 @@
 												<?php
 												$atributos = array('name'=>'formulario_cadastro', 'id'=>'formulario_cadastro');
 												$btn = array('name'=>'btm_cadastrar', 'id'=>'botao1', 'class'=>'btn btn-primary');
-												echo form_open('Cadastro/edit', $atributos).
-													 form_hidden('id', $USUARIO[0]->idUSUARIO).
-													 form_label("Login: ", "txt_login").br().
-													 form_input('txt_login', $USUARIO[0]->LOGIN).br().
-													 form_label("Senha: ", "txt_senha").br().
-													 form_password('txt_senha').br().
-													 form_label("Confirmar senha: ", "txt_confirmarsenha").br().
-													 form_password('txt_confirmarsenha').br().
-													 form_label("Tipo: ", "txt_tipo").br().
-													 form_input('txt_tipo', $USUARIO[0]->TIPO).br().br().
+												echo form_open('Materia/editar', $atributos).
+													 form_hidden('id', $MATERIA[0]->idMATERIA).
+													 form_label("Disciplina: ", "txt_nome").br().
+													 form_input('txt_nome', $MATERIA[0]->NOME).br().
+													 form_label("Quantidade de Aulas: ", "txt_qtd").br().
+													 form_input('txt_qtd', $MATERIA[0]->QTD_AULAS).br().
 													 form_submit("btn_cadastrar", "Salvar Alterações", $btn).br().
 													 form_close().br().
-											     anchor('../Login/loginAsAdm', "Cancelar", array('class'=>"btn btn-danger", 'id'=>"botao"));
+											     anchor('../Cadastro', "Cancelar", array('class'=>"btn btn-danger", 'id'=>"botao"));
 												?>
 											</div>
               </div>
@@ -190,3 +186,4 @@
 </body>
 
 </html>
+
