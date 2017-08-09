@@ -1,0 +1,16 @@
+#erro-modal{
+  background-color: white;
+  margin: -100px;
+  margin-top: 0;
+  text-align: center;
+  opacity: 0.75;
+}
+
+#erro-modal li a{
+  text-decoration: none;
+}
+
+#botao{
+  padding-left: 38px;
+  padding-right: 38px;
+}

@@ -1,1 +1,2 @@
-Projeto LPTI 2º Bimestre
+# LPTI
+Projeto LPTI - Conselho de Classe - Birma, João Marcos, Laís, Matheus Amâncio
