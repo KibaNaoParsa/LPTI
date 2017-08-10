@@ -30,7 +30,7 @@
                         <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
                     </a>
                     <ul class="dropdown-menu dropdown-user">
-                        <li><a href="../Cadastro/gerar_csv"><i class="fa fa-sign-out fa-fw"></i> Gerar .csv</a>
+                        <li><a href="../Cadastro/csv"><i class="fa fa-sign-out fa-fw"></i> Gerar .csv</a>
                         </li>
 
                         <li><a href="../Login/efetuar_logout"><i class="fa fa-sign-out fa-fw"></i> Logout</a>

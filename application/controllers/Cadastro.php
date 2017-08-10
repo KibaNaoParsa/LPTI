@@ -10,6 +10,13 @@
 				$this->load->view('login');
 			}
 		}
+		
+		public function index() {
+			$data['url'] = base_url();
+			$this->parser->parse('telaAdm', $data);
+		}
+
+
 
 		public function cadastrar(){
 			$data['url'] = base_url();
@@ -90,5 +97,10 @@
 		$data['url'] = base_url();
 		 $this->parser->parse('cadastro', $data);
 		}
+	}
+	
+	public function csv() {
+		header('Content-Type: application/excel');
+		header('Content-Disposition: attachment; filename="sampley.csv"');	
 	}
 }

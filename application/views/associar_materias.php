@@ -130,24 +130,57 @@
           <div id="page-wrapper">
               <div class="row">
                   <div class="col-lg-12">
-                      <h1 class="page-header">Editar Usuário</h1>
+                      <h1 class="page-header">Associação Disciplina-Classe</h1>
                   </div>
                   <!-- /.col-lg-12 -->
               </div>
               <!-- /.row -->
               <div class="row">
-  		                <div class="col-lg-3 col-md-6">
+  		                <div class="col-lg-6 col-md-6">
 												<?php
+												
+												echo "Disciplina: ".$MATERIA[0]->NOME.br();
+												
 												$atributos = array('name'=>'formulario_cadastro', 'id'=>'formulario_cadastro');
 												$btn = array('name'=>'btm_cadastrar', 'id'=>'botao1', 'class'=>'btn btn-primary');
-												echo form_open('Materia/editar', $atributos).
+												echo form_open('Materia/associar', $atributos).
 													 form_hidden('idMATERIA', $MATERIA[0]->idMATERIA).
-													 form_label("Disciplina: ", "txt_nome").br().
-													 form_input('txt_nome', $MATERIA[0]->NOME).br().
-													 form_label("Quantidade de Aulas: ", "txt_qtd").br().
-													 form_input('txt_qtd', $MATERIA[0]->QTD_AULAS).br().
-													 form_submit("btn_cadastrar", "Salvar Alterações", $btn).br().
-													 form_close().br().
+													 form_label("Ano: ", "txt_ano").
+													 form_input('txt_ano').br().
+													 form_label("1° Edif Int", "txt_1i") .
+													 form_checkbox("turma[]", "1", FALSE) .
+													 form_label("1° Info Int", "txt_1i") .
+													 form_checkbox("turma[]", "6", FALSE) .
+													 form_label("1° Meca Int", "txt_1i") .
+													 form_checkbox("turma[]", "11", FALSE) .
+													 form_label("1° Edif Sub", "txt_1i") .
+													 form_checkbox("turma[]", "4", FALSE) .
+													 form_label("1° Info Sub", "txt_1i") .
+													 form_checkbox("turma[]", "9", FALSE) .
+													 form_label("1° Meca Sub", "txt_1i") .
+													 form_checkbox("turma[]", "14", FALSE) . br() .
+													 form_label("2° Edif Int", "txt_1i") .
+													 form_checkbox("turma[]", "2", FALSE) .
+													 form_label("2° Info Int", "txt_1i") .
+													 form_checkbox("turma[]", "7", FALSE) .
+													 form_label("2° Meca Int", "txt_1i") .
+													 form_checkbox("turma[]", "12", FALSE) . 
+													 form_label("2° Edif Sub", "txt_1i") .
+													 form_checkbox("turma[]", "5", FALSE) . 
+													 form_label("2° Info Sub", "txt_1i") .
+													 form_checkbox("turma[]", "10", FALSE) .
+													 form_label("2° Meca Sub", "txt_1i") .
+													 form_checkbox("turma[]", "15", FALSE) . br() .
+													 form_label("3° Edif Int", "txt_1i") .
+													 form_checkbox("turma[]", "3", FALSE) . 
+													 form_label("3° Info Int", "txt_1i") .
+													 form_checkbox("turma[]", "8", FALSE) . 
+													 form_label("3° Meca Int", "txt_1i") .
+													 form_checkbox("turma[]", "13", FALSE) . br().
+													 
+													 
+													 form_submit("btn_cadastrar", " Salvar ", $btn).
+													 form_close().
 											     anchor('../Materia', "Cancelar", array('class'=>"btn btn-danger", 'id'=>"botao"));
 												?>
 											</div>
@@ -186,4 +219,5 @@
 </body>
 
 </html>
+
 

@@ -3,7 +3,7 @@
 
 <head>
 
-    <title>Cadastro de Disciplinas</title>
+    <title>Editar Usuário</title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -22,28 +22,29 @@
 <body>
 
     <div id="wrapper">
-      <div id="Main">
+			<div id="Main">
           <div id="page-wrapper">
               <div class="row">
                   <div class="col-lg-12">
-                      <h1 class="page-header">Listagem de Turmas</h1>
+                      <h1 class="page-header">Associação Disciplina-Classe</h1>
                   </div>
                   <!-- /.col-lg-12 -->
               </div>
               <!-- /.row -->
               <div class="row">
-  		                <div class="col-lg-12 col-md-12">
-							<?php
-								foreach($TURMA as $t) {
-									echo anchor(base_url("cadastro/v_cadastrar_materiasII/".$t->idTURMA), "$t->SERIE, $t->idCURSO").br();
-								}
-							?>
-											
-  		                </div>
-              </div>
-            </div>
+  		        	<div class="col-lg-12 col-md-12" id="btn">
+									<?php
+										foreach($MATERIA as $m){
+											echo "Disciplina: " . $m->NOME.br();
+											echo anchor("Materia/v_associar/".$m->idMATERIA, " Associar ", 'class="btn btn-success"').
+													br().br();
+										}
+									?>
+					</div>
+				</div>
           </div>
-         </div>
+				</div>
+			</div>
 
 
     <!-- jQuery -->
