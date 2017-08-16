@@ -7,7 +7,7 @@
             parent::__construct();
 			$this->load->library('session');
 			if(!$this->session->userdata('login')){
-				$this->load->view('login');
+//				$this->load->view('login');
 			}
         }
 
@@ -24,7 +24,7 @@
 		public function v_cadastrar_materias(){
 			$data['TURMA'] = $this->db->get('TURMA')->result();
 			$data['url'] = base_url();
-			$this->parser->parse('cadastro_materias', $data);
+			$this->parser->parse('Materia/cadastro_materias', $data);
 		}
 
 		public function cadastro_materias(){
@@ -40,28 +40,28 @@
 		public function v_listar_materias(){
 			$data['MATERIA'] = $this->db->get('MATERIA')->result();
 			$data['url'] = base_url();
-			$this->parser->parse('listar_materias', $data);
+			$this->parser->parse('Materia/listar_materias', $data);
 		}
 		
 		public function v_editar($id) {
 			$this->db->where('idMATERIA', $id);
 			$data['MATERIA'] = $this->db->get('MATERIA')->result();
 			$data['url'] = base_url();
-			$this->parser->parse('editar_materias', $data);
+			$this->parser->parse('Materia/editar_materias', $data);
 		}
 		
 		public function v_associar_materias() {
 			$data['MATERIA'] = $this->db->get('MATERIA')->result();
 			
 			$data['url'] = base_url();
-			$this->parser->parse('listar_materiasII', $data);
+			$this->parser->parse('Materia/listar_materiasII', $data);
 		}
 		
 		public function v_associar($id) {
 			$this->db->where('idMATERIA', $id);
 			$data['MATERIA'] = $this->db->get('MATERIA')->result();
 			$data['url'] = base_url();
-			$this->parser->parse('associar_materias', $data);
+			$this->parser->parse('Materia/associar_materias', $data);
 		}
 		
 		// Fim de chamada de view

@@ -1,28 +1,31 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
 
-    <title>Inicio</title>
+    <title>Editor</title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
-    <meta name="author" content="alunos" >
+    <meta name="author" content="Alunos" >
 
     <title>Início</title>
+    <link type="text/css" href="{url}assets/js/jquery-ui.css" rel="stylesheet" />
     <link href="{url}assets/css/bootstrap.min.css" rel="stylesheet">
     <link href="{url}assets/css/metisMenu.min.css" rel="stylesheet">
     <link href="{url}assets/css/sb-admin-2.css" rel="stylesheet">
     <link href="{url}assets/css/morris.css" rel="stylesheet">
     <link href="{url}assets/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+		<link href="{url}assets/css/estilo.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
     <div id="wrapper">
         <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
             <div class="navbar-header">
-                <a class="navbar-brand" href="index.html">Conselho de Classe</a>
+                <a class="navbar-brand" href="../../Login/loginAsAdm">Conselho de Classe</a>
             </div>
             <ul class="nav navbar-top-links navbar-right">
                 <li class="dropdown">
@@ -30,16 +33,11 @@
                         <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
                     </a>
                     <ul class="dropdown-menu dropdown-user">
-                        <li><a href="../Cadastro/csv"><i class="fa fa-pencil-square-o fa-fw"></i> Gerar .csv</a>
-                        </li>
-
                         <li><a href="../Login/efetuar_logout"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
                         </li>
-
                     </ul>
                 </li>
             </ul>
-
             <div class="navbar-default sidebar" role="navigation">
                 <div class="sidebar-nav navbar-collapse" id="btn">
                     <ul class="nav" id="side-menu">
@@ -55,7 +53,7 @@
                             <!-- /input-group -->
                         </li>
                         <li>
-                            <a href="#">Início</a>
+                            <a href="../">Início</a>
                         </li>
                         <li>
                             <a href="#">Lista de Alunos<span class="fa arrow"></span></a>
@@ -124,24 +122,6 @@
                         <li>
                             <a href="../Cadastro/editar">Editar usuários</a>
                         </li>
-                        <li>
-                            <a href="../Permissao/v_tela_listagem">Ajustar permissões de usuário</a>
-                        </li>
-						<li>
-                            <a href="#">Turmas e Disciplinas<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
-                                <li>
-                                    <a href="../Materia/v_cadastrar_materias">Cadastrar disciplinas </a>
-                                </li>
-                                <li>
-                                    <a href="../Materia/v_listar_materias">Listar disciplinas</a>
-                                </li>
-                                <li>
-                                    <a href="../Materia/v_associar_materias">Associar disciplinas</a>
-                                </li>
-                            </ul>
-                            <!-- /.nav-second-level -->
-                        </li>
                     </ul>
                 </div>
                 <!-- /.sidebar-collapse -->
@@ -152,84 +132,36 @@
           <div id="page-wrapper">
               <div class="row">
                   <div class="col-lg-12">
-                      <h1 class="page-header">Inicio</h1>
+                      <h1 class="page-header">Associação Disciplina-Classe</h1>
                   </div>
                   <!-- /.col-lg-12 -->
               </div>
               <!-- /.row -->
               <div class="row">
-  		                <div class="col-lg-3 col-md-6">
-  		                    <div class="panel panel-primary">
-  		                        <div class="panel-heading">
-  		                            <div class="row">
-  		                                <div class="col-xs-9 text-center">
-  		                                    <div class="h1">Lista de Alunos</div>
-  		                                </div>
-  		                            </div>
-  		                        </div>
-  		                        <a href="#">
-  		                            <div class="panel-footer">
-  		                                <span class="pull-left">Ver mais</span>
-  		                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-  		                                <div class="clearfix"></div>
-  		                            </div>
-  		                        </a>
-  		                    </div>
-  		                </div>
-  		                <div class="col-lg-3 col-md-6">
-  		                    <div class="panel panel-green">
-  		                        <div class="panel-heading">
-  		                            <div class="row">
-  		                                <div class="col-xs-9 text-center">
-  		                                    <div class="h1">Inserir Alunos</div>
-  		                                </div>
-  		                            </div>
-  		                        </div>
-  		                        <a href="#">
-  		                            <div class="panel-footer">
-  		                                <span class="pull-left">Ver mais</span>
-  		                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-  		                                <div class="clearfix"></div>
-  		                            </div>
-  		                        </a>
-  		                    </div>
-  		                </div>
-  		                <div class="col-lg-3 col-md-6">
-  		                    <div class="panel panel-yellow">
-  		                        <div class="panel-heading">
-  		                            <div class="row">
-  		                                <div class="col-xs-9 text-center">
-  		                                    <div class="h1">Notas e Faltas</div>
-  		                                </div>
-  		                            </div>
-  		                        </div>
-  		                        <a href="#">
-  		                            <div class="panel-footer">
-  		                                <span class="pull-left">Ver mais</span>
-  		                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-  		                                <div class="clearfix"></div>
-  		                            </div>
-  		                        </a>
-  		                    </div>
-  		                </div>
-  		                <div class="col-lg-3 col-md-6">
-  		                    <div class="panel panel-red">
-  		                        <div class="panel-heading">
-  		                            <div class="row">
-  		                                <div class="col-xs-9 text-center">
-  		                                    <div class="h1">Editar Matérias</div>
-  		                                </div>
-  		                            </div>
-  		                        </div>
-  		                        <a href="#">
-  		                            <div class="panel-footer">
-  		                                <span class="pull-left">Ver mais</span>
-  		                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-  		                                <div class="clearfix"></div>
-  		                            </div>
-  		                        </a>
-  		                    </div>
-  		                </div>
+  		                <div class="col-lg-6 col-md-6">
+												<?php
+												
+												echo "Identificação: ".$USUARIO[0]->LOGIN.br()."Turma: ".$TURMA[0]->idTURMA.br();
+												$atributos = array('name'=>'formulario_cadastro', 'id'=>'formulario_cadastro');
+												$btn = array('name'=>'btm_cadastrar', 'id'=>'botao1', 'class'=>'btn btn-primary');
+												echo form_open('Permissao/associar', $atributos).
+													form_hidden('idUSUARIO', $USUARIO[0]->idUSUARIO).
+											     	form_hidden('idTURMA', $TURMA_has_MATERIA[0]->TURMA_idTURMA);
+
+													foreach ($TURMA_has_MATERIA as $thm) {
+														echo
+														form_label($thm->MATERIA_idMATERIA, "txt_1i") .
+														form_checkbox("mut[]", $thm->MATERIA_idMATERIA, FALSE) . br();
+													}
+													 echo
+													 form_submit("btn_cadastrar", " Salvar ", $btn).
+													 form_close().
+											     anchor('../Permissao', "Cancelar", array('class'=>"btn btn-danger", 'id'=>"botao"));
+													
+										
+									
+												?>
+											</div>
               </div>
           </div>
         </div>
@@ -265,3 +197,6 @@
 </body>
 
 </html>
+
+
+

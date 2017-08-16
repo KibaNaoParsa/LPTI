@@ -7,7 +7,7 @@
 			parent::__construct();
 			$this->load->library('session');
 			if(!$this->session->userdata('login')){
-				$this->load->view('login');
+//				$this->load->view('login');
 			}
 		}
 		
@@ -36,7 +36,7 @@
 			 $this->parser->parse('cadastro', $data);
 			}
 			else
-				$this->confere($data, $senha);
+				$this->confere1($data, $senha);
 		}
 
 		public function editar(){
@@ -80,6 +80,22 @@
 			$this->db->where('idUSUARIO', $id);
 			if($this->db->delete('USUARIO')){
 				redirect('Login/loginAsAdm');
+			}
+		}
+
+		public function confere1($data, $senha){
+			if($data['SENHA'] == $senha){
+				$data['SENHA'] = sha1($data['SENHA']);
+				$this->db->insert('USUARIO', $data);
+				$data['url'] = base_url();
+				$this->parser->parse('telaAdm', $data);
+			}
+			else{
+				$data['modal'] = "$(window).on('load',function(){
+								$('#erro-modal').modal('show');
+								});";
+			$data['url'] = base_url();
+			 $this->parser->parse('cadastro', $data);
 			}
 		}
 
