@@ -1,2 +1,2 @@
 # LPTI
-Projeto LPTI - O Amãncio dá o cu
+Projeto LPTI - O Amâncio dá o cu
