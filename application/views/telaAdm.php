@@ -127,6 +127,21 @@
                         <li>
                             <a href="../Permissao/v_tela_listagem">Ajustar permissões de usuário</a>
                         </li>
+
+						<li>
+                            <a href="#">Questionários<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="../Questionario/v_criar_questionario">Criar questionário</a>
+                                </li>
+                                <li>
+                                    <a href="../Materia/v_editar_questionario">Editar questionários</a>
+                                </li>
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li>
+
+
 						<li>
                             <a href="#">Turmas e Disciplinas<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">

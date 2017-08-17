@@ -7,7 +7,7 @@
             parent::__construct();
 			$this->load->library('session');
 			if(!$this->session->userdata('login')){
-//				$this->load->view('login');
+				$this->load->view('login');
 			}
         }
 
@@ -26,9 +26,17 @@
         }
     
 		public function v_selecao($id) {
+			$this->db->select('CURSO.NOME, TURMA.SERIE, TURMA.idTURMA');
+			$this->db->from('CURSO');
+			$this->db->join('TURMA', 'CURSO.idCURSO=TURMA.idCURSO', 'inner');
+			$this->db->distinct();
+			$data['TURMA'] = $this->db->get()->result();
+		
 			$this->db->where('idUSUARIO', $id);
+			
+		
 			$data['USUARIO'] = $this->db->get('USUARIO')->result();
-			$data['TURMA'] = $this->db->get('TURMA')->result();
+			//$data['TURMA'] = $this->db->get('TURMA')->result();
 			
 			
 			$data['url'] = base_url();
@@ -36,8 +44,15 @@
 		}
 
 		public function v_selecaoII($idUSUARIO, $idTURMA) {
+
+			$this->db->select('MATERIA.NOME');
+			$this->db->from('MATERIA');
+			$this->db->join('TURMA_has_MATERIA', 'TURMA_has_MATERIA.MATERIA_idMATERIA=MATERIA.idMATERIA', 'inner');
+			$this->db->distinct();
+			$data['NOME'] = $this->db->get()->result();
+
+
 			
-//			$data['CURSO'] = $this->db->get('CURSO')->result();
 			$this->db->where('idUSUARIO', $idUSUARIO);
 			
 			
@@ -49,11 +64,6 @@
 			
 			
 			$data['TURMA_has_MATERIA'] = $this->db->get('TURMA_has_MATERIA')->result();
-			
-//			$this->db->select('NOME');
-//    		$this->db->from('TURMA');
-//			$this->db->join('CURSO', 'CURSO.idCURSO = TURMA.idCURSO');
-//			$query = $this->db->get();
 
 			
 			$data['url'] = base_url();

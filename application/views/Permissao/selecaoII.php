@@ -156,7 +156,7 @@
 													 echo
 													 form_submit("btn_cadastrar", " Salvar ", $btn).
 													 form_close().
-											     anchor('../Permissao', "Cancelar", array('class'=>"btn btn-danger", 'id'=>"botao"));
+											     anchor('Permissao/v_selecao/'.$USUARIO[0]->idUSUARIO, "Cancelar", array('class'=>"btn btn-danger", 'id'=>"botao"));
 													
 										
 									

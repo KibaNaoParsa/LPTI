@@ -143,7 +143,7 @@
 												
 												echo "Identificação: ".$USUARIO[0]->LOGIN.br();
 												foreach ($TURMA as $t) {
-													echo anchor("Permissao/v_selecaoII/".$USUARIO[0]->idUSUARIO."/".$t->idTURMA, $t->idTURMA, 'class="btn btn-success"').
+													echo anchor("Permissao/v_selecaoII/".$USUARIO[0]->idUSUARIO."/".$t->idTURMA, $t->SERIE."° ".$t->NOME, 'class="btn btn-success"').
 													br();
 													
 												}

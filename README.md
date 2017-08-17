@@ -1,2 +1,2 @@
 # LPTI
-Projeto LPTI - O Amâncio dá o cu
+Projeto LPTI - Conselho de Classe - Birma, João Marcos, Laís, Matheus Amâncio
