@@ -132,10 +132,10 @@
                             <a href="#">Questionários<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="../Questionario/v_criar_questionario">Criar questionário</a>
+                                    <a href="../Questionario/v_cadastro">Criar questionário</a>
                                 </li>
                                 <li>
-                                    <a href="../Materia/v_editar_questionario">Editar questionários</a>
+                                    <a href="../Questionario/v_listar">Editar questionários</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->

@@ -1,4 +1,4 @@
-<?php
+<?php defined('BASEPATH') or exit('No direct script access allowed.');
 
     class Permissao extends CI_Controller {
 
@@ -7,7 +7,7 @@
             parent::__construct();
 			$this->load->library('session');
 			if(!$this->session->userdata('login')){
-				$this->load->view('login');
+//				$this->load->view('login');
 			}
         }
 
