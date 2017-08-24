@@ -1,26 +1,18 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-
-	<style>
-	
-		table, th, td {
-			border: 1px solid black;
-			text-align: center;
-		}
-
-	</style>
-
 
     <title>Editor</title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
-    <meta name="author" content="alunos" >
+    <meta name="author" content="Alunos" >
 
     <title>Início</title>
+    <link type="text/css" href="{url}assets/js/jquery-ui.css" rel="stylesheet" />
     <link href="{url}assets/css/bootstrap.min.css" rel="stylesheet">
     <link href="{url}assets/css/metisMenu.min.css" rel="stylesheet">
     <link href="{url}assets/css/sb-admin-2.css" rel="stylesheet">
@@ -31,7 +23,7 @@
 
 <body>
     <div id="wrapper">
-      <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+        <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
             <div class="navbar-header">
                 <a class="navbar-brand" href="../../Login/loginAsAdm">Conselho de Classe</a>
             </div>
@@ -59,7 +51,7 @@
                             </span>
                             </div>
                             <!-- /input-group -->
-                     </li>
+                        </li>
                         <li>
                             <a href="../">Início</a>
                         </li>
@@ -123,7 +115,7 @@
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
-                      </li>
+                        </li>
                         <li>
                             <a href="../Cadastro/cadastrar">Cadastrar usuários</a>
                         </li>
@@ -140,110 +132,59 @@
           <div id="page-wrapper">
               <div class="row">
                   <div class="col-lg-12">
-                      <h1 class="page-header">Edição de Questionários</h1>
+                      <h1 class="page-header">Associação Questionário-Classe</h1>
                   </div>
                   <!-- /.col-lg-12 -->
               </div>
               <!-- /.row -->
               <div class="row">
-  		                <div class="col-lg-3 col-md-6">
-							<?php
-									
-								//	Formulário para edição de nome
-									
-                                $atributos = array('name'=>'formulario_cadastro', 'id'=>'formulario_cadastro');
-								$btn = array('name'=>'btn_cadastrar', 'id'=>'botao1', 'class'=>'btn btn-warning');
-								echo form_open('Questionario/editarNome', $atributos).
-									 form_hidden('id', $QUESTIONARIO[0]->idQUESTIONARIO).
-									 form_label("Nome: ", "txt_nome")." ".
-									 form_input('txt_nome', $QUESTIONARIO[0]->NOME).br().
+  		                <div class="col-lg-6 col-md-6">
+												<?php
+												$contador = 0;
+												echo "<h5><b>Questionário: ".$QUESTIONARIO[0]->NOME."</b></h5>".br();
+												$atributos = array('name'=>'formulario_cadastro', 'id'=>'formulario_cadastro');
+												$btn = array('name'=>'btm_cadastrar', 'id'=>'botao1', 'class'=>'btn btn-primary');
+												echo form_open('Questionario/associar', $atributos).
+													form_hidden('idQUESTIONARIO', $QUESTIONARIO[0]->idQUESTIONARIO);
 
-									 form_submit("btn_cadastrar", " Salvar Alterações ", $btn).br().
-									 form_close().br();
-									 
-								// Formulário para cadastro de dimensão	 
-									 
-								echo form_open('Questionario/dimensao', $atributos).
-								     form_hidden('id', $QUESTIONARIO[0]->idQUESTIONARIO).
-									 "<h5><b>Questionário: ".
-									 $QUESTIONARIO[0]->NOME.
-									 "</b></h5>".
-									 form_label("Dimensão: ", "txt_dimensao").
-									 form_input('txt_dimensao') .br().
-								     form_submit("btn_cadastrar", " Criar ", $btn).br().
-									 form_close().br();
-
-								// Tabela de dimensões
-
-								echo "<table style='width: 100%'>
-										<tr>
-											<th>Dimensão</th>
-											<th></th>
-										</tr>";
-									
-										foreach($DIMENSAO as $d) {
-											echo "<tr><td>".$d->DESCRICAO."</td>
-<<<<<<< HEAD
-											<td>".anchor("Questionario/excluir_dimensao/".$d->idDIMENSAO, 
-											" Excluir ", 'class= "btn btn-danger"')."</td></tr>";
-=======
-											<td>".anchor("Questionario/excluir_dimensao/".$d->idDIMENSAO, " Excluir ", 'class= "btn btn-danger"')."</td></tr>";
->>>>>>> 6eeb50808ac35803118d8fee23f499135b2288f0
-										}
-								
-										echo "</tr>";
-								echo "</table>";
-								
-								echo br().br();
-			
-								// Formulário para cadastro de perguntas
-								
-								echo form_open('Questionario/inserirPergunta', $atributos).
-<<<<<<< HEAD
-								form_hidden('id', $QUESTIONARIO[0]->idQUESTIONARIO).
-=======
->>>>>>> 6eeb50808ac35803118d8fee23f499135b2288f0
-									form_label("Pergunta: ", "txt_pergunta")." ".
-									form_textarea('txt_pergunta').br().
-									br().
-									"<b><i>Selecione o tipo de pergunta: </i></b>".br().br().
-									
-									form_radio("tipo[]", 0, FALSE).
-									form_label("Pergunta fechada ", "txt_li").br().
-									
-									form_radio("tipo[]", 1, FALSE).
-									form_label("Pergunta aberta ", "txt_li").br().br().
-									
-									"<b><i>Selecione a dimensão: </i></b>".br().br();
-									
-									
-									foreach($DIMENSAO as $d) {
-										echo form_radio("dimensao[]", $d->idDIMENSAO, FALSE).
-											form_label($d->DESCRICAO, "txt_li2").br();
-									}
-								
-<<<<<<< HEAD
-									echo br().form_submit("btn_cadastrar", " Cadastrar ", $btn).br().
-									form_close();
-								
-								
-								// Chamada de próxima tela
-								echo br().br();
-								echo anchor('Questionario/v_associar/'.$QUESTIONARIO[0]->idQUESTIONARIO, " Continuar ",'class="btn btn-info btn-lg"');
-								
-=======
-									echo br().form_submit("btn_cadastrar", " Cadastrar", $btn).br().
-									form_close();
-								
-								
->>>>>>> 6eeb50808ac35803118d8fee23f499135b2288f0
+													foreach ($TURMA as $t) {
+														
+														echo
+														form_checkbox("turma[]", $t->idTURMA, FALSE) .
+														form_label(" ".$t->SERIE."° ".$t->NOME, "txt_1i");
+														
+														
+														// Contagem
+														
+														
+														$contador++;
+														
+														if(($contador % 3 == 0) || ($contador % 5 == 0)) {
+															echo br();
+															if($contador % 5 == 0) {
+																$contador = 0;
+																echo br();
+															}
+														}
+														
+														// Fim contagem
+														
+													}
+												echo
+													 form_submit("btn_cadastrar", " Confirmar ", $btn).
+													 form_close().
+													 anchor('Questionario/v_editar/'.$QUESTIONARIO[0]->idQUESTIONARIO,
+													 " Cancelar ", array('class'=>"btn btn-danger", 'id'=>"botao"));
+													
 										
-                            ?>
+									
+												?>
 											</div>
               </div>
           </div>
         </div>
       </div>
+
 
 
     <!-- jQuery -->
@@ -257,7 +198,6 @@
         });
       });
     </script>
-
 
     <!-- Bootstrap Core JavaScript -->
     <script src="{url}assets/js/bootstrap.min.js"></script>
@@ -276,4 +216,7 @@
 </body>
 
 </html>
+
+
+
 
