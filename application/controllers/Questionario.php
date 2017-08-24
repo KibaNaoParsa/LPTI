@@ -45,8 +45,7 @@
 			
 			$this->parser->parse('Questionario/editar', $data);
 		}
-		
-<<<<<<< HEAD
+
 		public function v_associar($id) {
 			
 			$this->db->select('CURSO.NOME, TURMA.SERIE, TURMA.idTURMA');
@@ -65,12 +64,6 @@
 			$this->parser->parse('Questionario/associar', $data);
 			
 		}
-		
-		
-		
-=======
->>>>>>> 6eeb50808ac35803118d8fee23f499135b2288f0
-		
 		
 		// Fim de chamada de view
 		
@@ -111,7 +104,6 @@
 		
 			
 		}
-<<<<<<< HEAD
 		
 		public function excluir_dimensao($id) {
 			
@@ -192,10 +184,5 @@
 		
 			
 		}
-		
-=======
->>>>>>> 6eeb50808ac35803118d8fee23f499135b2288f0
-        
-        
-        
+
     }
