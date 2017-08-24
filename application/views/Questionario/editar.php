@@ -183,12 +183,8 @@
 									
 										foreach($DIMENSAO as $d) {
 											echo "<tr><td>".$d->DESCRICAO."</td>
-<<<<<<< HEAD
 											<td>".anchor("Questionario/excluir_dimensao/".$d->idDIMENSAO, 
 											" Excluir ", 'class= "btn btn-danger"')."</td></tr>";
-=======
-											<td>".anchor("Questionario/excluir_dimensao/".$d->idDIMENSAO, " Excluir ", 'class= "btn btn-danger"')."</td></tr>";
->>>>>>> 6eeb50808ac35803118d8fee23f499135b2288f0
 										}
 								
 										echo "</tr>";
@@ -199,10 +195,7 @@
 								// Formulário para cadastro de perguntas
 								
 								echo form_open('Questionario/inserirPergunta', $atributos).
-<<<<<<< HEAD
 								form_hidden('id', $QUESTIONARIO[0]->idQUESTIONARIO).
-=======
->>>>>>> 6eeb50808ac35803118d8fee23f499135b2288f0
 									form_label("Pergunta: ", "txt_pergunta")." ".
 									form_textarea('txt_pergunta').br().
 									br().
@@ -221,8 +214,8 @@
 										echo form_radio("dimensao[]", $d->idDIMENSAO, FALSE).
 											form_label($d->DESCRICAO, "txt_li2").br();
 									}
-								
-<<<<<<< HEAD
+
+
 									echo br().form_submit("btn_cadastrar", " Cadastrar ", $btn).br().
 									form_close();
 								
@@ -231,12 +224,6 @@
 								echo br().br();
 								echo anchor('Questionario/v_associar/'.$QUESTIONARIO[0]->idQUESTIONARIO, " Continuar ",'class="btn btn-info btn-lg"');
 								
-=======
-									echo br().form_submit("btn_cadastrar", " Cadastrar", $btn).br().
-									form_close();
-								
-								
->>>>>>> 6eeb50808ac35803118d8fee23f499135b2288f0
 										
                             ?>
 											</div>
