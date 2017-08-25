@@ -69,8 +69,8 @@
 		
 		public function criar() {
 		
-			$data['NOME'] = $this->input->post('txt_nome');
-			$this->db->insert('QUESTIONARIO', $data);
+			$dat['NOME'] = $this->input->post('txt_nome');
+			$this->db->insert('QUESTIONARIO', $dat);
 			
 			$data['url'] = base_url();
 			$this->parser->parse('telaAdm', $data);
@@ -119,6 +119,7 @@
 		
 			} else
 				echo "Exclusão impossível";
+			
 			
 		}
 		
@@ -174,6 +175,31 @@
 						$this->db->insert('QUESTIONARIO_has_TURMA', $data);
 					}
 			}
+			
+			/*
+			
+			$dat['QUESTIONARIO_idQUESTIONARIO'] = $this->input->post('idQUESTIONARIO');
+			
+			
+			for ($i = 0; $i <$qtd; $i++) {
+			
+				$turma = $item[$i];
+				$dat['TURMA_idTURMA'] = $item[$i];
+				$this->db->select('MUT.USUARIO_idUSUARIO');
+				$this->db->from('MUT');
+				$this->db->where('MUT.TURMA_idTURMA', $turma);
+				$dat['USUARIO_idUSUARIO'] = $this->db->get()->result();
+				
+				$this->db->select('MUT.MATERIA_idMATERIA');
+				$this->db->from('MUT');
+				$this->db->where('MUT.TURMA_idTURMA', $turma);
+				$dat['MATERIA_idMATERIA'] = $this->db->get()->result();
+				
+				$this->db->insert('MUT_has_QUESTIONARIO', $dat);
+				
+			}
+			
+			*/
 			
 			
 			$data['url'] = base_url();

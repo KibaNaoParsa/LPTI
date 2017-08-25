@@ -141,6 +141,11 @@
   		                <div class="col-lg-6 col-md-6">
 												<?php
 												
+												/* echo $this->db->query("SELECT DISTINCT(MATERIA.NOME) FROM MATERIA INNER JOIN TURMA_has_MATERIA ON 
+																					TURMA_has_MATERIA.MATERIA_idMATERIA = MATERIA.idMATERIA 
+																					WHERE MATERIA.idMATERIA = " . $thm->MATERIA_idMATERIA)->result();
+												*/
+												
 												echo "Identificação: ".$USUARIO[0]->LOGIN.br()."Turma: ".$TURMA[0]->idTURMA.br();
 												$atributos = array('name'=>'formulario_cadastro', 'id'=>'formulario_cadastro');
 												$btn = array('name'=>'btm_cadastrar', 'id'=>'botao1', 'class'=>'btn btn-primary');
@@ -149,6 +154,7 @@
 											     	form_hidden('idTURMA', $TURMA_has_MATERIA[0]->TURMA_idTURMA);
 
 													foreach ($TURMA_has_MATERIA as $thm) {
+														
 														echo
 														form_label($thm->MATERIA_idMATERIA, "txt_1i") .
 														form_checkbox("mut[]", $thm->MATERIA_idMATERIA, FALSE) . br();
