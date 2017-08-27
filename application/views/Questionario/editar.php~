@@ -194,7 +194,7 @@
 			
 								// Formulário para cadastro de perguntas
 
-								echo anchor("Questionario/verPerguntas/".$QUESTIONARIO[0]->idQUESTIONARIO, " Ver perguntas ", 'class="btn btn-primary"');
+								echo anchor("Questionario/verPerguntas/".$QUESTIONARIO[0]->idQUESTIONARIO, " Ver perguntas ", 'class="btn btn-secondary"');
 								
 								echo form_open('Questionario/inserirPergunta', $atributos).
 								form_hidden('id', $QUESTIONARIO[0]->idQUESTIONARIO).
