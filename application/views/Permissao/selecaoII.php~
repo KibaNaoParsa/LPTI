@@ -147,7 +147,7 @@
 												*/
 												
 												$nometurma = $this->db->query("SELECT distinct(CURSO.NOME) FROM TURMA INNER JOIN CURSO ON
-																						TURMA.idCURSO = CURSO.idCURSO WHERE CURSO.idCURSO = ". $TURMA[0]->idCURSO)->result();
+																						TURMA.idCURSO = CURSO.idCURSO WHERE CURSO.idCURSO = ". $TURMA[0]->idCURSO);
 																						
 												foreach ($nometurma as $n) {
 													$nomet = $n->NOME;
