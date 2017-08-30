@@ -95,16 +95,7 @@
 			}
 															
 		
-		}
-		
-		
-		public function modalFiller($perdi) {
-			
-			foreach($perdi as $p) 
-				echo $p->PERGUNTA." - ".$p->DESCRICAO.br();		
-			
-			
-		}		
+		}	
 		
 		
 		
@@ -167,21 +158,6 @@
 				echo "Exclusão impossível";
 			
 			
-		}
-		
-		public function verPerguntas($id) {
-			
-			$perdi = $this->db->query("select PERGUNTA.PERGUNTA, DIMENSAO.DESCRICAO FROM PERGUNTA INNER JOIN DIMENSAO ON 
-													PERGUNTA.idDIMENSAO = DIMENSAO.idDIMENSAO 
-													WHERE DIMENSAO.idQUESTIONARIO = " . $id)->result();
-			
-			$data['msg'] = $this->modalFiller($perdi);
-			$data['url'] = base_url();
-			$data['modal'] = "$(window).on('load',function(){
-							  $('#login-modal').modal('show');
-							  });";
-			$this->parser->parse('Questionario/editar', $data);	
-				
 		}		
 		
 		
@@ -223,7 +199,7 @@
 			
 		}
         
-      public function associar() {
+		public function associar() {
 			
 			$data['QUESTIONARIO_idQUESTIONARIO'] = $this->input->post('idQUESTIONARIO');
 			$item = $this->input->get_post('turma');
@@ -242,10 +218,22 @@
 			$data['url'] = base_url();
 			
 			$this->parser->parse('telaAdm', $data);
-
-		
-		
 			
 		}
+
+		public function excluirPergunta($idQ, $idP) {
+			
+			$this->db->select('idPERGUNTA');
+			$this->db->from('PERGUNTA');
+			$this->db->where('idPERGUNTA', $idP);
+			
+			if($this->db->delete('PERGUNTA')) {
+				redirect('Questionario');
+			} else {
+				echo "Exclusão impossibilitada";
+			}
+			
+		}
+
 
     }

@@ -146,7 +146,7 @@
               </div>
               <!-- /.row -->
               <div class="row">
-  		                <div class="col-lg-3 col-md-6">
+  		                <div class="col-lg-4 col-md-6">
 							<?php
 									
 								//	Formulário para edição de nome
@@ -194,7 +194,25 @@
 			
 								// Formulário para cadastro de perguntas
 
-								echo anchor("Questionario/verPerguntas/".$QUESTIONARIO[0]->idQUESTIONARIO, " Ver perguntas ", 'class="btn btn-primary"');
+								echo "<button type='button' id='btn1' name='button'>Ver perguntas</button> " .
+										"<button type='button' id='btn2' name='button'>Esconder perguntas</button>".br();
+										
+								echo "<div class='texto'>";
+								
+								$perdi = $this->db->query("select PERGUNTA.idPERGUNTA, PERGUNTA.PERGUNTA, DIMENSAO.DESCRICAO FROM PERGUNTA INNER JOIN DIMENSAO ON 
+													PERGUNTA.idDIMENSAO = DIMENSAO.idDIMENSAO 
+													WHERE DIMENSAO.idQUESTIONARIO = " . $QUESTIONARIO[0]->idQUESTIONARIO)->result();
+													
+								foreach ($perdi as $p) {
+									echo anchor("Questionario/excluirPergunta/".$QUESTIONARIO[0]->idQUESTIONARIO."/".$p->idPERGUNTA, 
+												" Excluir ", 'class= "btn btn-danger"');
+									echo $p->PERGUNTA." - ".$p->DESCRICAO.br();
+								}
+								
+								echo "</div>".br();					
+								
+	
+								
 								
 								echo form_open('Questionario/inserirPergunta', $atributos).
 								form_hidden('id', $QUESTIONARIO[0]->idQUESTIONARIO).
@@ -246,6 +264,17 @@
         });
       });
     </script>
+    
+    <script type="text/javascript">
+		$(document).ready(function(){
+			$("#btn1").click(function(){
+				$(".texto").fadeIn();
+			});
+			$("#btn2").click(function(){
+				$(".texto").fadeOut();
+			});
+		});
+	</script>
 
 
     <!-- Bootstrap Core JavaScript -->

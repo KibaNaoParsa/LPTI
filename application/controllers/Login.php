@@ -28,8 +28,11 @@ class Login extends CI_Controller {
           $this->loginAsAdm();
 			else if($data[0]['TIPO'] == 2)
 				$this->loginAsEst();
-			else{
+			else if($data[0]['TIPO'] == 3){
 				$this->loginAsCoord();
+			}
+			if($data[0]['TIPO'] == 5) {
+				$this->loginAsProf($data[0]['idUSUARIO']);
 			}
 		}
 		else{
@@ -66,4 +69,12 @@ class Login extends CI_Controller {
 		$data['url'] = base_url();
 		$this->parser->parse('telaEst', $data);
 	}
+
+	public function loginAsProf($id){
+		$data['idUSUARIO'] = $id;
+		$this->load->library('session');
+		$data['url'] = base_url();
+		$this->parser->parse('telaProf', $data);
+	}
+
 }
