@@ -106,11 +106,13 @@
 		
 		public function criar() {
 		
-			$dat['NOME'] = $this->input->post('txt_nome');
-			$this->db->insert('QUESTIONARIO', $dat);
+			$data['NOME'] = $this->input->post('txt_nome');
+			$this->db->insert('QUESTIONARIO', $data);
 			
-			$data['url'] = base_url();
-			$this->parser->parse('telaAdm', $data);
+			//$data['url'] = base_url();
+			//$this->parser->parse('telaAdm', $data);
+			
+
 		}
         
         
@@ -228,7 +230,7 @@
 			$this->db->where('idPERGUNTA', $idP);
 			
 			if($this->db->delete('PERGUNTA')) {
-				redirect('Questionario');
+				$this->v_editar($idQ);
 			} else {
 				echo "Exclusão impossibilitada";
 			}
