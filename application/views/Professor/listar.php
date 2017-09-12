@@ -8,7 +8,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
-    <meta name="author" content="alunos" >
+    <meta name="author" content="elyas" >
 
     <title>Início</title>
     <link href="{url}assets/css/bootstrap.min.css" rel="stylesheet">
@@ -33,20 +33,12 @@
               <!-- /.row -->
               <div class="row">
   		        	<div class="col-lg-12 col-md-12" id="btn">
-									<?php
-                                        
-                                        $profturma = $this->db->query("SELECT TURMA.idTURMA, TURMA.SERIE, CURSO.NOME from TURMA 
-                                                                        INNER JOIN CURSO ON TURMA.idCURSO = CURSO.idCURSO 
-                                                                        INNER JOIN MUT ON MUT.TURMA_idTURMA = TURMA.idTURMA 
-                                                                        WHERE MUT.USUARIO_idUSUARIO = ". $idUSUARIO);
-
-                                        foreach ($profturma as $p) {
-
-                                            echo anchor("Professor/v_selecao/".$idUSUARIO."/".$p->idTURMA, $p->SERIE."° ".$p->NOME, 'class="btn btn-primary"');
-
-                                        }										
-
-
+									<?php												
+													
+                               foreach ($TURMA as $p) {
+ 	                                 echo anchor("Professor/v_disciplina/".$idUSUARIO."/".$p->idTURMA, $p->SERIE."° ".$p->NOME, 'class="btn btn-primary"').br();
+                               }										
+		
 									?>
 					</div>
 				</div>

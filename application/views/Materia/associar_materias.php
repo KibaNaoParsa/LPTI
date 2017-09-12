@@ -8,7 +8,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
-    <meta name="author" content="Alunos" >
+    <meta name="author" content="elyas" >
 
     <title>Início</title>
     <link href="{url}assets/css/bootstrap.min.css" rel="stylesheet">
@@ -136,7 +136,7 @@
               </div>
               <!-- /.row -->
               <div class="row">
-  		                <div class="col-lg-6 col-md-6">
+  		                <div class="col-lg-8 col-md-8">
 												<?php
 												
 												echo "Disciplina: ".$MATERIA[0]->NOME.br();

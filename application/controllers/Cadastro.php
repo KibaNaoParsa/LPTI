@@ -5,22 +5,18 @@
 
 		public function __construct(){
 			parent::__construct();
-			$this->load->library('session');
 			if(!$this->session->userdata('login')){
-//				$this->load->view('login');
+				$this->load->view('login');
 			}
 		}
-		
-		public function index() {
-			$data['url'] = base_url();
-			$this->parser->parse('telaAdm', $data);
-		}
-
-
 
 		public function cadastrar(){
 			$data['url'] = base_url();
-			$this->parser->parse('cadastro', $data);
+			$x = $this->session->userdata('tipo');
+			if($x == '0')
+				$this->parser->parse('cadastro', $data);
+			else
+				$this->parser->parse('coordcadastro', $data);
 		}
 
 		public function cadastro(){
@@ -35,14 +31,31 @@
 			 $data['url'] = base_url();
 			 $this->parser->parse('cadastro', $data);
 			}
-			else
-				$this->confere1($data, $senha);
+			else{
+				if(($data['SENHA'] == $senha)&&($senha != "")){
+					$data['SENHA'] = sha1($data['SENHA']);
+					$this->db->insert('USUARIO', $data);
+					$data['url'] = base_url();
+					$this->parser->parse('telaAdm', $data);
 		}
+		else{
+			$data['modal'] = "$(window).on('load',function(){
+							$('#erro-modal').modal('show');
+							});";
+		 $data['url'] = base_url();
+		 $this->parser->parse('cadastro', $data);
+		}
+		}
+	}
 
 		public function editar(){
 			$data['USUARIO'] = $this->db->get('USUARIO')->result();
 			$data['url'] = base_url();
-			$this->parser->parse('editar', $data);
+			$x = $this->session->userdata('tipo');
+			if($x == '0')
+				$this->parser->parse('editar', $data);
+			else
+				$this->parser->parse('coordeditar', $data);
 		}
 
 		public function editor($id){
@@ -52,56 +65,39 @@
 			$this->parser->parse('editor', $data);
 		}
 
-		//Apresenta Problemas (Falar com professores)
-
 		public function edit(){
 			$data['LOGIN'] = $this->input->post('txt_login');
 			$data['SENHA'] = $this->input->post('txt_senha');
 			$data['TIPO'] = $this->input->post('txt_tipo');
-			$data['idUSUARIO'] = $this->input->post('id');
+			$idUSUARIO = $this->input->post('id');
 			$senha = $this->input->post('txt_confirmarsenha');
-			if($this->db->where('LOGIN', $data['LOGIN'])){
-				$ctr = $this->db->where('LOGIN', $data['LOGIN']);
-				if($ctr['idUSUARIO'] != $data['idUSUARIO']){
-				 $data['modal'] = "$(window).on('load',function(){
-								  $('#erro-modal').modal('show');
-								  });";
-				 $data['url'] = base_url();
-				 $this->parser->parse('cadastro', $data);
-		 		}
-				else
-					$this->confere($data, $senha);
-			}
-			else
-				$this->confere($data, $senha);
+			if(($data['SENHA'] == $senha)&&($senha != "")){
+			$data['SENHA'] = sha1($data['SENHA']);
+			$this->db->where('idUSUARIO', $idUSUARIO);
+			$this->db->update('USUARIO', $data);
+			$data['url'] = base_url();
+			$this->parser->parse('telaAdm', $data);
+		}
+		else{
+			$data['modal'] = "$(window).on('load',function(){
+							$('#erro-modal').modal('show');
+							});";
+		$data['url'] = base_url();
+		 $this->parser->parse('cadastro', $data);
+		}
 		}
 
 		public function excluir($id){
-			$this->db->where('idUSUARIO', $id);
+			$this->db->where('USUARIO.idUSUARIO', $id);
 			if($this->db->delete('USUARIO')){
 				redirect('Login/loginAsAdm');
 			}
 		}
 
-		public function confere1($data, $senha){
-			if($data['SENHA'] == $senha){
-				$data['SENHA'] = sha1($data['SENHA']);
-				$this->db->insert('USUARIO', $data);
-				$data['url'] = base_url();
-				$this->parser->parse('telaAdm', $data);
-			}
-			else{
-				$data['modal'] = "$(window).on('load',function(){
-								$('#erro-modal').modal('show');
-								});";
-			$data['url'] = base_url();
-			 $this->parser->parse('cadastro', $data);
-			}
-		}
-
-	public function confere($data, $senha){
+	public function confere($data, $senha, $idUSUARIO){
 		if($data['SENHA'] == $senha){
 			$data['SENHA'] = sha1($data['SENHA']);
+			$this->db->where('idUSUARIO', $idUSUARIO);
 			$this->db->update('USUARIO', $data);
 			$data['url'] = base_url();
 			$this->parser->parse('telaAdm', $data);
@@ -115,8 +111,46 @@
 		}
 	}
 	
+	public function addCurso(){
+		$data['url'] = base_url();
+		$this->parser->parse('addCurso', $data);
+	}
+	
+	public function addCurso1(){
+		$nome = $this->input->post('txt_curso');
+		$int = $this->input->post('Int');
+		$sub = $this->input->post('Sub');
+		if($int != ''){
+			$data['NOME'] = $nome." ".$int;
+			if(!$this->db->where('NOME', $data['NOME'])){
+				$this->db->insert('CURSO', $data);
+			}
+			else{
+				$data['url'] = base_url();
+				$data['modal'] = "$(window).on('load',function(){
+							$('#erro-modal').modal('show');
+							});";
+			}
+		}
+		if($sub != ''){
+			$data['NOME'] = $nome." ".$sub;
+			if(!$this->db->where('NOME', $data['NOME'])){
+				$this->db->insert('CURSO', $data);
+			}
+			else{
+				$data['url'] = base_url();
+				$data['modal'] = "$(window).on('load',function(){
+							$('#erro-modal').modal('show');
+							});";
+			}
+		}
+		$data['url'] = base_url();
+		$this->parser->parse('telaAdm', $data);
+	}
+
 	public function csv() {
 		header('Content-Type: application/excel');
 		header('Content-Disposition: attachment; filename="sampley.csv"');	
 	}
+
 }

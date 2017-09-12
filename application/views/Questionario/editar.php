@@ -267,6 +267,10 @@
     
     <script type="text/javascript">
 		$(document).ready(function(){
+			$(".texto").hide();
+		});		
+		
+		$(document).click(function(){
 			$("#btn1").click(function(){
 				$(".texto").fadeIn();
 			});

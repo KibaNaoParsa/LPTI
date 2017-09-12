@@ -17,22 +17,20 @@ class Login extends CI_Controller {
 	}
 
 	public function efetuar_login(){
-		$this->load->library('session');
 		$login['LOGIN'] = $this->input->post('txt_nome');
 		$login['SENHA'] = sha1($this->input->post('txt_senha'));
 		$data = $this->db->get_where('USUARIO', $login)->result_array();
 		if(count($data) > 0){
-			$array=array("login"=>true);
+			$array=array("login"=>true, "tipo"=>$data[0]['TIPO'], "bool"=>true);
 			$this->session->set_userdata($array);
-			if($data[0]['TIPO'] == 1)
+			if($data[0]['TIPO'] == 0)
           $this->loginAsAdm();
-			else if($data[0]['TIPO'] == 2)
+			else if($data[0]['TIPO'] == 4)
 				$this->loginAsEst();
-			else if($data[0]['TIPO'] == 3){
-				$this->loginAsCoord();
-			}
-			if($data[0]['TIPO'] == 5) {
+			else if($data[0]['TIPO'] == 5)
 				$this->loginAsProf($data[0]['idUSUARIO']);
+			else{
+				$this->loginAsCoord($data[0]['TIPO']);
 			}
 		}
 		else{
@@ -55,21 +53,25 @@ class Login extends CI_Controller {
 	public function loginAsAdm(){
 		$this->load->library('session');
 		$data['url'] = base_url();
+		$data['modal'] = "";
 		$this->parser->parse('telaAdm', $data);
 	}
 
-	public function loginAsCoord(){
+	public function loginAsCoord($tipo){
 		$this->load->library('session');
 		$data['url'] = base_url();
+		$data['Tipo'] = $tipo;
+		$data['modal'] = "";
 		$this->parser->parse('telaCoord', $data);
 	}
 
 	public function loginAsEst(){
 		$this->load->library('session');
 		$data['url'] = base_url();
+		$data['modal'] = "";
 		$this->parser->parse('telaEst', $data);
 	}
-
+	
 	public function loginAsProf($id){
 		$data['idUSUARIO'] = $id;
 		$this->load->library('session');
@@ -77,4 +79,8 @@ class Login extends CI_Controller {
 		$this->parser->parse('telaProf', $data);
 	}
 
+
+	public function telaInicial(){
+		$this->load->view('inicio');
+	}
 }
