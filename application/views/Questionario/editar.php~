@@ -3,15 +3,6 @@
 
 <head>
 
-	<style>
-	
-		table, th, td {
-			border: 1px solid black;
-			text-align: center;
-		}
-
-	</style>
-
 
     <title>Editor</title>
     <meta charset="utf-8">
@@ -253,6 +244,17 @@
       </div>
 
 
+	<style>
+	
+		table, th, td {
+			border: 1px solid black;
+			text-align: center;
+		}
+
+	</style>
+
+
+
     <!-- jQuery -->
     <script src="{url}assets/js/jquery.min.js"></script>
     <script type="text/javascript">
@@ -267,7 +269,7 @@
     
     <script type="text/javascript">
 		$(document).ready(function(){
-			$(".texto").fadeOut();
+			$(".texto").hide();
 		});		
 		
 		$(document).click(function(){

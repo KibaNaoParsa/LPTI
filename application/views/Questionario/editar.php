@@ -1,16 +1,11 @@
+<?php
+
+/*
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-
-	<style>
-	
-		table, th, td {
-			border: 1px solid black;
-			text-align: center;
-		}
-
-	</style>
 
 
     <title>Editor</title>
@@ -136,6 +131,8 @@
             </div>
             <!-- /.navbar-static-side -->
         </nav>
+        */
+        ?>
         <div id="Main">
           <div id="page-wrapper">
               <div class="row">
@@ -251,6 +248,17 @@
           </div>
         </div>
       </div>
+
+
+	<style>
+	
+		table, th, td {
+			border: 1px solid black;
+			text-align: center;
+		}
+
+	</style>
+
 
 
     <!-- jQuery -->
