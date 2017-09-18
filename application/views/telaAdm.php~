@@ -8,7 +8,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
-    <meta name="author" content="alunos" >
+    <meta name="author" content="Alunos" >
 
     <title>Início</title>
     <link href="{url}assets/css/bootstrap.min.css" rel="stylesheet">
@@ -31,7 +31,7 @@
                         <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
                     </a>
                     <ul class="dropdown-menu dropdown-user">
-                        <li><a href="{url}Login/efetuar_logout"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                        <li><a href="{url}Cadastro/csv"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
                         </li>
                     </ul>
                 </li>
@@ -153,6 +153,37 @@
                         <li>
                             <a href="../Cadastro/editar">Editar usuários</a>
                         </li>
+                        <li>
+                            <a href="../Permissao/v_tela_listagem">Ajustar permissões de usuário</a>
+                        </li>
+								<li>
+                            <a href="#">Questionários<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="../Questionario/v_cadastro">Criar questionário</a>
+                                </li>
+                                <li>
+                                    <a href="../Questionario/v_listar">Editar questionários</a>
+                                </li>
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li>
+								<li>
+                            <a href="#">Turmas e Disciplinas<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="../Materia/v_cadastrar_materias">Cadastrar disciplinas </a>
+                                </li>
+                                <li>
+                                    <a href="../Materia/v_listar_materias">Listar disciplinas</a>
+                                </li>
+                                <li>
+                                    <a href="../Materia/v_associar_materias">Associar disciplinas</a>
+                                </li>
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li>
+
                         <!--
                         <li>
                             <a href="../Cadastro/addCurso">Cadastrar Curso</a>
