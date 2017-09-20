@@ -23,7 +23,7 @@ class Importacao extends CI_Controller {
         				<td></td>        
         				<td>:</td>        
 						<td></td>
-						<td>;</td>       
+						<td>:</td>       
     			    </tr>
     			 </table>";
 

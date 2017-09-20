@@ -41,47 +41,67 @@
                 <div class="sidebar-nav navbar-collapse" id="btn">
                     <ul class="nav" id="side-menu">
                         <li>
-                            <a href="{url}Login/telaInicial">Início</a>
+                            <a href="../../../Login/telaInicial">Início</a>
                         </li>
                         <li>
-                            <a href="../Estagiario/aluCad">Cadastrar Alunos</a>
+                            <a href="../../../Estagiario/aluCad">Cadastrar Alunos</a>
                         </li>
                         <li>
-                            <a href="../Estagiario/aluEdit">Editar Turmas</a>
+                            <a href="../../../Estagiario/aluEdit">Editar Alunos</a>
                         </li>
                         <li>
-                            <a href="../Estagiario/notCad">Cadastrar Notas</a>
+                            <a href="../../../Estagiario/notCad">Cadastrar Notas</a>
                         </li>
                         <li>
-                            <a href="../Estagiario/notEdit">Editar Notas</a>
+                            <a href="../../../Estagiario/notEdit">Editar Notas</a>
                         </li>
                         <li>
-                            <a href="../Estagiario/freqCad">Cadastrar Frequência</a>
+                            <a href="../../../Estagiario/freqCad">Cadastrar Frequência</a>
                         </li>
                         <li>
-                            <a href="../Estagiario/freqEdit">Editar Frequência</a>
+                            <a href="../../../Estagiario/freqEdit">Editar Frequência</a>
                         </li>
                     </ul>
                 </div>
                 <!-- /.sidebar-collapse -->
             </div>
             <!-- /.navbar-static-side -->
-        </nav>
-        <div id="Main">
-          <div id="page-wrapper">
+        </nav>		
+		<div id="Main">
+			<div id="page-wrapper">
               <div class="row">
                   <div class="col-lg-12">
-                      <h1 class="page-header">Inicio</h1>
+                      <h1 class="page-header"> Inserir Frequência </h1>
                   </div>
                   <!-- /.col-lg-12 -->
               </div>
               <!-- /.row -->
               <div class="row">
-  		                
+				<?php
+					$atributos = array('name'=>'formulario_cadastro', 'id'=>'formulario_cadastro');
+					$btn = array('name'=>'btn_cadastrar', 'id'=>'btn_cadastro', 'class'=>'btn btn-lg btn-primary');
+					$i = 0;
+					echo form_open('Estagiario/freq/'.$materia[0]->TURMA_idTURMA.'/'.$materia[0]->ANO, $atributos);
+					foreach($materia as $data){
+						echo form_radio("txt_materia", $data->idMATERIA, true).
+						form_label($data->NOME, "txt_materia")."  ";
+						$i++;
+						if($i == 4){
+							echo br();
+							$i = 0;
+						}
+					}
+					echo br().form_label("Frequências: ", "txt_freq").br().
+					form_input('txt_freq').br().
+					form_label("Bimestre", "txt_bim")." ".
+					form_input(array('name'=>'txt_bim', 'type'=>'number', 'min'=>1, 'max'=>4, 'value'=>1)).br().
+					form_submit("btn_cadastrar", "Cadastrar", $btn).
+					form_close();
+				?>
               </div>
           </div>
-        </div>
-      </div>
+		</div>
+	</div>
 
 
     <!-- jQuery -->
@@ -95,6 +115,11 @@
         });
       });
     </script>
+    <script src="{url}assets/DataTables/media/js/jquery.dataTables.min.js"></script>
+    <script>$(document).ready(function(e){
+		$('#myTable').DataTable();
+	});
+	</script>
 
     <!-- Bootstrap Core JavaScript -->
     <script src="{url}assets/js/bootstrap.min.js"></script>
@@ -110,6 +135,10 @@
     <!-- Custom Theme JavaScript -->
     <script src="{url}assets/js/sb-admin-2.js"></script>
 
+	<script>
+		{modal}
+	</script>
+	
 </body>
 
 </html>

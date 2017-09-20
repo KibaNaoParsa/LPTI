@@ -8,7 +8,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
-    <meta name="author" content="Alunos" >
+    <meta name="author" content="elyas" >
 
     <title>Início</title>
     <link type="text/css" href="{url}assets/js/jquery-ui.css" rel="stylesheet" />
@@ -102,14 +102,14 @@
 						$btn = array('name'=>'btm_cadastrar', 'id'=>'btn_cadastro', 'class'=>'btn btn-lg btn-primary');
 						$ano = date("Y");
 
-						echo '<button type="button" id="button"><a href="{url}Importacao/excel">Baixar .xls</a></button>';
-						echo '<button type="button" id="button"><a href="{url}Importacao/readme">Baixar READ-ME</a></button>';
-						
+						echo anchor("Importacao/excel", "Baixar .xls", 'class = "btn btn-info"');
+						echo anchor("Importacao/readme", "Baixar READ-ME", 'class = "btn btn-info"');						
+							
 						echo br().br();
 						
-									echo  form_open('Estagiario/aluno', $atributos).
+									echo  form_open('Estagiario/alunomassa', $atributos).
 									form_label("Texto: ", "txt_texto").br().
-									form_textarea('txt_texto').br().
+									form_input('txt_texto').br().
 									form_label("Ano: ", "txt_ano").
 									form_input(array('name'=>'txt_ano', 'type'=>'number', 'min'=>$ano, 'max'=>1+$ano, 'value'=>$ano)).br().
 									form_label("1° Info Int", "txt_1i").
