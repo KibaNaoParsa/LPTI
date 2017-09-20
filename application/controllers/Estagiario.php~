@@ -16,11 +16,6 @@
 			$this->parser->parse('aluno', $data);
 		}
 		
-		public function aluCadMassa(){
-			$data['url'] = base_url();
-			$this->parser->parse('alunomassa', $data);
-		}		
-		
 		public function aluno(){
 			$data['idALUNO'] = $this->input->post('txt_matricula');
 			$data['NOME'] = $this->input->post('txt_nome');
