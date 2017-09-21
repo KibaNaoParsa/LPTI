@@ -37,7 +37,8 @@
 													$atributos = array('name'=>'formulario_cadastro', 'id'=>'formulario_cadastro');
 													$btn = array('name'=>'btm_cadastrar', 'id'=>'btn_cadastro', 'class'=>'btn btn-primary');
 													$ano = date("Y");												
-												
+
+													
 													echo form_open('Questionario/criar', $atributos).
 													form_label("Nome: ", "txt_nome").
 													form_input('txt_nome').br().

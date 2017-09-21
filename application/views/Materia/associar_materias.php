@@ -182,7 +182,7 @@
 													 
 													 form_submit("btn_cadastrar", " Salvar ", $btn).
 													 form_close().
-											     anchor('../Materia/index', "Cancelar", array('class'=>"btn btn-danger", 'id'=>"botao"));
+											     anchor('../Materia', "Cancelar", array('class'=>"btn btn-danger", 'id'=>"botao"));
 												?>
 											</div>
               </div>

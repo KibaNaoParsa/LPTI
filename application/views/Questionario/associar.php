@@ -179,7 +179,6 @@
 														
 														
 														// Fim contagem
-														
 													}
 												echo
 													 form_submit("btn_cadastrar", " Confirmar ", $btn).

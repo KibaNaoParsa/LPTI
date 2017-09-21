@@ -12,8 +12,6 @@
         }
 
 		public function index() {
-			$data['msg'] = '';
-			$data['modal'] = '';
 			$data['url'] = base_url();
 			$this->parser->parse('telaAdm', $data);
 		}

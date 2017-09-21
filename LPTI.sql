@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: 21-Set-2017 às 15:34
+-- Generation Time: 21-Set-2017 às 16:38
 -- Versão do servidor: 5.7.19-0ubuntu0.16.04.1
 -- PHP Version: 7.0.23-1+ubuntu16.04.1+deb.sury.org+1
 
@@ -41,13 +41,6 @@ INSERT INTO `ALUNO` (`idALUNO`, `NOME`, `SITUACAO`, `FOTO`) VALUES
 (101010101010, '6565', NULL, NULL),
 (121234345678, 'sasasa', NULL, NULL),
 (201518110000, 'Ana', NULL, NULL),
-(201518110100, '	Wagner	', NULL, NULL),
-(201518110101, '	Aristides	', NULL, NULL),
-(201518110102, '	Machado	', NULL, NULL),
-(201518110103, '	da	', NULL, NULL),
-(201518110104, '	Silva	', NULL, NULL),
-(201518110105, '	Pereira	', NULL, NULL),
-(201518110106, '	Júnior	', NULL, NULL),
 (201518110250, 'saasas', NULL, NULL),
 (201518110259, 'Jew', NULL, NULL),
 (202020202020, '454545', NULL, NULL),
@@ -94,6 +87,13 @@ CREATE TABLE `DIMENSAO` (
   `DESCRICAO` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Extraindo dados da tabela `DIMENSAO`
+--
+
+INSERT INTO `DIMENSAO` (`idDIMENSAO`, `idQUESTIONARIO`, `DESCRICAO`) VALUES
+(1, 1, 'A');
+
 -- --------------------------------------------------------
 
 --
@@ -125,7 +125,7 @@ CREATE TABLE `MATERIA` (
 --
 
 INSERT INTO `MATERIA` (`idMATERIA`, `NOME`, `QTD_AULAS`) VALUES
-(1, 'Matemática III', 80);
+(1, 'Matématica III', 80);
 
 -- --------------------------------------------------------
 
@@ -167,9 +167,17 @@ INSERT INTO `MODALIDADE` (`idMODALIDADE`, `MODALIDADE`) VALUES
 CREATE TABLE `MUT` (
   `USUARIO_idUSUARIO` int(11) NOT NULL,
   `TURMA_idTURMA` int(11) NOT NULL,
-  `MATERIA_idMATERIA` int(11) NOT NULL,
-  `ANO` int(4) DEFAULT NULL
+  `MATERIA_idMATERIA` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Extraindo dados da tabela `MUT`
+--
+
+INSERT INTO `MUT` (`USUARIO_idUSUARIO`, `TURMA_idTURMA`, `MATERIA_idMATERIA`) VALUES
+(19, 13, 1),
+(19, 23, 1),
+(19, 33, 1);
 
 -- --------------------------------------------------------
 
@@ -181,8 +189,7 @@ CREATE TABLE `MUT_has_QUESTIONARIO` (
   `USUARIO_idUSUARIO` int(11) NOT NULL,
   `TURMA_idTURMA` int(11) NOT NULL,
   `MATERIA_idMATERIA` int(11) NOT NULL,
-  `QUESTIONARIO_idQUESTIONARIO` int(11) NOT NULL,
-  `ANO` int(4) DEFAULT NULL
+  `QUESTIONARIO_idQUESTIONARIO` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -236,6 +243,13 @@ CREATE TABLE `PERGUNTA` (
   `TIPO` tinyint(4) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Extraindo dados da tabela `PERGUNTA`
+--
+
+INSERT INTO `PERGUNTA` (`idPERGUNTA`, `idDIMENSAO`, `PERGUNTA`, `TIPO`) VALUES
+(1, 1, 'A', 0);
+
 -- --------------------------------------------------------
 
 --
@@ -259,6 +273,13 @@ CREATE TABLE `QUESTIONARIO` (
   `NOME` varchar(40) DEFAULT NULL,
   `ANO` int(4) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Extraindo dados da tabela `QUESTIONARIO`
+--
+
+INSERT INTO `QUESTIONARIO` (`idQUESTIONARIO`, `NOME`, `ANO`) VALUES
+(1, '1/2017', 2017);
 
 -- --------------------------------------------------------
 
@@ -339,13 +360,6 @@ CREATE TABLE `TURMA_has_ALUNO` (
 
 INSERT INTO `TURMA_has_ALUNO` (`ALUNO_idALUNO`, `TURMA_idTURMA`, `ANO`) VALUES
 (201518110000, 11, 2017),
-(201518110100, 13, 2017),
-(201518110101, 13, 2017),
-(201518110102, 13, 2017),
-(201518110103, 13, 2017),
-(201518110104, 13, 2017),
-(201518110105, 13, 2017),
-(201518110106, 13, 2017),
 (201518110259, 41, 2017),
 (505050505050, 33, 2017),
 (784512963258, 33, 2017);
@@ -361,6 +375,15 @@ CREATE TABLE `TURMA_has_MATERIA` (
   `MATERIA_idMATERIA` int(11) NOT NULL,
   `ANO` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Extraindo dados da tabela `TURMA_has_MATERIA`
+--
+
+INSERT INTO `TURMA_has_MATERIA` (`TURMA_idTURMA`, `MATERIA_idMATERIA`, `ANO`) VALUES
+(13, 1, 2017),
+(23, 1, 2017),
+(33, 1, 2017);
 
 -- --------------------------------------------------------
 
@@ -555,7 +578,7 @@ ALTER TABLE `CURSO`
 -- AUTO_INCREMENT for table `DIMENSAO`
 --
 ALTER TABLE `DIMENSAO`
-  MODIFY `idDIMENSAO` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `idDIMENSAO` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `FREQUENCIA`
 --
@@ -585,7 +608,7 @@ ALTER TABLE `PARAMETRO_DE_RISCO`
 -- AUTO_INCREMENT for table `PERGUNTA`
 --
 ALTER TABLE `PERGUNTA`
-  MODIFY `idPERGUNTA` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `idPERGUNTA` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `PROFESSOR`
 --
@@ -595,7 +618,7 @@ ALTER TABLE `PROFESSOR`
 -- AUTO_INCREMENT for table `QUESTIONARIO`
 --
 ALTER TABLE `QUESTIONARIO`
-  MODIFY `idQUESTIONARIO` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `idQUESTIONARIO` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `RESPOSTA`
 --

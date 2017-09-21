@@ -12,8 +12,6 @@
         }
 
 		public function index() {
-			$data['msg'] = '';
-			$data['modal'] = '';
 			$data['url'] = base_url();
 			$this->parser->parse('telaAdm', $data);
 		}
@@ -91,23 +89,12 @@
 			for ($i = 0; $i < $qtd; $i++) {
 					if(!empty($item[$i])) {
 						$data['MATERIA_idMATERIA'] = $item[$i];
-						
-						$this->db->select('TURMA_has_MATERIA.ANO');
-						$this->db->from('TURMA_has_MATERIA');
-						$this->db->where('TURMA_has_MATERIA.TURMA_idTURMA', $data['TURMA_idTURMA']);
-						$this->db->where('TURMA_has_MATERIA.MATERIA_idMATERIA', $data['MATERIA_idMATERIA']);
-						$ano = $this->db->get()->result();
-						
-						foreach ($ano as $a) {
-							$data['ANO'] = $a->ANO;
-						}
-						
 						$this->db->insert('MUT', $data);
 					}
 			}
 			
 			
-			redirect('Permissao/index');
+			$this->v_selecao($idusu);
 
 		
 		
