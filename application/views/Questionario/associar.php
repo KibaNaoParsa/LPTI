@@ -159,13 +159,24 @@
 														
 														$contador++;
 														
-														if(($contador % 3 == 0) || ($contador % 5 == 0)) {
-															echo br();
-															if($contador % 5 == 0) {
-																$contador = 0;
+														if(($contador % 3 == 0)) {
+															if ($contador != 12) {
 																echo br();
+																if($contador % 9 == 0) {
+																	echo br();
+																}
 															}
+															
 														}
+														
+														if ($contador == 11) {
+															echo br();}
+														if ($contador == 13){
+															echo br();}
+														if ($contador == 15){
+															echo br();}
+														
+														
 														
 														// Fim contagem
 														

@@ -24,6 +24,7 @@ class Professor extends CI_Controller {
 			$this->db->join('CURSO', 'TURMA.idCURSO = CURSO.idCURSO', 'inner');
 			$this->db->join('MUT', 'MUT.TURMA_idTURMA = TURMA.idTURMA', 'inner');
 			$this->db->where('MUT.USUARIO_idUSUARIO', $id);
+			
 			$this->db->distinct();		
 			$data['TURMA'] = $this->db->get()->result();
 

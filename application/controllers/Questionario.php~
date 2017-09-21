@@ -108,7 +108,6 @@
 		public function criar() {
 		
 			$data['NOME'] = $this->input->post('txt_nome');
-			$data['ANO'] = $this->input->post('txt_ano');
 			$this->db->insert('QUESTIONARIO', $data);
 			$codigo = $this->db->query("SELECT idQUESTIONARIO from QUESTIONARIO ORDER BY idQUESTIONARIO desc limit 1")->result();
 			
@@ -213,17 +212,6 @@
 		public function associar() {
 			
 			$data['QUESTIONARIO_idQUESTIONARIO'] = $this->input->post('idQUESTIONARIO');
-			$this->db->select('QUESTIONARIO.ANO');
-			$this->db->from('QUESTIONARIO');
-			$this->db->where('QUESTIONARIO.idQUESTIONARIO', $data['QUESTIONARIO_idQUESTIONARIO']);
-			
-			$ano = $this->db->get()->result();
-			
-			
-			foreach($ano as $a) {
-				$data['ANO'] = $a->ANO;
-			}
-			
 			$item = $this->input->get_post('turma');
 			if(!empty($item)) {
 				$qtd = count($item);
@@ -233,32 +221,11 @@
 					if(!empty($item[$i])) {
 						$data['TURMA_idTURMA'] = $item[$i];
 						$this->db->insert('QUESTIONARIO_has_TURMA', $data);
-						$materia = $this->db->query("select MATERIA.idMATERIA FROM MATERIA INNER JOIN TURMA_has_MATERIA 
-													ON TURMA_has_MATERIA.MATERIA_idMATERIA = MATERIA.idMATERIA 
-													where TURMA_has_MATERIA.TURMA_idTURMA = " . $data['TURMA_idTURMA'])->result();
-																			
-						foreach ($materia as $m) {
-				
-								$usuario = $this->db->query("select MUT.USUARIO_idUSUARIO from MUT 
-															INNER JOIN MATERIA ON MATERIA.idMATERIA = MUT.MATERIA_idMATERIA
-															where MUT.MATERIA_idMATERIA = " . $m->idMATERIA)->result();
-														 
-								foreach($usuario as $u) {
-									
-									$dat['QUESTIONARIO_idQUESTIONARIO'] = $data['QUESTIONARIO_idQUESTIONARIO'];
-									$dat['TURMA_idTURMA'] = $item[$i];
-									$dat['USUARIO_idUSUARIO'] = $u->USUARIO_idUSUARIO;
-									$dat['MATERIA_idMATERIA'] = $m->idMATERIA;
-									$dat['ANO'] = $data['ANO'];
-									$this->db->insert('MUT_has_QUESTIONARIO', $dat);
-									
-								}
-							
-						}	
+						$this->associacaoMUTQ($data);		
 					}
 			}			
 			
-			redirect('Questionario/index');
+			
 			
 		}
 
