@@ -49,15 +49,39 @@
 			$data['TURMA_idTURMA'] = $this->input->post('Turma');
 			$data['ANO'] = $this->input->post('txt_ano');
 
-			$aluno = explode(":", $alunos);
-	
+			$aluno = explode(";", $alunos);
+			
+			foreach ($aluno as $a) {
+				
+				$divorcio = explode(":", $a);
+				
+				$dat['idALUNO'] = $divorcio[0];
+				$dat['NOME'] = $divorcio[1];
+				$data['ALUNO_idALUNO'] = $dat['idALUNO'];	
+								
+				if(($dat['idALUNO'] <= 100000000000) or ($dat['NOME'] == "") or ($data['TURMA_idTURMA'] == "") or ($data['ANO'] == "")){
+					$da['modal'] = "$(window).on('load',function(){
+						  $('#erro-modal').modal('show');
+						  });";
+					$da['url'] = base_url();
+					$this->parser->parse('aluno', $da);
+				}else{
+					$da['modal'] = " ";
+					$this->db->insert('ALUNO', $dat);
+					$this->db->insert('TURMA_has_ALUNO', $data);					
+				}				
+			}	
+			
+			
+			
+			/*
 			for($i = 0; $i < count($aluno)-1; $i++) {
 				if($i == 0 || $i % 2 ==0) {			
 					$dat['idALUNO'] = $aluno[$i];
 					$dat['NOME'] = $aluno[$i+1];
 					$data['ALUNO_idALUNO'] = $dat['idALUNO'];	
 								
-				/*	if(($dat['idALUNO'] <= 100000000000) or ($dat['NOME'] == "") or ($data['TURMA_idTURMA'] == "") or ($data['ANO'] == "")){
+					if(($dat['idALUNO'] <= 100000000000) or ($dat['NOME'] == "") or ($data['TURMA_idTURMA'] == "") or ($data['ANO'] == "")){
 						$da['modal'] = "$(window).on('load',function(){
 							  $('#erro-modal').modal('show');
 							  });";
@@ -67,16 +91,13 @@
 						$da['modal'] = " ";
 						$this->db->insert('ALUNO', $dat);
 						$this->db->insert('TURMA_has_ALUNO', $data);
-				}				
-					*/
-						
-					$this->db->insert('ALUNO', $dat);
-					$this->db->insert('TURMA_has_ALUNO', $data);
-					unset($dat['idALUNO']);
-					unset($data['ALUNO_idALUNO']);		
+						unset($dat['idALUNO']);
+						unset($data['ALUNO_idALUNO']);						
+					}				
 				}
 				
-			}		
+			}
+			*/		
 			
 			redirect("Login/loginAsEst");						
 			
