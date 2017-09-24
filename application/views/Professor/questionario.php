@@ -1,4 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+
+    <title>Editar Usuário</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="elyas" >
+
+    <title>Início</title>
+    <link href="{url}assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="{url}assets/css/metisMenu.min.css" rel="stylesheet">
+    <link href="{url}assets/css/sb-admin-2.css" rel="stylesheet">
+    <link href="{url}assets/css/morris.css" rel="stylesheet">
+    <link href="{url}assets/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+		<link href="{url}assets/css/estilo.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+
+    <div id="wrapper">
+			<div id="MainProf">
+          <div id="page-wrapper">
               <div class="row">
                   <div class="col-lg-12">
                       <h1 class="page-header">Questionários</h1>
@@ -9,11 +34,9 @@
               <div class="row">
   		        	<div class="col-lg-12 col-md-12" id="btn">
 									<?php												
-											
-										echo "Turma: ".$INN[0]->SERIE."º ".$INN[0]->NOME.br().br();
-										
-                               foreach ($MATERIA as $m) {
- 	                                 echo anchor("Professor/v_questionario/".$idUSUARIO."/".$idTURMA."/".$m->MATERIA_idMATERIA, $m->NOME, 'class="btn btn-warning"').br();
+													
+                               foreach ($QUEST as $q) {
+ 	                                 echo anchor("Professor/v_telaprincipal/".$idUSUARIO."/".$idTURMA."/".$idMATERIA."/".$q->idQUESTIONARIO, $q->NOME, 'class="btn btn-primary"').br();
                                }										
 		
 									?>
@@ -48,6 +71,5 @@
 </body>
 
 </html>
-
 
 

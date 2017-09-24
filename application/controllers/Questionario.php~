@@ -214,10 +214,6 @@
 			
 			for ($i = 0; $i < $qtd; $i++) {
 					if(!empty($item[$i])) {
-						foreach($ano as $a) {
-							$data['ANO'] = $a->ANO;		
-						}								
-
 						$data['TURMA_idTURMA'] = $item[$i];
 						$this->db->insert('QUESTIONARIO_has_TURMA', $data);
 						unset($data['ANO']);						

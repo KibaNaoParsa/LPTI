@@ -77,8 +77,8 @@ class Professor extends CI_Controller {
 			$data['idMATERIA'] = $idM;
 			
 			$data['url'] = base_url();
-
-			$this->parser->parse('Professor/questionario', $data);			
+			$this->parser->parse('ajaxProf', $data);
+			$this->parser->parse('Professor/disciplina', $data);			
 										
 		}
 
