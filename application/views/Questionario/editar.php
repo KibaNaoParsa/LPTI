@@ -201,7 +201,7 @@
 													WHERE DIMENSAO.idQUESTIONARIO = " . $QUESTIONARIO[0]->idQUESTIONARIO)->result();
 													
 								foreach ($perdi as $p) {
-									echo anchor("Questionario/excluirPergunta/".$QUESTIONARIO[0]->idQUESTIONARIO."/".$p->idPERGUNTA, 
+									echo anchor("Questionario/excluirPergunta/".$p->idPERGUNTA, 
 												" Excluir ", 'class= "btn btn-danger"');
 									echo $p->PERGUNTA." - ".$p->DESCRICAO.br();
 								}

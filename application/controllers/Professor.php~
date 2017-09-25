@@ -19,6 +19,27 @@ class Professor extends CI_Controller {
 
 		public function v_listar($id) {
 
+select MUT_has_QUESTIONARIO.QUESTIONARIO_idQUESTIONARIO, QUESTIONARIO.NOME, MUT_has_QUESTIONARIO.MATERIA_idMATERIA, MATERIA.NOME, MUT_has_QUESTIONARIO.TURMA_idTURMA,
+		TURMA.SERIE, CURSO.NOME, MODALIDADE.MODALIDADE, QUESTIONARIO.ANO from MUT_has_QUESTIONARIO
+	inner join QUESTIONARIO on QUESTIONARIO.idQUESTIONARIO = MUT_has_QUESTIONARIO.QUESTIONARIO_idQUESTIONARIO
+    inner join MATERIA on MATERIA.idMATERIA = MUT_has_QUESTIONARIO.MATERIA_idMATERIA
+    inner join TURMA on TURMA.idTURMA = MUT_has_QUESTIONARIO.TURMA_idTURMA
+    inner join CURSO on CURSO.idCURSO = TURMA.idCURSO
+    inner join MODALIDADE on MODALIDADE.idMODALIDADE = CURSO.MODALIDADE
+    WHERE MUT_has_QUESTIONARIO.USUARIO_idUSUARIO = 19
+    where QUESTIONARIO.ANO = 2017
+    
+			$ano = date("Y");
+			
+			$this->db->select("MUT_has_QUESTIONARIO.QUESTIONARIO_idQUESTIONARIO, QUESTIONARIO.NOME, MUT_has_QUESTIONARIO.MATERIA_idMATERIA, MATERIA.NOME, MUT_has_QUESTIONARIO.TURMA_idTURMA,
+		TURMA.SERIE, CURSO.NOME, MODALIDADE.MODALIDADE, QUESTIONARIO.ANO");
+			$this->db->from("MUT_has_QUESTIONARIO");
+			$this->db->join("QUESTIONARIO", "QUESTIONARIO.idQUESTIONARIO = MUT_has_QUESTIONARIO.QUESTIONARIO_idQUESTIONARIO", "inner");
+			$this->db->join("MATERIA", "MATERIA.idMATERIA = MUT_has_QUESTIONARIO.MATERIA_idMATERIA", "inner");
+			$this->db->join("TURMA", "TURMA.idTURMA = MUT_has_QUESTIONARIO.TURMA_idTURMA", "inner");
+			$this->db->join("CURSO", "CURSO.idCURSO = TURMA.idCURSO", "inner");
+			$this->db->join("MODALIDADE", "MODALIDADE.idMODALIDADE = CURSO.MODALIDADE", "inner");
+/*
 			$this->db->select('TURMA.idTURMA, TURMA.SERIE, CURSO.NOME');
 			$this->db->from('TURMA');
 			$this->db->join('CURSO', 'TURMA.idCURSO = CURSO.idCURSO', 'inner');
@@ -26,7 +47,7 @@ class Professor extends CI_Controller {
 			$this->db->where('MUT.USUARIO_idUSUARIO', $id);
 			$this->db->distinct();		
 			$data['TURMA'] = $this->db->get()->result();
-
+*/
 			$data['url'] = base_url();
 			$data['idUSUARIO'] = $id;
 
@@ -34,6 +55,8 @@ class Professor extends CI_Controller {
 			
 		}
 		
+		
+		/*
 		public function v_disciplina($idUSUARIO, $idTURMA) {
 
 			$this->db->select('TURMA.SERIE, CURSO.NOME');
@@ -77,8 +100,8 @@ class Professor extends CI_Controller {
 			$data['idMATERIA'] = $idM;
 			
 			$data['url'] = base_url();
-			$this->parser->parse('ajaxProf', $data);
-			$this->parser->parse('Professor/disciplina', $data);			
+
+			$this->parser->parse('Professor/questionario', $data);			
 										
 		}
 
@@ -100,5 +123,5 @@ class Professor extends CI_Controller {
 
 		// Fim de chamada de view
 
-
+*/
 }

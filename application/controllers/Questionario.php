@@ -229,14 +229,14 @@
 			redirect("Questionario/index");
 		}
 
-		public function excluirPergunta($idQ, $idP) {
+		public function excluirPergunta($idP) {
 			
 			$this->db->select('idPERGUNTA');
 			$this->db->from('PERGUNTA');
 			$this->db->where('idPERGUNTA', $idP);
 			
 			if($this->db->delete('PERGUNTA')) {
-				$this->v_editar($idQ);
+				redirect('Questionario/index');
 			} else {
 				echo "Exclusão impossibilitada";
 			}

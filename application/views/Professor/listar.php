@@ -35,9 +35,10 @@
   		        	<div class="col-lg-12 col-md-12" id="btn">
 									<?php												
 													
-                               foreach ($TURMA as $p) {
- 	                                 echo anchor("Professor/v_disciplina/".$idUSUARIO."/".$p->idTURMA, $p->SERIE."° ".$p->NOME, 'class="btn btn-primary"').br();
-                               }										
+										foreach($QUESTIONARIO as $q) {
+											echo anchor("Professor/v_questionario/".$q->USUARIO_idUSUARIO."/".$q->TURMA_idTURMA."/".$q->MATERIA_idMATERIA."/".$q->QUESTIONARIO_idQUESTIONARIO,
+														"".$q->NOMEQUESTIONARIO." - ".$q->SERIE."° ".$q->NOMECURSO." ".$q->MODALIDADE." ".$q->ANO." - ".$q->NOMEMATERIA, "class = 'btn btn-primary'").br();
+										}
 		
 									?>
 					</div>

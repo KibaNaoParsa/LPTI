@@ -17,6 +17,16 @@
     <link href="{url}assets/css/morris.css" rel="stylesheet">
     <link href="{url}assets/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 		<link href="{url}assets/css/estilo.css" rel="stylesheet" type="text/css">
+
+
+	
+	<style>
+		div.dataTables_wrapper {
+        width: 800px;
+        margin: 0 auto;
+    }
+	</style>
+
 </head>
 
 <body>
@@ -35,9 +45,28 @@
   		        	<div class="col-lg-12 col-md-12" id="btn">
 									<?php												
 													
-                               foreach ($QUEST as $q) {
- 	                                 echo anchor("Professor/v_telaprincipal/".$idUSUARIO."/".$idTURMA."/".$idMATERIA."/".$q->idQUESTIONARIO, $q->NOME, 'class="btn btn-primary"').br();
-                               }										
+										echo '<table id="example" class="display nowrap" cellspacing="0" width="100%">
+											<thead>
+												<tr>
+													<th></th>';
+										foreach ($PERGUNTA_FECHADA as $pf) {
+											echo '<th>'.$pf->PERGUNTA.'</th>';
+										}
+													
+										echo '</tr>
+											</thead>
+											<tbody>';
+										
+										foreach($ALUNOS as $a) {
+											echo '<tr>';
+											echo '<td>'.$a->NOME.'</td>';
+											echo '</tr>';
+										}
+										
+										
+										echo	'</tbody>
+										</table>';
+										
 		
 									?>
 					</div>
@@ -63,6 +92,15 @@
 
     <!-- Custom Theme JavaScript -->
     <script src="{url}assets/js/sb-admin-2.js"></script>
+
+    <script src="{url}assets/DataTables/media/js/jquery.dataTables.min.js"></script>
+	<script language="text/javascript">
+		$(document).ready(function() {
+			$('#example').DataTable( {
+				"scrollX": true
+			} );
+		} );
+	</script>
 
 		<script>
 			{modal}
