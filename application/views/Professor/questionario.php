@@ -16,16 +16,32 @@
     <link href="{url}assets/css/sb-admin-2.css" rel="stylesheet">
     <link href="{url}assets/css/morris.css" rel="stylesheet">
     <link href="{url}assets/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-		<link href="{url}assets/css/estilo.css" rel="stylesheet" type="text/css">
-
-
+	 <link href="{url}assets/css/estilo.css" rel="stylesheet" type="text/css">
+	 <style type="text/css" class="init">
 	
-	<style>
 		div.dataTables_wrapper {
-        width: 800px;
-        margin: 0 auto;
-    }
-	</style>
+			width: 800px;
+			margin: 0 auto;
+		}
+
+	 </style>
+	<script type="text/javascript" language="javascript" src="//code.jquery.com/jquery-1.12.4.js">
+	</script>
+	<script type="text/javascript" language="javascript" src="{url}assets/DataTables/media/js/jquery.dataTables.js">
+	</script>
+	<script type="text/javascript" language="javascript" src="{url}assets/DataTables/examples/resources/syntax/shCore.js">
+	</script>
+	<script type="text/javascript" language="javascript" src="{url}assets/DataTables/examples/resources/demo.js">
+	</script>
+	<script type="text/javascript" language="javascript" class="init">
+	
+		$(document).ready(function() {
+			$('#example').DataTable( {
+				"scrollX": true
+			} );
+		} );
+
+	</script>
 
 </head>
 
@@ -93,14 +109,6 @@
     <!-- Custom Theme JavaScript -->
     <script src="{url}assets/js/sb-admin-2.js"></script>
 
-    <script src="{url}assets/DataTables/media/js/jquery.dataTables.min.js"></script>
-	<script language="text/javascript">
-		$(document).ready(function() {
-			$('#example').DataTable( {
-				"scrollX": true
-			} );
-		} );
-	</script>
 
 		<script>
 			{modal}
