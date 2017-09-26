@@ -39,12 +39,33 @@ class Professor extends CI_Controller {
 		}
 
 
-		public function v_questionario($idU, $idT, $idM, $idQ) {
+		public function v_dimensao($idU, $idT, $idM, $idQ) {
+			
+			$this->db->select('DIMENSAO.idDIMENSAO, DIMENSAO.DESCRICAO');
+			$this->db->from('DIMENSAO');
+			$this->db->where('DIMENSAO.idQUESTIONARIO', $idQ);
+			$data['DIMENSAO'] = $this->db->get()->result();
+			
+			$data['USUARIO_idUSUARIO'] = $idU;
+			$data['TURMA_idTURMA'] = $idT;
+			$data['MATERIA_idMATERIA'] = $idM;
+			$data['QUESTIONARIO_idQUESTIONARIO'] = $idQ;
+			
+			$data['url'] = base_url();
+			$this->parser->parse('Professor/dimensao', $data);		
+		
+		}
+
+		public function v_questionario($idU, $idT, $idM, $idQ, $idD) {
+    
+			$ano = date("Y");    
     
 			$this->db->select("ALUNO.idALUNO, ALUNO.NOME");
 			$this->db->from("ALUNO");
 			$this->db->join("TURMA_has_ALUNO", "TURMA_has_ALUNO.ALUNO_idALUNO = ALUNO.idALUNO", "inner");
 			$this->db->where("TURMA_has_ALUNO.TURMA_idTURMA", $idT);
+			$this->db->where("TURMA_has_ALUNO.ANO", $ano);						
+			$this->db->order_by("ALUNO.NOME asc");			
 			$data['ALUNOS'] = $this->db->get()->result();
 			
 			$this->db->select("DIMENSAO.DESCRICAO as 'DIMENSAO', DIMENSAO.idDIMENSAO, PERGUNTA.idPERGUNTA, PERGUNTA.PERGUNTA");
@@ -52,6 +73,7 @@ class Professor extends CI_Controller {
 			$this->db->join("PERGUNTA", "PERGUNTA.idDIMENSAO = DIMENSAO.idDIMENSAO", "inner");
 			$this->db->where("DIMENSAO.idQUESTIONARIO", $idQ);
 			$this->db->where("PERGUNTA.TIPO", 0);
+			$this->db->where("DIMENSAO.idDIMENSAO", $idD);
 			$data['PERGUNTA_FECHADA'] = $this->db->get()->result();
 			
 			$this->db->select("DIMENSAO.DESCRICAO as 'DIMENSAO', DIMENSAO.idDIMENSAO, PERGUNTA.idPERGUNTA, PERGUNTA.PERGUNTA");
@@ -59,6 +81,7 @@ class Professor extends CI_Controller {
 			$this->db->join("PERGUNTA", "PERGUNTA.idDIMENSAO = DIMENSAO.idDIMENSAO", "inner");
 			$this->db->where("DIMENSAO.idQUESTIONARIO", $idQ);
 			$this->db->where("PERGUNTA.TIPO", 1);
+			$this->db->where("DIMENSAO.idDIMENSAO", $idD);
 			$data['PERGUNTA_ABERTA'] = $this->db->get()->result();
 			
 			$data['idUSUARIO'] = $idU;
@@ -73,4 +96,11 @@ class Professor extends CI_Controller {
 		}
 
 		// Fim de chamada de view
+
+		public function resposta() {
+
+			print_r($this->input->post('idUSUARIO'));
+			print_r($this->input->post('txt_respostaaberta'));		
+		}
+
 }

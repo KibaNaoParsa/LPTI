@@ -11,38 +11,15 @@
     <meta name="author" content="elyas" >
 
     <title>Início</title>
+
+	 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
     <link href="{url}assets/css/bootstrap.min.css" rel="stylesheet">
     <link href="{url}assets/css/metisMenu.min.css" rel="stylesheet">
     <link href="{url}assets/css/sb-admin-2.css" rel="stylesheet">
     <link href="{url}assets/css/morris.css" rel="stylesheet">
     <link href="{url}assets/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 	 <link href="{url}assets/css/estilo.css" rel="stylesheet" type="text/css">
-	 <style type="text/css" class="init">
-	
-		div.dataTables_wrapper {
-			width: 800px;
-			margin: 0 auto;
-		}
-
-	 </style>
-	<script type="text/javascript" language="javascript" src="//code.jquery.com/jquery-1.12.4.js">
-	</script>
-	<script type="text/javascript" language="javascript" src="{url}assets/DataTables/media/js/jquery.dataTables.js">
-	</script>
-	<script type="text/javascript" language="javascript" src="{url}assets/DataTables/examples/resources/syntax/shCore.js">
-	</script>
-	<script type="text/javascript" language="javascript" src="{url}assets/DataTables/examples/resources/demo.js">
-	</script>
-	<script type="text/javascript" language="javascript" class="init">
-	
-		$(document).ready(function() {
-			$('#example').DataTable( {
-				"scrollX": true
-			} );
-		} );
-
-	</script>
-
 </head>
 
 <body>
@@ -59,34 +36,56 @@
               <!-- /.row -->
               <div class="row">
   		        	<div class="col-lg-12 col-md-12" id="btn">
-									<?php												
-													
-										echo '<table id="example" class="display nowrap" cellspacing="0" width="100%">
+						<div class="w3-responsive">
+							<?php												
+									
+								$atributos = array('name'=>'formulario_cadastro', 'id'=>'formulario_cadastro');
+								$btn = array('name'=>'btn_cadastrar', 'id'=>'botao1', 'class'=>'btn btn-lg btn-success');
+												
+								echo form_open('Professor/resposta', $atributos).
+									  form_hidden('idUSUARIO', $idUSUARIO);												
+												
+								echo '<table class="w3-table-all">
 											<thead>
 												<tr>
 													<th></th>';
-										foreach ($PERGUNTA_FECHADA as $pf) {
-											echo '<th>'.$pf->PERGUNTA.'</th>';
-										}
-													
-										echo '</tr>
-											</thead>
-											<tbody>';
+	
+								foreach ($PERGUNTA_FECHADA as $pf) {
+										echo '<th>'.$pf->PERGUNTA.'</th>';
+									}
+												
+								echo '</tr>
+									</thead>
+									<tbody>';
+								
+								foreach($ALUNOS as $a) {
+									echo '<tr>';
+									echo '<td>'.$a->NOME.'</td>';
+									echo '</tr>';
+								}
+									
 										
-										foreach($ALUNOS as $a) {
-											echo '<tr>';
-											echo '<td>'.$a->NOME.'</td>';
-											echo '</tr>';
-										}
+								echo	'</tbody>
+								</table>';
 										
-										
-										echo	'</tbody>
-										</table>';
-										
+								echo br().br();
+								
+								foreach($PERGUNTA_ABERTA as $pa) {
+									echo form_hidden('idPERGUNTA', $pa->idPERGUNTA).
+										  '<h2>'.form_label($pa->PERGUNTA, "txt_perguntaaberta").'</h2>'.br().
+										  form_textarea('txt_respostaaberta[]').br().br();																	
+								}
+								
+								
+								echo form_submit('btn_cadastrar', 'Enviar', $btn).
+								form_close();
+								
+								
 		
-									?>
+							?>
 					</div>
 				</div>
+          </div>
           </div>
 				</div>
 			</div>

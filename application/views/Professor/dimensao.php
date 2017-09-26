@@ -11,15 +11,12 @@
     <meta name="author" content="elyas" >
 
     <title>Início</title>
-
-	 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-
     <link href="{url}assets/css/bootstrap.min.css" rel="stylesheet">
     <link href="{url}assets/css/metisMenu.min.css" rel="stylesheet">
     <link href="{url}assets/css/sb-admin-2.css" rel="stylesheet">
     <link href="{url}assets/css/morris.css" rel="stylesheet">
     <link href="{url}assets/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-	 <link href="{url}assets/css/estilo.css" rel="stylesheet" type="text/css">
+		<link href="{url}assets/css/estilo.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
@@ -36,56 +33,16 @@
               <!-- /.row -->
               <div class="row">
   		        	<div class="col-lg-12 col-md-12" id="btn">
-						<div class="w3-responsive">
-							<?php												
-									
-								$atributos = array('name'=>'formulario_cadastro', 'id'=>'formulario_cadastro');
-								$btn = array('name'=>'btn_cadastrar', 'id'=>'botao1', 'class'=>'btn btn-lg btn-success');
-												
-								echo form_open('Questionario/resposta', $atributos).
-									  form_hidden('idUSUARIO', $idUSUARIO);												
-												
-								echo '<table class="w3-table-all">
-											<thead>
-												<tr>
-													<th></th>';
-	
-								foreach ($PERGUNTA_FECHADA as $pf) {
-										echo '<th>'.$pf->PERGUNTA.'</th>';
-									}
-												
-								echo '</tr>
-									</thead>
-									<tbody>';
-								
-								foreach($ALUNOS as $a) {
-									echo '<tr>';
-									echo '<td>'.$a->NOME.'</td>';
-									echo '</tr>';
-								}
-									
-										
-								echo	'</tbody>
-								</table>';
-										
-								echo br().br();
-								
-								foreach($PERGUNTA_ABERTA as $pa) {
-									echo form_hidden('idPERGUNTA', $pa->idPERGUNTA).
-										  '<h2>'.form_label($pa->PERGUNTA, "txt_perguntaaberta").'</h2>'.br().
-										  form_textarea('txt_respostaaberta[]').br().br();																	
-								}
-								
-								
-								echo form_submit('btn_cadastrar', 'Enviar', $btn).
-								form_close();
-								
-								
+									<?php																								
+											
+										foreach($DIMENSAO as $d) {
+											echo anchor('Professor/v_questionario/'.$USUARIO_idUSUARIO."/".$TURMA_idTURMA."/".$MATERIA_idMATERIA."/".$QUESTIONARIO_idQUESTIONARIO."/".$d->idDIMENSAO,
+															'Dimensão '.$d->DESCRICAO, 'class = "btn btn-info"').br();										
+										}
 		
-							?>
+									?>
 					</div>
 				</div>
-          </div>
           </div>
 				</div>
 			</div>
@@ -108,7 +65,6 @@
     <!-- Custom Theme JavaScript -->
     <script src="{url}assets/js/sb-admin-2.js"></script>
 
-
 		<script>
 			{modal}
 		</script>
@@ -116,5 +72,3 @@
 </body>
 
 </html>
-
-

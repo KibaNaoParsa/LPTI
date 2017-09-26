@@ -131,7 +131,7 @@
 		$('#myTable').DataTable();
 	});
 	</script>
-	<!--<script>
+	<script>
 	
 		$(document).ready(function() {
 			$('#myTable').DataTable( {
@@ -140,7 +140,7 @@
 		} );
 
 	</script>
--->
+
 
     <!-- Bootstrap Core JavaScript -->
     <script src="{url}assets/js/bootstrap.min.js"></script>
