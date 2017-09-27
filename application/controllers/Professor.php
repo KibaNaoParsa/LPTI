@@ -98,8 +98,22 @@ class Professor extends CI_Controller {
 		// Fim de chamada de view
 
 		public function resposta() {
+			
+			$alunovetor = $this->input->post('idTURMA_ALUNO');	
+			
+			for ($i = 0; $i < count($alunovetor); $i++) {
+				$item = $this->input->get_post($alunovetor[$i]);			
+							if(!empty($item)) {
+				$qtd = count($item);
+			}
+			
+			echo $qtd.br();
+			unset($item);
+						
+			}
 
 			print_r($this->input->post('idUSUARIO'));
+			print_r($this->input->post('idPERGUNTA'));
 			print_r($this->input->post('txt_respostaaberta'));		
 		}
 

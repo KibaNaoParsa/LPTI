@@ -8,7 +8,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
-    <meta name="author" content="elyas" >
+    <meta name="author" content="Alunos" >
 
     <title>Início</title>
 
@@ -20,6 +20,25 @@
     <link href="{url}assets/css/morris.css" rel="stylesheet">
     <link href="{url}assets/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 	 <link href="{url}assets/css/estilo.css" rel="stylesheet" type="text/css">
+	 
+	 <style>
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 100%;
+    border: 1px solid #ddd;
+}
+
+th, td {
+    border: 1px solid black;
+    text-align: left;
+    padding: 8px;
+
+}
+
+#check {text-align: center;}
+tr:nth-child(even){background-color: #f2f2f2;}
+</style>
 </head>
 
 <body>
@@ -36,42 +55,42 @@
               <!-- /.row -->
               <div class="row">
   		        	<div class="col-lg-12 col-md-12" id="btn">
-						<div class="w3-responsive">
-							<?php												
-									
+							<?php		
 								$atributos = array('name'=>'formulario_cadastro', 'id'=>'formulario_cadastro');
 								$btn = array('name'=>'btn_cadastrar', 'id'=>'botao1', 'class'=>'btn btn-lg btn-success');
 												
 								echo form_open('Professor/resposta', $atributos).
-									  form_hidden('idUSUARIO', $idUSUARIO);												
-												
-								echo '<table class="w3-table-all">
-											<thead>
-												<tr>
-													<th></th>';
-	
-								foreach ($PERGUNTA_FECHADA as $pf) {
+									  form_hidden('idUSUARIO', $idUSUARIO);
+									  
+								foreach ($ALUNOS as $a) {
+									echo form_hidden('idTURMA_ALUNO[]', $a->idALUNO);
+								}							
+							
+								echo '<div style="overflow-x:auto;">
+  											<table>
+    											<tr>
+      											<th></th>';		
+      						
+      						foreach ($PERGUNTA_FECHADA as $pf) {
 										echo '<th>'.$pf->PERGUNTA.'</th>';
-									}
-												
-								echo '</tr>
-									</thead>
-									<tbody>';
+								}
+								echo '</tr>';
 								
 								foreach($ALUNOS as $a) {
 									echo '<tr>';
 									echo '<td>'.$a->NOME.'</td>';
+									foreach ($PERGUNTA_FECHADA as $pf) {
+										echo '<td id="check">'. form_checkbox("".$a->idALUNO."[]", $a->idALUNO.";".$pf->idPERGUNTA.";1", FALSE) .'</td>';									
+									}
 									echo '</tr>';
 								}
-									
-										
-								echo	'</tbody>
-								</table>';
+								
+								echo	'</table></div>';
 										
 								echo br().br();
 								
 								foreach($PERGUNTA_ABERTA as $pa) {
-									echo form_hidden('idPERGUNTA', $pa->idPERGUNTA).
+									echo form_hidden('idPERGUNTA[]', $pa->idPERGUNTA).
 										  '<h2>'.form_label($pa->PERGUNTA, "txt_perguntaaberta").'</h2>'.br().
 										  form_textarea('txt_respostaaberta[]').br().br();																	
 								}
@@ -80,10 +99,7 @@
 								echo form_submit('btn_cadastrar', 'Enviar', $btn).
 								form_close();
 								
-								
-		
 							?>
-					</div>
 				</div>
           </div>
           </div>
