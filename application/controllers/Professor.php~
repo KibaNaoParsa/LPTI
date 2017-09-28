@@ -10,10 +10,17 @@ class Professor extends CI_Controller {
 			}
         }
 
-		public function index() {
+		public function index($data) {
 			$data['url'] = base_url();
 			$this->parser->parse('telaProf', $data);
 		}
+		
+		public function index2($id) {
+			$data['url'] = base_url();
+			$data['idUSUARIO'] = $id;
+			$this->parser->parse('telaProf', $data);
+		}
+				
 		
 		// Início de chamada de view
 
@@ -97,23 +104,51 @@ class Professor extends CI_Controller {
 
 		// Fim de chamada de view
 
+		public function checkbox($item, $id) {
+
+			$data['idUSUARIO'] = $id;
+			
+			for ($i = 0; $i < count($item); $i++) {
+				$valor = $item[$i];					
+				$resposta = explode(";", $item[$i]);
+				$data['idALUNO'] = $resposta[0];
+				$data['idPERGUNTA'] = $resposta[1];
+				$data['RESPOSTA'] = $resposta[2];
+				
+				$this->db->insert('RESPOSTA', $data);
+			}
+		
+				
+		}
+		
+
 		public function resposta() {
 			
 			$alunovetor = $this->input->post('idTURMA_ALUNO');	
-			
+			$id = $this->input->post('idUSUARIO');
 			for ($i = 0; $i < count($alunovetor); $i++) {
-				$item = $this->input->get_post($alunovetor[$i]);			
-							if(!empty($item)) {
-				$qtd = count($item);
+				$item = $this->input->get_post($alunovetor[$i]);
+				$this->checkbox($item, $id);
 			}
 			
-			echo $qtd.br();
-						
+			$idPERGUNTA = $this->input->post('idPERGUNTA');
+			$txt_respostaaberta = $this->input->post('txt_respostaaberta');			
+			$data['idUSUARIO'] = $id;
+			
+			for ($i = 0; $i < count($idPERGUNTA); $i++) {
+				$data['idPERGUNTA'] = $idPERGUNTA[$i];
+				$data['RESPOSTA_ABERTA'] = $txt_respostaaberta[$i];
+				$data['idALUNO'] = $alunovetor[$i];
+				
+				$this->db->insert('RESPOSTA', $data);				
+				
 			}
 
-			print_r($this->input->post('idUSUARIO'));
-			print_r($this->input->post('idPERGUNTA'));
-			print_r($this->input->post('txt_respostaaberta'));		
+			echo '<script>confirm("Questionário respondido com sucesso!")</script>';
+			
+			unset($data);
+			$this->index2($id);			
+			
 		}
 
 }
