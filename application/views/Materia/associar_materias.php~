@@ -13,7 +13,7 @@
 												echo "Disciplina: ".$MATERIA[0]->NOME.br();
 												
 												$atributos = array('name'=>'formulario_cadastro', 'id'=>'formulario_cadastro');
-												$btn = array('name'=>'btn_cadastrar', 'id'=>'botao1', 'class'=>'btn btn-success');
+												$btn = array('name'=>'btm_cadastrar', 'id'=>'botao1', 'class'=>'btn btn-primary');
 												$ano = date("Y");												
 												echo form_open('Materia/associar', $atributos).
 													 form_hidden('idMATERIA', $MATERIA[0]->idMATERIA).
@@ -53,7 +53,7 @@
 													 
 													 form_submit("btn_cadastrar", " Salvar ", $btn).
 													 form_close().
-											     anchor('{url}Materia', "Cancelar", array('class'=>"btn btn-danger", 'id'=>"botao"));
+											     anchor('../Materia', "Cancelar", array('class'=>"btn btn-danger", 'id'=>"botao"));
 												?>
 											</div>
               </div>

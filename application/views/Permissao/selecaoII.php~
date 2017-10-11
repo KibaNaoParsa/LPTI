@@ -25,7 +25,7 @@
 												
 												echo "Identificação: ".$USUARIO[0]->LOGIN.br()."Turma: ".$TURMA[0]->SERIE."º ".$nomet.br();
 												$atributos = array('name'=>'formulario_cadastro', 'id'=>'formulario_cadastro');
-												$btn = array('name'=>'btn_cadastrar', 'id'=>'botao1', 'class'=>'btn btn-success');
+												$btn = array('name'=>'btm_cadastrar', 'id'=>'botao1', 'class'=>'btn btn-primary');
 												echo form_open('Permissao/associar', $atributos).
 													form_hidden('idUSUARIO', $USUARIO[0]->idUSUARIO).
 											     	form_hidden('idTURMA', $TURMA_has_MATERIA[0]->TURMA_idTURMA);
@@ -47,7 +47,7 @@
 													 echo
 													 form_submit("btn_cadastrar", " Salvar ", $btn).
 													 form_close().
-											     anchor('{url}Permissao/v_selecao/'.$USUARIO[0]->idUSUARIO, "Cancelar", array('class'=>"btn btn-danger", 'id'=>"botao"));
+											     anchor('Permissao/v_selecao/'.$USUARIO[0]->idUSUARIO, "Cancelar", array('class'=>"btn btn-danger", 'id'=>"botao"));
 													
 										
 									

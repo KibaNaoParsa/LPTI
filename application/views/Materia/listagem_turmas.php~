@@ -1,26 +1,23 @@
           <div id="page-wrapper">
               <div class="row">
                   <div class="col-lg-12">
-                      <h1 class="page-header">Questionários</h1>
+                      <h1 class="page-header">Listagem de Turmas</h1>
                   </div>
                   <!-- /.col-lg-12 -->
               </div>
               <!-- /.row -->
               <div class="row">
-  		        	<div class="col-lg-12 col-md-12" id="btn">
-									<?php												
-													
-										foreach($QUESTIONARIO as $q) {
-											echo anchor("Professor/v_dimensao/".$q->idUSUARIO."/".$q->TURMA_idTURMA."/".$q->MATERIA_idMATERIA."/".$q->QUESTIONARIO_idQUESTIONARIO,
-														"".$q->NOMEQUESTIONARIO." - ".$q->SERIE."° ".$q->NOMECURSO." ".$q->MODALIDADE." ".$q->ANO." - ".$q->NOMEMATERIA, "class = 'btn btn-info'").br();
-										}
-		
-									?>
-					</div>
-				</div>
+  		                <div class="col-lg-12 col-md-12">
+							<?php
+								foreach($TURMA as $t) {
+									echo anchor(base_url("cadastro/v_cadastrar_materiasII/".$t->idTURMA), "$t->SERIE, $t->idCURSO").br();
+								}
+							?>
+											
+  		                </div>
+              </div>
+            </div>
           </div>
-				</div>
-			</div>
 
 
     <!-- jQuery -->
@@ -47,6 +44,3 @@
 </body>
 
 </html>
-
-
-

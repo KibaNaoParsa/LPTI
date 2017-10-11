@@ -14,6 +14,7 @@
 			$data['msg'] = '';
 			$data['modal'] = '';
 			$data['url'] = base_url();
+			$this->parser->parse('ajax', $data);
 			$this->parser->parse('telaAdm', $data);
 		}
 
@@ -23,6 +24,7 @@
 		
 		public function v_cadastro() {
 			$data['url'] = base_url();
+			$this->parser->parse('ajax', $data);
 			$this->parser->parse('Questionario/cadastro', $data);
 		}
 		
@@ -32,6 +34,7 @@
 			
 			
 			$data['url'] = base_url();
+			$this->parser->parse('ajax', $data);
 			$this->parser->parse('Questionario/listar', $data);
 		}
 		
@@ -64,6 +67,7 @@
 			
 			
 			$data['url'] = base_url();
+			$this->parser->parse('ajax', $data);
 			$this->parser->parse('Questionario/associar', $data);
 			
 		}

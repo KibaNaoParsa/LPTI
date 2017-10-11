@@ -1,50 +1,23 @@
-<!DOCTYPE html>
-<html lang="en">
+<style>
 
-<head>
+	table {
+  		border-collapse: collapse;
+    	border-spacing: 0;
+	   width: 100%;
+    	border: 1px solid #ddd;
+	}
 
-    <title>Editar Usuário</title>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="Alunos" >
+	th, td {
+    	border: 1px solid black;
+    	text-align: left;
+    	padding: 8px;
+	}
 
-    <title>Início</title>
+	#check {text-align: center;}
+	tr:nth-child(even){background-color: #f2f2f2;}
 
-	 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-
-    <link href="{url}assets/css/bootstrap.min.css" rel="stylesheet">
-    <link href="{url}assets/css/metisMenu.min.css" rel="stylesheet">
-    <link href="{url}assets/css/sb-admin-2.css" rel="stylesheet">
-    <link href="{url}assets/css/morris.css" rel="stylesheet">
-    <link href="{url}assets/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-	 <link href="{url}assets/css/estilo.css" rel="stylesheet" type="text/css">
-	 
-	 <style>
-table {
-    border-collapse: collapse;
-    border-spacing: 0;
-    width: 100%;
-    border: 1px solid #ddd;
-}
-
-th, td {
-    border: 1px solid black;
-    text-align: left;
-    padding: 8px;
-
-}
-
-#check {text-align: center;}
-tr:nth-child(even){background-color: #f2f2f2;}
 </style>
-</head>
 
-<body>
-
-    <div id="wrapper">
-			<div id="MainProf">
           <div id="page-wrapper">
               <div class="row">
                   <div class="col-lg-12">

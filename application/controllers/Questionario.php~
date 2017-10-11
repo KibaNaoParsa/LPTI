@@ -214,6 +214,10 @@
 			
 			for ($i = 0; $i < $qtd; $i++) {
 					if(!empty($item[$i])) {
+						foreach($ano as $a) {
+							$data['ANO'] = $a->ANO;		
+						}								
+
 						$data['TURMA_idTURMA'] = $item[$i];
 						$this->db->insert('QUESTIONARIO_has_TURMA', $data);
 						unset($data['ANO']);						
@@ -225,14 +229,14 @@
 			redirect("Questionario/index");
 		}
 
-		public function excluirPergunta($idQ, $idP) {
+		public function excluirPergunta($idP) {
 			
 			$this->db->select('idPERGUNTA');
 			$this->db->from('PERGUNTA');
 			$this->db->where('idPERGUNTA', $idP);
 			
 			if($this->db->delete('PERGUNTA')) {
-				$this->v_editar($idQ);
+				redirect('Questionario/index');
 			} else {
 				echo "Exclusão impossibilitada";
 			}

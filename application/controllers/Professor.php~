@@ -10,14 +10,16 @@ class Professor extends CI_Controller {
 			}
         }
 
-		public function index($data) {
+		public function index() {
 			$data['url'] = base_url();
+			$this->parser->parse('ajaxProf', $data);
 			$this->parser->parse('telaProf', $data);
 		}
 		
 		public function index2($id) {
 			$data['url'] = base_url();
 			$data['idUSUARIO'] = $id;
+			$this->parser->parse('ajaxProf', $data);
 			$this->parser->parse('telaProf', $data);
 		}
 				
@@ -28,7 +30,7 @@ class Professor extends CI_Controller {
 
 			$ano = date("Y");
 			
-			$this->db->select("MUT_has_QUESTIONARIO.USUARIO_idUSUARIO, MUT_has_QUESTIONARIO.QUESTIONARIO_idQUESTIONARIO, QUESTIONARIO.NOME as 'NOMEQUESTIONARIO', MUT_has_QUESTIONARIO.MATERIA_idMATERIA, MATERIA.NOME as 'NOMEMATERIA', MUT_has_QUESTIONARIO.TURMA_idTURMA,
+			$this->db->select("MUT_has_QUESTIONARIO.USUARIO_idUSUARIO as 'idUSUARIO', MUT_has_QUESTIONARIO.QUESTIONARIO_idQUESTIONARIO, QUESTIONARIO.NOME as 'NOMEQUESTIONARIO', MUT_has_QUESTIONARIO.MATERIA_idMATERIA, MATERIA.NOME as 'NOMEMATERIA', MUT_has_QUESTIONARIO.TURMA_idTURMA,
 		TURMA.SERIE, CURSO.NOME as 'NOMECURSO', MODALIDADE.MODALIDADE, QUESTIONARIO.ANO");
 			$this->db->from("MUT_has_QUESTIONARIO");
 			$this->db->join('QUESTIONARIO', 'QUESTIONARIO.idQUESTIONARIO = MUT_has_QUESTIONARIO.QUESTIONARIO_idQUESTIONARIO', 'inner');
@@ -41,6 +43,7 @@ class Professor extends CI_Controller {
 			$data['QUESTIONARIO'] = $this->db->get()->result();
 			
 			$data['url'] = base_url();
+			$this->parser->parse('ajaxProf', $data);
 			$this->parser->parse('Professor/listar', $data);
 			
 		}
@@ -59,6 +62,7 @@ class Professor extends CI_Controller {
 			$data['QUESTIONARIO_idQUESTIONARIO'] = $idQ;
 			
 			$data['url'] = base_url();
+			$this->parser->parse('ajaxProf', $data);
 			$this->parser->parse('Professor/dimensao', $data);		
 		
 		}
@@ -98,6 +102,7 @@ class Professor extends CI_Controller {
 			
 			$data['url'] = base_url();
 
+			$this->parser->parse('ajaxProf', $data);
 			$this->parser->parse('Professor/questionario', $data);			
 										
 		}

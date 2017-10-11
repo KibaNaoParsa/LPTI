@@ -1,28 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-
-    <title>Editar Usuário</title>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="alunos" >
-
-    <title>Início</title>
-    <link href="{url}assets/css/bootstrap.min.css" rel="stylesheet">
-    <link href="{url}assets/css/metisMenu.min.css" rel="stylesheet">
-    <link href="{url}assets/css/sb-admin-2.css" rel="stylesheet">
-    <link href="{url}assets/css/morris.css" rel="stylesheet">
-    <link href="{url}assets/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-		<link href="{url}assets/css/estilo.css" rel="stylesheet" type="text/css">
-</head>
-
-<body>
-
-    <div id="wrapper">
-			<div id="Main">
           <div id="page-wrapper">
               <div class="row">
                   <div class="col-lg-12">
@@ -36,7 +11,7 @@
 									<?php
 										foreach($MATERIA as $m){
 											echo "Disciplina: " . $m->NOME.br()."Quantidade de Aulas: " . $m->QTD_AULAS.br();
-											echo anchor("Materia/v_editar/".$m->idMATERIA, " Editar ", 'class="btn btn-primary"').
+											echo anchor("Materia/v_editar/".$m->idMATERIA, " Editar ", 'class="btn btn-info"').
 													br().br();
 										}
 									?>

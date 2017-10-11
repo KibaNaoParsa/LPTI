@@ -1,39 +1,25 @@
-<style>
-	table, tr, td {
-		border: 1px solid transparent;
-		text-align: left;	
-	}
-	
-</style>
-
-
           <div id="page-wrapper">
               <div class="row">
                   <div class="col-lg-12">
-                      <h1 class="page-header">Associação Disciplina-Classe</h1>
+                      <h1 class="page-header">Editar Usuário</h1>
                   </div>
                   <!-- /.col-lg-12 -->
               </div>
               <!-- /.row -->
               <div class="row">
-  		                <div class="col-lg-6 col-md-6">
+  		                <div class="col-lg-3 col-md-6">
 												<?php
-												
-												$i = 0;
-												echo "Identificação: ".$USUARIO[0]->LOGIN.br();
-												
-												echo "<table>
-															<tr>";												
-												foreach ($TURMA as $t) {
-													echo "<td>". anchor("Permissao/v_selecaoII/".$USUARIO[0]->idUSUARIO."/".$t->idTURMA, 
-																				$t->SERIE."° ".$t->NOME." ".$t->MODALIDADE, 'class="btn btn-info"')."</td>";
-													if (($i == 2) || ($i == 5) || ($i == 8) || ($i == 10) || ($i == 12) || ($i == 14)) {
-														echo "</tr><tr>";													
-													}
-													$i++;													
-												}
-												
-												echo "</tr></table>";
+												$atributos = array('name'=>'formulario_cadastro', 'id'=>'formulario_cadastro');
+												$btn = array('name'=>'btm_cadastrar', 'id'=>'botao1', 'class'=>'btn btn-primary');
+												echo form_open('Materia/editar', $atributos).
+													 form_hidden('idMATERIA', $MATERIA[0]->idMATERIA).
+													 form_label("Disciplina: ", "txt_nome").br().
+													 form_input('txt_nome', $MATERIA[0]->NOME).br().
+													 form_label("Quantidade de Aulas: ", "txt_qtd").br().
+													 form_input('txt_qtd', $MATERIA[0]->QTD_AULAS).br().
+													 form_submit("btn_cadastrar", "Salvar Alterações", $btn).br().
+													 form_close().br().
+											     anchor('../Materia', "Cancelar", array('class'=>"btn btn-danger", 'id'=>"botao"));
 												?>
 											</div>
               </div>
@@ -71,6 +57,4 @@
 </body>
 
 </html>
-
-
 

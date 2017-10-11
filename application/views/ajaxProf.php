@@ -30,10 +30,7 @@
                         <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
                     </a>
                     <ul class="dropdown-menu dropdown-user">
-                        <li><a href="../Cadastro/csv"><i class="fa fa-pencil-square-o fa-fw"></i> Gerar .csv</a>
-                        </li>
-
-                        <li><a href="../Login/efetuar_logout"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                        <li><a href="{url}Login/efetuar_logout"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
                         </li>
 
                     </ul>
@@ -43,19 +40,9 @@
             <div class="navbar-default sidebar" role="navigation">
                 <div class="sidebar-nav navbar-collapse" id="btn">
                     <ul class="nav" id="side-menu">
-                        <li class="sidebar-search">
-                            <div class="input-group custom-search-form">
-                                <input type="text" class="form-control" placeholder="Procure...">
-                                <span class="input-group-btn">
-                                <button class="btn btn-default" type="button">
-                                    <i class="fa fa-search"></i>
-                                </button>
-                            </span>
-                            </div>
-                            <!-- /input-group -->
-                        </li>
+
                         <li>
-                            <a href="#">Início</a>
+                            <a href="{url}Professor/index">Início</a>
                         </li>
                         <li>
 									<?php echo anchor("Professor/v_listar/".$idUSUARIO, "Responder relatórios"); ?>			
@@ -67,4 +54,3 @@
             <!-- /.navbar-static-side -->
         </nav>
         <div id="MainProf">
-          <div id="page-wrapper">
