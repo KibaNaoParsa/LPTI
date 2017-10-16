@@ -19,7 +19,7 @@
 													 form_input('txt_qtd', $MATERIA[0]->QTD_AULAS).br().
 													 form_submit("btn_cadastrar", "Salvar Alterações", $btn).br().
 													 form_close().br().
-											     anchor('../Materia', "Cancelar", array('class'=>"btn btn-danger", 'id'=>"botao"));
+											     anchor('Materia', "Cancelar", array('class'=>"btn btn-danger", 'id'=>"botao"));
 												?>
 											</div>
               </div>

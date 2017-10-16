@@ -195,7 +195,7 @@
 													 form_label("Coordenador Edficações", "txt_tipo").br().br().
 													 form_submit("btn_cadastrar", "Salvar Alterações", $btn).br().
 													 form_close().br().
-											     anchor('Login/loginAsAdm', "Cancelar", array('class'=>"btn btn-danger", 'id'=>"botao"));
+											     anchor('Materia', "Cancelar", array('class'=>"btn btn-danger", 'id'=>"botao"));
 												?>
 											</div>
               </div>

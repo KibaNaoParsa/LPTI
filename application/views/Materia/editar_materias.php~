@@ -10,7 +10,7 @@
   		                <div class="col-lg-3 col-md-6">
 												<?php
 												$atributos = array('name'=>'formulario_cadastro', 'id'=>'formulario_cadastro');
-												$btn = array('name'=>'btm_cadastrar', 'id'=>'botao1', 'class'=>'btn btn-primary');
+												$btn = array('name'=>'btn_cadastrar', 'id'=>'botao1', 'class'=>'btn btn-success');
 												echo form_open('Materia/editar', $atributos).
 													 form_hidden('idMATERIA', $MATERIA[0]->idMATERIA).
 													 form_label("Disciplina: ", "txt_nome").br().
