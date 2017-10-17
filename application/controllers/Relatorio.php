@@ -63,18 +63,50 @@
 				
 				$data['url'] = base_url();
 				$this->parser->parse('ajax', $data);
-				$this->parser->parse('Relatorio/turmas', $data);
+				$this->parser->parse('Relatorio/tipo', $data);
 				
+							
+			}    
+        
+        // Fim de chamada de view  
+
+			public function chartSingle($idQ, $idT) {
 							
 			}
 
 
-		  public function chartSingle() {
-				$data['url'] = base_url();
-				$this->parser->parse('ajax', $data);
-				$this->parser->parse('Relatorio/chartSingle', $data);		  
-		  }        
-        
-        
-        // Fim de chamada de view  
+			public function chart() {
+				$idQUESTIONARIO = $this->input->post('idQUESTIONARIO');
+
+				$item = $this->input->get_post('turma');
+			
+				if(!empty($item)) {
+					$qtd = count($item);
+				}
+			
+				for ($i = 0; $i < $qtd; $i++) {
+					$idTURMA = $item[$i];
+				}
+				
+				$item2 = $this->input->get_post('relatorio');
+			
+				if(!empty($item)) {
+					$qtd = count($item);
+				}
+			
+				for ($i = 0; $i < $qtd; $i++) {
+					$relatorio = $item[$i];
+				}
+				
+				if ($relatorio == 0) {
+					$this->chartSingle($idQUESTIONARIO, $idTURMA);				
+				}
+				if ($relatorio == 1) {
+					$this->chartMultiple($idQUESTIONARIO, $idTURMA);				
+				}		
+			
+			}	
+	
+	
+	
 	}

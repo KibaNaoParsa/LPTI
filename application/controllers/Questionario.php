@@ -177,7 +177,6 @@
 			}
 			
 			for ($i = 0; $i < $qtd; $i++) {
-					print_r($item[$i]);
 					$data['TIPO'] = $item[$i];
 			}
 			

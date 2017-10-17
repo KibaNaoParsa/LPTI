@@ -54,7 +54,7 @@
 				$this->db->where('QUESTIONARIO_has_TURMA.QUESTIONARIO_idQUESTIONARIO', $idQ);
 				$data['TURMA'] = $this->db->get()->result();
 				
-				$this->db->select('QUESTI0NARIO.NOME');
+				$this->db->select('QUESTIONARIO.NOME');
 				$this->db->from('QUESTIONARIO');
 				$this->db->where('QUESTIONARIO.idQUESTIONARIO', $idQ);
 				$data['NOME'] = $this->db->get()->result();
@@ -63,11 +63,21 @@
 				
 				$data['url'] = base_url();
 				$this->parser->parse('ajax', $data);
-				$this->parser->parse('Relatorio/turmas', $data);
+				$this->parser->parse('Relatorio/tipo', $data);
 				
 							
 			}
 
+			public function v_chart($idQ, $idT) {
+		
+				$data['idQUESTIONARIO'] = $idQ;
+				$data['idTURMA'] = $idT;
+				
+				$data['url'] = base_url();
+				$this->parser->parse('ajax', $data);
+				$this->parser->parse('Relatorio/tipo', $data);
+						
+			}
 
 		  public function chartSingle() {
 				$data['url'] = base_url();

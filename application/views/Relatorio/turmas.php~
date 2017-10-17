@@ -1,3 +1,12 @@
+<style>
+	table, tr, td {
+		border: 1px solid transparent;
+		text-align: left;	
+	}
+	
+</style>
+
+
          <div id="page-wrapper">
               <div class="row">
                   <div class="col-lg-12">
@@ -12,9 +21,23 @@
 
 										echo "Questionário: ".$NOME[0]->NOME.br().br();										
 
+										$i = 0;
+										
+										echo "<table>
+													<tr>";
 										foreach($TURMA as $t){
-											echo anchor('Relatorio/v_chart/'.$idQUESTIONARIO.'/'.$t->TURMA_idTURMA, $t->SERIE." ".$t->NOME." ".$t->MODALIDADE, 'class = "btn btn-info"').br();
+											echo "<td>";											
+											echo anchor('Relatorio/v_chart/'.$idQUESTIONARIO.'/'.$t->TURMA_idTURMA, $t->SERIE."° ".$t->NOME." ".$t->MODALIDADE, 'class = "btn btn-info"');
+											echo "</td>";											
+											$i++;
+											
+											if ($i % 3 == 0) {
+												echo "</tr>
+														<tr>";											
+											}
 										}
+										echo "</tr>
+											</table>";
 									?>
 					</div>
 				</div>
