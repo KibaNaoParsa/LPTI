@@ -1,6 +1,6 @@
 <style>
 .dropbtn {
-    background-color: #4CAF50;
+    background-color: #add8e6;
     color: white;
     padding: 16px;
     font-size: 16px;
@@ -36,7 +36,7 @@
 }
 
 .dropdown:hover .dropbtn {
-    background-color: #3e8e41;
+    background-color: #add8e6;
 }
 </style>       
        

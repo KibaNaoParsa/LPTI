@@ -67,11 +67,127 @@
 				
 							
 			}    
+			
+			public function v_chartSingle($idQ, $idT, $idD) {
+			
+				$data['url'] = base_url();		
+				$data['idQUESTIONARIO'] = $idQ;
+				$data['idTURMA'] = $idT;
+				
+    			$this->db->select('DIMENSAO.idDIMENSAO, DIMENSAO.DESCRICAO');
+    			$this->db->from('DIMENSAO');
+    			$this->db->join('QUESTIONARIO', 'QUESTIONARIO.idQUESTIONARIO = DIMENSAO.idQUESTIONARIO', 'inner');
+    			$this->db->where('QUESTIONARIO.idQUESTIONARIO', $idQ);
+    			$data['DIMENSAO'] = $this->db->get()->result();
+    							
+				if ($idD == 0) {
+					$this->parser->parse('ajax', $data);
+					$this->parser->parse('Relatorio/boot', $data);	
+					$this->parser->parse('Relatorio/fechamento', $data);	
+				} else {
+
+
+					$this->db->select('ALUNO.idALUNO, ALUNO.NOME');
+					$this->db->from('ALUNO');
+					$this->db->join('TURMA_has_ALUNO', 'TURMA_has_ALUNO.ALUNO_idALUNO = ALUNO.idALUNO', 'inner');
+					$this->db->join('TURMA', 'TURMA.idTURMA = TURMA_has_ALUNO.TURMA_idTURMA', 'inner');
+					$this->db->join('QUESTIONARIO', 'QUESTIONARIO.ANO = TURMA_has_ALUNO.ANO', 'inner');
+					$this->db->where('QUESTIONARIO.idQUESTIONARIO', $idQ);
+					$this->db->where('TURMA.idTURMA', $idT);   									
+   				$vetor['RESPOSTA_MATRICULA'] = $this->db->get()->result();
+   			
+   				$i = 0;
+   				
+   				foreach ($vetor['RESPOSTA_MATRICULA'] as $r) {
+   					$this->db->select('count(RESPOSTA.RESPOSTA)');
+	   				$this->db->from('RESPOSTA');
+   					$this->db->join('ALUNO', 'RESPOSTA.idALUNO = ALUNO.idALUNO', 'inner');
+   					$this->db->join('PERGUNTA', 'PERGUNTA.idPERGUNTA = RESPOSTA.idPERGUNTA', 'inner');
+   					$this->db->join('DIMENSAO', 'DIMENSAO.idDIMENSAO = PERGUNTA.idDIMENSAO', 'inner');
+   					$this->db->join('QUESTIONARIO', 'QUESTIONARIO.idQUESTIONARIO = DIMENSAO.idQUESTIONARIO', 'inner');
+  						$this->db->where('QUESTIONARIO.idQUESTIONARIO', $idQ);
+  						$this->db->where('RESPOSTA.RESPOSTA_ABERTA', null);
+  						$this->db->where('ALUNO.idALUNO', $r->idALUNO);
+  						$vetor['RESPOSTA_TOTAL'][$i] = $this->db->get()->result();
+  						$i++;
+					}
+				
+					$i = 0;
+				
+					foreach($vetor['RESPOSTA_MATRICULA'] as $r) {
+						$data['RESPOSTA']['NOME'][$i] = $r->NOME;
+						$data['RESPOSTA']['TOTAL'][$i] = $vetor['RESPOSTA_TOTAL'][$i];
+						$i++;				
+					}
+						
+					print_r($data['RESPOSTA']['NOME']).br();
+					print_r($data['RESPOSTA']['TOTAL']);
+					
+						
+/*					$this->parser->parse('ajax', $data);
+					$this->parser->parse('Relatorio/boot', $data);				
+					$this->parser->parse('Relatorio/chartSingle', $data);
+					$this->parser->parse('Relatorio/fechamento', $data); */
+		
+				}
+		
+			
+			}
         
         // Fim de chamada de view  
 
 			public function chartSingle($idQ, $idT) {
-							
+			/*	select ALUNO.NOME, RESPOSTA.RESPOSTA, PERGUNTA.idPERGUNTA, DIMENSAO.idDIMENSAO, DIMENSAO.DESCRICAO, QUESTIONARIO.idQUESTIONARIO 
+						FROM RESPOSTA
+					INNER JOIN ALUNO ON ALUNO.idALUNO = RESPOSTA.idALUNO
+					INNER JOIN PERGUNTA ON RESPOSTA.idPERGUNTA = PERGUNTA.idPERGUNTA
+   				INNER JOIN DIMENSAO ON PERGUNTA.idDIMENSAO = DIMENSAO.idDIMENSAO
+    				INNER JOIN QUESTIONARIO ON QUESTIONARIO.idQUESTIONARIO = DIMENSAO.idQUESTIONARIO
+   			 	WHERE QUESTIONARIO.idQUESTIONARIO = 1 AND RESPOSTA.RESPOSTA_ABERTA is null */			 	
+   			
+			/* SELECT ALUNO.idALUNO from ALUNO
+	INNER JOIN TURMA_has_ALUNO ON ALUNO.idALUNO = TURMA_has_ALUNO.ALUNO_idALUNO
+    INNER JOIN TURMA ON TURMA.idTURMA = TURMA_has_ALUNO.TURMA_idTURMA
+    INNER JOIN QUESTIONARIO ON QUESTIONARIO.ANO = TURMA_has_ALUNO.ANO
+    WHERE QUESTIONARIO.idQUESTIONARIO = 1 AND TURMA.idTURMA = 13
+    */   			
+   									
+			/* select count(RESPOSTA.RESPOSTA)	FROM RESPOSTA
+	INNER JOIN ALUNO ON ALUNO.idALUNO = RESPOSTA.idALUNO
+	INNER JOIN PERGUNTA ON RESPOSTA.idPERGUNTA = PERGUNTA.idPERGUNTA
+   	INNER JOIN DIMENSAO ON PERGUNTA.idDIMENSAO = DIMENSAO.idDIMENSAO
+    INNER JOIN QUESTIONARIO ON QUESTIONARIO.idQUESTIONARIO = DIMENSAO.idQUESTIONARIO
+    WHERE QUESTIONARIO.idQUESTIONARIO = 1 AND RESPOSTA.RESPOSTA_ABERTA is null and ALUNO.idALUNO = 201518110102 */   									
+   									
+				$this->db->select('ALUNO.idALUNO, ALUNO.NOME');
+				$this->db->from('ALUNO');
+				$this->db->join('TURMA_has_ALUNO', 'TURMA_has_ALUNO.ALUNO_idALUNO = ALUNO.idALUNO', 'inner');
+				$this->db->join('TURMA', 'TURMA.idTURMA = TURMA_has_ALUNO.TURMA_idTURMA', 'inner');
+				$this->db->join('QUESTIONARIO', 'QUESTIONARIO.ANO = TURMA_has_ALUNO.ANO', 'inner');
+				$this->db->where('QUESTIONARIO.idQUESTIONARIO', $idQ);
+				$this->db->where('TURMA.idTURMA', $idT);   									
+   			$vetor['RESPOSTA_MATRICULA'] = $this->db->get()->result();
+   			
+   			foreach ($vetor['RESPOSTA_MATRICULA'] as $r) {
+   				$this->db->select('count(RESPOSTA.RESPOSTA)');
+   				$this->db->from('RESPOSTA');
+   				$this->db->join('ALUNO', 'RESPOSTA.idALUNO = ALUNO.idALUNO', 'inner');
+   				$this->db->join('PERGUNTA', 'PERGUNTA.idPERGUNTA = RESPOSTA.idPERGUNTA', 'inner');
+   				$this->db->join('DIMENSAO', 'DIMENSAO.idDIMENSAO = PERGUNTA.idDIMENSAO', 'inner');
+   				$this->db->join('QUESTIONARIO', 'QUESTIONARIO.idQUESTIONARIO = DIMENSAO.idQUESTIONARIO', 'inner');
+  					$this->db->where('QUESTIONARIO.idQUESTIONARIO', $idQ);
+  					$this->db->where('RESPOSTA.RESPOSTA_ABERTA', null);
+  					$this->db->where('ALUNO.idALUNO', $r->idALUNO);
+  					$vetor['RESPOSTA_TOTAL'] = $this->db->get()->result();
+				}
+				
+				$i = 0;
+				
+				foreach($vetor['RESPOSTA_MATRICULA'] as $r) {
+					$data['RESPOSTA']['NOME'] = $r->NOME;
+					$data['RESPOSTA']['TOTAL'] = $vetor['RESPOSTA_TOTAL'][$i];
+					$i++;				
+				}
 			}
 
 
@@ -90,16 +206,16 @@
 				
 				$item2 = $this->input->get_post('relatorio');
 			
-				if(!empty($item)) {
-					$qtd = count($item);
+				if(!empty($item2)) {
+					$qtd = count($item2);
 				}
 			
 				for ($i = 0; $i < $qtd; $i++) {
-					$relatorio = $item[$i];
+					$relatorio = $item2[$i];
 				}
 				
 				if ($relatorio == 0) {
-					$this->chartSingle($idQUESTIONARIO, $idTURMA);				
+					$this->v_chartSingle($idQUESTIONARIO, $idTURMA, 0);				
 				}
 				if ($relatorio == 1) {
 					$this->chartMultiple($idQUESTIONARIO, $idTURMA);				
