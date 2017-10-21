@@ -45,7 +45,9 @@
                             <a href="{url}Professor/index">Início</a>
                         </li>
                         <li>
-									<?php echo anchor("Professor/v_listar/".$idUSUARIO, "Responder relatórios"); ?>			
+									<?php 
+										$id = $this->session->id;									
+									echo anchor("Professor/v_listar/".$id, "Responder relatórios"); ?>			
                         </li>
                     </ul>
                 </div>

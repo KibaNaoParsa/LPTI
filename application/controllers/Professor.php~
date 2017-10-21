@@ -56,7 +56,7 @@ class Professor extends CI_Controller {
 			$this->db->where('DIMENSAO.idQUESTIONARIO', $idQ);
 			$data['DIMENSAO'] = $this->db->get()->result();
 			
-			$data['USUARIO_idUSUARIO'] = $idU;
+			$data['idUSUARIO'] = $idU;
 			$data['TURMA_idTURMA'] = $idT;
 			$data['MATERIA_idMATERIA'] = $idM;
 			$data['QUESTIONARIO_idQUESTIONARIO'] = $idQ;
@@ -143,7 +143,7 @@ class Professor extends CI_Controller {
 			for ($i = 0; $i < count($idPERGUNTA); $i++) {
 				$data['idPERGUNTA'] = $idPERGUNTA[$i];
 				$data['RESPOSTA_ABERTA'] = $txt_respostaaberta[$i];
-				$data['idALUNO'] = $alunovetor[$i];
+				$data['idALUNO'] = $alunovetor[0];
 				
 				$this->db->insert('RESPOSTA', $data);				
 				

@@ -143,7 +143,7 @@ class Professor extends CI_Controller {
 			for ($i = 0; $i < count($idPERGUNTA); $i++) {
 				$data['idPERGUNTA'] = $idPERGUNTA[$i];
 				$data['RESPOSTA_ABERTA'] = $txt_respostaaberta[$i];
-				$data['idALUNO'] = $alunovetor[$i];
+				$data['idALUNO'] = $alunovetor[0];
 				
 				$this->db->insert('RESPOSTA', $data);				
 				
@@ -152,7 +152,7 @@ class Professor extends CI_Controller {
 			echo '<script>confirm("Questionário respondido com sucesso!")</script>';
 			
 			unset($data);
-			$this->index2($id);			
+			$this->v_listar($id);			
 			
 		}
 

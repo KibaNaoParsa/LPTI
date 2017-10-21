@@ -85,4 +85,5 @@ class Login extends CI_Controller {
 	public function telaInicial(){
 		$this->load->view('inicio');
 	}
+	
 }

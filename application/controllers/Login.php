@@ -21,7 +21,7 @@ class Login extends CI_Controller {
 		$login['SENHA'] = sha1($this->input->post('txt_senha'));
 		$data = $this->db->get_where('USUARIO', $login)->result_array();
 		if(count($data) > 0){
-			$array=array("login"=>true, "tipo"=>$data[0]['TIPO'], "bool"=>true);
+			$array=array("login"=>true, "tipo"=>$data[0]['TIPO'], "id"=>$data[0]['idUSUARIO'],"bool"=>true);
 			$this->session->set_userdata($array);
 			if($data[0]['TIPO'] == 0)
           $this->loginAsAdm();
