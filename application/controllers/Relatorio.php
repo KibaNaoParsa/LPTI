@@ -4,9 +4,8 @@
 
         public function __construct() {
             parent::__construct();
-			$this->load->library('session');
 			if(!$this->session->userdata('login')){
-//				$this->load->view('login');
+				$this->load->view('login');
 			}
 
         }
@@ -123,27 +122,51 @@
 						$i++;				
 					}
 					
-				
-					foreach ($vetor['RESPOSTA_MATRICULA'] as $r) {				
-						$this->db->select('PERGUNTA.idPERGUNTA, PERGUNTA.PERGUNTA, RESPOSTA.RESPOSTA_ABERTA, USUARIO.LOGIN');
-						$this->db->from('RESPOSTA');
-						$this->db->join('USUARIO', 'RESPOSTA.idUSUARIO = USUARIO.idUSUARIO', 'inner');
-						$this->db->join('PERGUNTA', 'PERGUNTA.idPERGUNTA = RESPOSTA.idPERGUNTA', 'inner');
-						$this->db->join('DIMENSAO', 'DIMENSAO.idDIMENSAO = PERGUNTA.idDIMENSAO', 'inner');
-						$this->db->join('QUESTIONARIO', 'QUESTIONARIO.idQUESTIONARIO = DIMENSAO.idQUESTIONARIO', 'inner');
-						$this->db->join('ALUNO', 'ALUNO.idALUNO = RESPOSTA.idALUNO', 'inner');						
-						$this->db->where('QUESTIONARIO.idQUESTIONARIO', $idQ);
-						$this->db->where('DIMENSAO.idDIMENSAO', $idD);
-						$this->db->where('ALUNO.idALUNO', $r->idALUNO);
-						$this->db->where('RESPOSTA.RESPOSTA', null);
-						$this->db->order_by('PERGUNTA.idPERGUNTA', 'asc');
-						$data['RESPOSTA_ABERTA'] = $this->db->get()->result();	
+
+					$this->db->select('PERGUNTA.idPERGUNTA, PERGUNTA.PERGUNTA');
+					$this->db->from('PERGUNTA');
+					$this->db->join('DIMENSAO', 'DIMENSAO.idDIMENSAO = PERGUNTA.idDIMENSAO', 'inner');
+					$this->db->join('QUESTIONARIO', 'QUESTIONARIO.idQUESTIONARIO = DIMENSAO.idQUESTIONARIO', 'inner');
+					$this->db->where('QUESTIONARIO.idQUESTIONARIO', $idQ);
+					$this->db->where('DIMENSAO.idDIMENSAO', $idD);
+					$this->db->where('PERGUNTA.TIPO', 1);
+					$data['PERGUNTA_ABERTA'] = $this->db->get()->result();
+					
+					$i = 0;
+					
+					foreach ($data['PERGUNTA_ABERTA'] as $p) {
+						
+						foreach ($vetor['RESPOSTA_MATRICULA'] as $r) {				
+
+							$this->db->select('PERGUNTA.idPERGUNTA, PERGUNTA.PERGUNTA, RESPOSTA.RESPOSTA_ABERTA, USUARIO.LOGIN');
+							$this->db->from('RESPOSTA');
+							$this->db->join('USUARIO', 'RESPOSTA.idUSUARIO = USUARIO.idUSUARIO', 'inner');
+							$this->db->join('PERGUNTA', 'PERGUNTA.idPERGUNTA = RESPOSTA.idPERGUNTA', 'inner');
+							$this->db->join('DIMENSAO', 'DIMENSAO.idDIMENSAO = PERGUNTA.idDIMENSAO', 'inner');
+							$this->db->join('QUESTIONARIO', 'QUESTIONARIO.idQUESTIONARIO = DIMENSAO.idQUESTIONARIO', 'inner');
+							$this->db->join('ALUNO', 'ALUNO.idALUNO = RESPOSTA.idALUNO', 'inner');						
+							$this->db->where('QUESTIONARIO.idQUESTIONARIO', $idQ);
+							$this->db->where('DIMENSAO.idDIMENSAO', $idD);
+							$this->db->where('ALUNO.idALUNO', $r->idALUNO);
+							$this->db->where('RESPOSTA.RESPOSTA', null);
+							$this->db->where('PERGUNTA.idPERGUNTA', $p->idPERGUNTA);							
+							$this->db->order_by('PERGUNTA.idPERGUNTA', 'asc');
+							$data['RESPOSTA_ABERTA'][$i] = $this->db->get()->result();	
+						
+						}
+						
+						$i++;
 					}
 					
+					$this->db->select('DIMENSAO.DESCRICAO');
+					$this->db->from('DIMENSAO');
+					$this->db->where('DIMENSAO.idDIMENSAO', $idD);
+					$data['NOME'] = $this->db->get()->result();						
 						
 					$this->parser->parse('ajax', $data);
 					$this->parser->parse('Relatorio/boot', $data);				
 					$this->parser->parse('Relatorio/chartSingle', $data);
+
 					$this->parser->parse('Relatorio/fechamento', $data); 
 		
 				}

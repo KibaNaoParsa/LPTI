@@ -6,7 +6,7 @@ class Professor extends CI_Controller {
             parent::__construct();
 			$this->load->library('session');
 			if(!$this->session->userdata('login')){
-//				$this->load->view('login');
+				$this->load->view('login');
 			}
         }
 
@@ -152,7 +152,7 @@ class Professor extends CI_Controller {
 			echo '<script>confirm("Questionário respondido com sucesso!")</script>';
 			
 			unset($data);
-			$this->index2($id);			
+			$this->v_listar($id);			
 			
 		}
 

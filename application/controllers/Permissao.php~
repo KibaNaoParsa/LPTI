@@ -7,7 +7,7 @@
             parent::__construct();
 			$this->load->library('session');
 			if(!$this->session->userdata('login')){
-//				$this->load->view('login');
+				$this->load->view('login');
 			}
         }
 
@@ -28,9 +28,10 @@
         }
     
 		public function v_selecao($id) {
-			$this->db->select('CURSO.NOME, TURMA.SERIE, TURMA.idTURMA');
+			$this->db->select('CURSO.NOME, TURMA.SERIE, TURMA.idTURMA, MODALIDADE.MODALIDADE');
 			$this->db->from('CURSO');
 			$this->db->join('TURMA', 'CURSO.idCURSO=TURMA.idCURSO', 'inner');
+			$this->db->join('MODALIDADE', 'CURSO.MODALIDADE = MODALIDADE.idMODALIDADE', 'inner');
 			$this->db->distinct();
 			$data['TURMA'] = $this->db->get()->result();
 		

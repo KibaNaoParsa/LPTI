@@ -4,9 +4,8 @@ class Professor extends CI_Controller {
     
         public function __construct() {
             parent::__construct();
-			$this->load->library('session');
 			if(!$this->session->userdata('login')){
-//				$this->load->view('login');
+				$this->load->view('login');
 			}
         }
 

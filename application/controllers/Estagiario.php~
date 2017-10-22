@@ -52,7 +52,6 @@
 			$aluno = explode(";", $alunos);
 			
 			foreach ($aluno as $a) {
-				echo $a.br();
 				
 				$divorcio = explode(":", $a);
 				
