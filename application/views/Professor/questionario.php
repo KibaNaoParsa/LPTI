@@ -5,12 +5,14 @@
     	border-spacing: 0;
 	   width: 100%;
     	border: 1px solid #ddd;
+    	text-overflow: ellipsis;
 	}
 
 	th, td {
     	border: 1px solid black;
     	text-align: left;
     	padding: 8px;
+    	text-overflow: ellipsis;
 	}
 
 	#check {text-align: center;}
@@ -39,7 +41,7 @@
 									echo form_hidden('idTURMA_ALUNO[]', $a->idALUNO);
 								}							
 							
-								echo '<div style="overflow-x:auto;">
+								echo '<div style="overflow-x:scroll;">
   											<table>
     											<tr>
       											<th></th>';		

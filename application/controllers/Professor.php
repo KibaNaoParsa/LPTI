@@ -27,8 +27,36 @@ class Professor extends CI_Controller {
 
 		public function v_listar($id) {
 
-			$ano = date("Y");
+			$this->db->select("distinct(MUT_has_QUESTIONARIO.QUESTIONARIO_idQUESTIONARIO), QUESTIONARIO.NOME as 'NOMEQUESTIONARIO'");
+			$this->db->from("MUT_has_QUESTIONARIO");
+			$this->db->join('QUESTIONARIO', 'QUESTIONARIO.idQUESTIONARIO = MUT_has_QUESTIONARIO.QUESTIONARIO_idQUESTIONARIO', 'inner');
+			$this->db->join("MATERIA", "MATERIA.idMATERIA = MUT_has_QUESTIONARIO.MATERIA_idMATERIA", "inner");
+			$this->db->join("TURMA", "TURMA.idTURMA = MUT_has_QUESTIONARIO.TURMA_idTURMA", "inner");
+			$this->db->join("CURSO", "CURSO.idCURSO = TURMA.idCURSO", "inner");
+			$this->db->join("MODALIDADE", "MODALIDADE.idMODALIDADE = CURSO.MODALIDADE", "inner");
+			$this->db->where('MUT_has_QUESTIONARIO.USUARIO_idUSUARIO', $id);
+			$data['QUESTIONARIO'] = $this->db->get()->result();
 			
+			$this->db->select("distinct(MUT_has_QUESTIONARIO.MATERIA_idMATERIA), MATERIA.NOME as 'NOMEMATERIA'");
+			$this->db->from("MUT_has_QUESTIONARIO");
+			$this->db->join('QUESTIONARIO', 'QUESTIONARIO.idQUESTIONARIO = MUT_has_QUESTIONARIO.QUESTIONARIO_idQUESTIONARIO', 'inner');
+			$this->db->join("MATERIA", "MATERIA.idMATERIA = MUT_has_QUESTIONARIO.MATERIA_idMATERIA", "inner");
+			$this->db->join("TURMA", "TURMA.idTURMA = MUT_has_QUESTIONARIO.TURMA_idTURMA", "inner");
+			$this->db->join("CURSO", "CURSO.idCURSO = TURMA.idCURSO", "inner");
+			$this->db->join("MODALIDADE", "MODALIDADE.idMODALIDADE = CURSO.MODALIDADE", "inner");
+			$this->db->where('MUT_has_QUESTIONARIO.USUARIO_idUSUARIO', $id);
+			$data['DISCIPLINA'] = $this->db->get()->result();
+						
+			$this->db->select("distinct(MUT_has_QUESTIONARIO.TURMA_idTURMA), TURMA.SERIE, CURSO.NOME as 'NOMECURSO', MODALIDADE.MODALIDADE");
+			$this->db->from("MUT_has_QUESTIONARIO");
+			$this->db->join('QUESTIONARIO', 'QUESTIONARIO.idQUESTIONARIO = MUT_has_QUESTIONARIO.QUESTIONARIO_idQUESTIONARIO', 'inner');
+			$this->db->join("MATERIA", "MATERIA.idMATERIA = MUT_has_QUESTIONARIO.MATERIA_idMATERIA", "inner");
+			$this->db->join("TURMA", "TURMA.idTURMA = MUT_has_QUESTIONARIO.TURMA_idTURMA", "inner");
+			$this->db->join("CURSO", "CURSO.idCURSO = TURMA.idCURSO", "inner");
+			$this->db->join("MODALIDADE", "MODALIDADE.idMODALIDADE = CURSO.MODALIDADE", "inner");
+			$this->db->where('MUT_has_QUESTIONARIO.USUARIO_idUSUARIO', $id);
+			$data['TURMA'] = $this->db->get()->result();
+			/*
 			$this->db->select("MUT_has_QUESTIONARIO.USUARIO_idUSUARIO as 'idUSUARIO', MUT_has_QUESTIONARIO.QUESTIONARIO_idQUESTIONARIO, QUESTIONARIO.NOME as 'NOMEQUESTIONARIO', MUT_has_QUESTIONARIO.MATERIA_idMATERIA, MATERIA.NOME as 'NOMEMATERIA', MUT_has_QUESTIONARIO.TURMA_idTURMA,
 		TURMA.SERIE, CURSO.NOME as 'NOMECURSO', MODALIDADE.MODALIDADE, QUESTIONARIO.ANO");
 			$this->db->from("MUT_has_QUESTIONARIO");
@@ -38,15 +66,76 @@ class Professor extends CI_Controller {
 			$this->db->join("CURSO", "CURSO.idCURSO = TURMA.idCURSO", "inner");
 			$this->db->join("MODALIDADE", "MODALIDADE.idMODALIDADE = CURSO.MODALIDADE", "inner");
 			$this->db->where('MUT_has_QUESTIONARIO.USUARIO_idUSUARIO', $id);
-			$this->db->where('QUESTIONARIO.ANO', $ano);
 			$data['QUESTIONARIO'] = $this->db->get()->result();
 			
+			*/
 			$data['url'] = base_url();
+			$data['idUSUARIO'] = $id;		
 			$this->parser->parse('ajaxProf', $data);
 			$this->parser->parse('Professor/listar', $data);
 			
+			
 		}
 
+		public function v_drop($idQ, $idD, $idT, $id) {
+			$data['url'] = base_url();	
+
+			if ($idQ == 0 && $idD == 0 && $idT == 0) {
+							$this->db->select("MUT_has_QUESTIONARIO.USUARIO_idUSUARIO as 'idUSUARIO', MUT_has_QUESTIONARIO.QUESTIONARIO_idQUESTIONARIO, QUESTIONARIO.NOME as 'NOMEQUESTIONARIO', MUT_has_QUESTIONARIO.MATERIA_idMATERIA, MATERIA.NOME as 'NOMEMATERIA', MUT_has_QUESTIONARIO.TURMA_idTURMA,
+		TURMA.SERIE, CURSO.NOME as 'NOMECURSO', MODALIDADE.MODALIDADE, QUESTIONARIO.ANO");
+			$this->db->from("MUT_has_QUESTIONARIO");
+			$this->db->join('QUESTIONARIO', 'QUESTIONARIO.idQUESTIONARIO = MUT_has_QUESTIONARIO.QUESTIONARIO_idQUESTIONARIO', 'inner');
+			$this->db->join("MATERIA", "MATERIA.idMATERIA = MUT_has_QUESTIONARIO.MATERIA_idMATERIA", "inner");
+			$this->db->join("TURMA", "TURMA.idTURMA = MUT_has_QUESTIONARIO.TURMA_idTURMA", "inner");
+			$this->db->join("CURSO", "CURSO.idCURSO = TURMA.idCURSO", "inner");
+			$this->db->join("MODALIDADE", "MODALIDADE.idMODALIDADE = CURSO.MODALIDADE", "inner");
+			$this->db->where('MUT_has_QUESTIONARIO.USUARIO_idUSUARIO', $id);
+			$data['QUESTIONARIO'] = $this->db->get()->result();
+
+			} else		
+			if($idQ != 0) {
+				$this->db->select("MUT_has_QUESTIONARIO.USUARIO_idUSUARIO as 'idUSUARIO', MUT_has_QUESTIONARIO.QUESTIONARIO_idQUESTIONARIO, QUESTIONARIO.NOME as 'NOMEQUESTIONARIO', MUT_has_QUESTIONARIO.MATERIA_idMATERIA, MATERIA.NOME as 'NOMEMATERIA', MUT_has_QUESTIONARIO.TURMA_idTURMA,
+										TURMA.SERIE, CURSO.NOME as 'NOMECURSO', MODALIDADE.MODALIDADE, QUESTIONARIO.ANO");
+				$this->db->from("MUT_has_QUESTIONARIO");
+				$this->db->join('QUESTIONARIO', 'QUESTIONARIO.idQUESTIONARIO = MUT_has_QUESTIONARIO.QUESTIONARIO_idQUESTIONARIO', 'inner');
+				$this->db->join("MATERIA", "MATERIA.idMATERIA = MUT_has_QUESTIONARIO.MATERIA_idMATERIA", "inner");
+				$this->db->join("TURMA", "TURMA.idTURMA = MUT_has_QUESTIONARIO.TURMA_idTURMA", "inner");
+				$this->db->join("CURSO", "CURSO.idCURSO = TURMA.idCURSO", "inner");
+				$this->db->join("MODALIDADE", "MODALIDADE.idMODALIDADE = CURSO.MODALIDADE", "inner");
+				$this->db->where('MUT_has_QUESTIONARIO.USUARIO_idUSUARIO', $id);
+				$this->db->where('MUT_has_QUESTIONARIO.QUESTIONARIO_idQUESTIONARIO', $idQ);				
+				$data['QUESTIONARIO'] = $this->db->get()->result();
+			} else if($idD != 0) {
+				$this->db->select("MUT_has_QUESTIONARIO.USUARIO_idUSUARIO as 'idUSUARIO', MUT_has_QUESTIONARIO.QUESTIONARIO_idQUESTIONARIO, QUESTIONARIO.NOME as 'NOMEQUESTIONARIO', MUT_has_QUESTIONARIO.MATERIA_idMATERIA, MATERIA.NOME as 'NOMEMATERIA', MUT_has_QUESTIONARIO.TURMA_idTURMA,
+										TURMA.SERIE, CURSO.NOME as 'NOMECURSO', MODALIDADE.MODALIDADE, QUESTIONARIO.ANO");
+				$this->db->from("MUT_has_QUESTIONARIO");
+				$this->db->join('QUESTIONARIO', 'QUESTIONARIO.idQUESTIONARIO = MUT_has_QUESTIONARIO.QUESTIONARIO_idQUESTIONARIO', 'inner');
+				$this->db->join("MATERIA", "MATERIA.idMATERIA = MUT_has_QUESTIONARIO.MATERIA_idMATERIA", "inner");
+				$this->db->join("TURMA", "TURMA.idTURMA = MUT_has_QUESTIONARIO.TURMA_idTURMA", "inner");
+				$this->db->join("CURSO", "CURSO.idCURSO = TURMA.idCURSO", "inner");
+				$this->db->join("MODALIDADE", "MODALIDADE.idMODALIDADE = CURSO.MODALIDADE", "inner");
+				$this->db->where('MUT_has_QUESTIONARIO.USUARIO_idUSUARIO', $id);
+				$this->db->where('MUT_has_QUESTIONARIO.MATERIA_idMATERIA', $idD);				
+				$data['QUESTIONARIO'] = $this->db->get()->result();
+			} else if($idT != 0) {
+				$this->db->select("MUT_has_QUESTIONARIO.USUARIO_idUSUARIO as 'idUSUARIO', MUT_has_QUESTIONARIO.QUESTIONARIO_idQUESTIONARIO, QUESTIONARIO.NOME as 'NOMEQUESTIONARIO', MUT_has_QUESTIONARIO.MATERIA_idMATERIA, MATERIA.NOME as 'NOMEMATERIA', MUT_has_QUESTIONARIO.TURMA_idTURMA,
+										TURMA.SERIE, CURSO.NOME as 'NOMECURSO', MODALIDADE.MODALIDADE, QUESTIONARIO.ANO");
+				$this->db->from("MUT_has_QUESTIONARIO");
+				$this->db->join('QUESTIONARIO', 'QUESTIONARIO.idQUESTIONARIO = MUT_has_QUESTIONARIO.QUESTIONARIO_idQUESTIONARIO', 'inner');
+				$this->db->join("MATERIA", "MATERIA.idMATERIA = MUT_has_QUESTIONARIO.MATERIA_idMATERIA", "inner");
+				$this->db->join("TURMA", "TURMA.idTURMA = MUT_has_QUESTIONARIO.TURMA_idTURMA", "inner");
+				$this->db->join("CURSO", "CURSO.idCURSO = TURMA.idCURSO", "inner");
+				$this->db->join("MODALIDADE", "MODALIDADE.idMODALIDADE = CURSO.MODALIDADE", "inner");
+				$this->db->where('MUT_has_QUESTIONARIO.USUARIO_idUSUARIO', $id);
+				$this->db->where('MUT_has_QUESTIONARIO.TURMA_idTURMA', $idT);				
+				$data['QUESTIONARIO'] = $this->db->get()->result();
+			
+			}
+			
+			$this->v_listar($id);
+			$this->parser->parse('Professor/listarII', $data);
+			$this->parser->parse('Professor/fechamento', $data);
+		}
 
 		public function v_dimensao($idU, $idT, $idM, $idQ) {
 			

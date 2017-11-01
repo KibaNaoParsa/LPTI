@@ -1,3 +1,45 @@
+									<style>
+.dropbtn {
+    background-color: #add8e6;
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {background-color: #f1f1f1}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown:hover .dropbtn {
+    background-color: #add8e6;
+}
+</style>       
+
           <div id="page-wrapper">
               <div class="row">
                   <div class="col-lg-12">
@@ -8,45 +50,55 @@
               <!-- /.row -->
               <div class="row">
   		        	<div class="col-lg-12 col-md-12" id="btn">
-									<?php												
+									<?php			
+										echo '<div class="dropdown">
+  													<button class="dropbtn">QUESTIONÁRIO</button>
+  													<div class="dropdown-content">';
+										echo '<a href="{url}Professor/v_drop/0/0/0/'.$idUSUARIO.'">-</a>';										
+										foreach($QUESTIONARIO as $q) {
+												echo '<a href="{url}Professor/v_drop/'.$q->QUESTIONARIO_idQUESTIONARIO.'/0/0/'.$idUSUARIO.'">'.$q->NOMEQUESTIONARIO.'</a>';
+
+
+										}
+
+										echo '	</div>
+												</div>';
+										
+										echo '-';
+												
+										echo '<div class="dropdown">
+  													<button class="dropbtn">TURMA</button>
+  													<div class="dropdown-content">';
+										echo '<a href="{url}Professor/v_drop/0/0/0/'.$idUSUARIO.'">-</a>';										
+										foreach($TURMA as $q) {
+											
+											echo '<a href="{url}Professor/v_drop/0/0/'.$q->TURMA_idTURMA.'/'.$idUSUARIO.'">'.$q->SERIE."° ".$q->NOMECURSO." ".$q->MODALIDADE.'</a>';
+
+										}
+
+										echo '	</div>
+												</div>';
+										echo '-';
+												
+										echo '<div class="dropdown">
+  													<button class="dropbtn">DISCIPLINA</button>
+  													<div class="dropdown-content">';
+										echo '<a href="{url}Professor/v_drop/0/0/0/'.$idUSUARIO.'">-</a>';										
+										foreach($DISCIPLINA as $q) {
+											
+											echo '<a href="{url}Professor/v_drop/0/'.$q->MATERIA_idMATERIA.'/0/'.$idUSUARIO.'">'.$q->NOMEMATERIA.'</a>';
+
+										}
+
+										echo '	</div>
+												</div>'.br().br();
+									
+									
+									/*									
 													
 										foreach($QUESTIONARIO as $q) {
 											echo anchor("Professor/v_dimensao/".$q->idUSUARIO."/".$q->TURMA_idTURMA."/".$q->MATERIA_idMATERIA."/".$q->QUESTIONARIO_idQUESTIONARIO,
 														"".$q->NOMEQUESTIONARIO." - ".$q->SERIE."° ".$q->NOMECURSO." ".$q->MODALIDADE." ".$q->ANO." - ".$q->NOMEMATERIA, "class = 'btn btn-info'").br();
 										}
-		
+									*/
 									?>
-					</div>
-				</div>
-          </div>
-				</div>
-			</div>
-
-
-    <!-- jQuery -->
-    <script src="{url}assets/js/jquery.min.js"></script>
-
-    <!-- Bootstrap Core JavaScript -->
-    <script src="{url}assets/js/bootstrap.min.js"></script>
-
-    <!-- Metis Menu Plugin JavaScript -->
-    <script src="{url}assets/js/metisMenu.min.js"></script>
-
-    <!-- Morris Charts JavaScript -->
-    <script src="{url}assets/js/raphael.min.js"></script>
-    <script src="{url}assets/js/morris.min.js"></script>
-    <script src="{url}assets/js/morris-data.js"></script>
-
-    <!-- Custom Theme JavaScript -->
-    <script src="{url}assets/js/sb-admin-2.js"></script>
-
-		<script>
-			{modal}
-		</script>
-
-</body>
-
-</html>
-
-
-
