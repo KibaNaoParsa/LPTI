@@ -1,82 +1,26 @@
-  		        	<style>
-h1{
-  font-size: 30px;
-  color: #000;
-  text-transform: uppercase;
-  font-weight: 300;
-  text-align: center;
-  margin-bottom: 15px;
-}
-table{
-  width:100%;
-  table-layout: fixed;
-}
-.tbl-header{
-  background-color: rgba(255,255,255,0.3);
- }
-.tbl-content{
-  height:300px;
-  overflow-x:auto;
-  margin-top: 0px;
-  border: 1px solid rgba(255,255,255,0.3);
-}
-th{
-  padding: 20px 15px;
-  text-align: left;
-  font-weight: 500;
-  font-size: 12px;
-  color: #000;
-  text-transform: uppercase;
-}
-td{
-  padding: 15px;
-  text-align: left;
-  vertical-align:middle;
-  font-weight: 300;
-  font-size: 12px;
-  color: #000;
-  border-bottom: solid 1px rgba(255,255,255,0.1);
-}
+<style>
 
-table {
-    border-collapse: collapse;
-    width: 100%;
-}
+	table {
+  		border-collapse: collapse;
+    	border-spacing: 0;
+	   width: 100%;
+    	border: 1px solid #ddd;
+    	text-overflow: ellipsis;
+	}
 
-th, td {
-    padding: 8px;
-    text-align: center;
-    border-bottom: 1px solid #ddd;
-}
+	th, td {
+    	border: 1px solid black;
+    	text-align: left;
+    	padding: 8px;
+    	text-overflow: ellipsis;
+	}
 
-th {
-	text-align: left;
-}
-
-tr:hover{background-color:#f5f5f5;}
 	#check {text-align: center;}
-
-
-::-webkit-scrollbar {
-    width: 6px;
-} 
-::-webkit-scrollbar-track {
-    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
-} 
-::-webkit-scrollbar-thumb {
-    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
-}
+	tr:nth-child(even){background-color: #f2f2f2;}
 
 </style>
- 
- 
- <script type="text/javascript">
-$(window).on("load resize ", function() {
-  var scrollWidth = $('.tbl-content').width() - $('.tbl-content table').width();
-  $('.tbl-header').css({'padding-right':scrollWidth});
-}).resize(); 
- </script>
-           <div id="page-wrapper">
+
+          <div id="page-wrapper">
               <div class="row">
                   <div class="col-lg-12">
                       <h1 class="page-header">Questionários</h1>
@@ -86,7 +30,7 @@ $(window).on("load resize ", function() {
               <!-- /.row -->
               <div class="row">
   		        	<div class="col-lg-12 col-md-12" id="btn">
-<?php
+							<?php		
 								$atributos = array('name'=>'formulario_cadastro', 'id'=>'formulario_cadastro');
 								$btn = array('name'=>'btn_cadastrar', 'id'=>'botao1', 'class'=>'btn btn-lg btn-success');
 												
@@ -100,22 +44,16 @@ $(window).on("load resize ", function() {
 									echo form_hidden('idTURMA_ALUNO[]', $a->idALUNO);
 								}							
 							
-
-
- echo ' <div class="tbl-header">
-    <table cellpadding="0" cellspacing="0" border="0">
-      <thead>
-        <tr>
-          <th></th>';
+								echo '<div style="overflow-x:scroll;">
+  											<table>
+    											<tr>
+      											<th></th>';		
+      						
       						foreach ($PERGUNTA_FECHADA as $pf) {
 										echo '<th>'.$pf->PERGUNTA.'</th>';
 								}
-								echo '</tr>
-    </table>
-  </div>
-  <div class="tbl-content">
-    <table cellpadding="0" cellspacing="0" border="0">
-      <tbody>';
+								echo '</tr>';
+								
 								foreach($ALUNOS as $a) {
 									echo '<tr>';
 									echo '<td>'.$a->NOME.'</td>';
@@ -124,11 +62,10 @@ $(window).on("load resize ", function() {
 									}
 									echo '</tr>';
 								}
-      echo '</tbody>
-    </table>
-  </div>';
-  
-  								echo br().br();
+								
+								echo	'</table></div>';
+										
+								echo br().br();
 								
 								foreach($PERGUNTA_ABERTA as $pa) {
 									echo form_hidden('idPERGUNTA[]', $pa->idPERGUNTA).
@@ -139,8 +76,9 @@ $(window).on("load resize ", function() {
 								
 								echo form_submit('btn_cadastrar', 'Enviar', $btn).
 								form_close();
-?>
-			</div>
+								
+							?>
+				</div>
           </div>
           </div>
 				</div>

@@ -218,6 +218,9 @@ class Professor extends CI_Controller {
 		public function resposta() {
 			
 			$alunovetor = $this->input->post('idTURMA_ALUNO');	
+			$idT = $this->input->post('idTURMA');
+			$idM = $this->input->post('idMATERIA');
+			$idQ = $this->input->post('idQUESTIONARIO');
 			$id = $this->input->post('idUSUARIO');
 			for ($i = 0; $i < count($alunovetor); $i++) {
 				$item = $this->input->get_post($alunovetor[$i]);
@@ -240,7 +243,7 @@ class Professor extends CI_Controller {
 			echo '<script>confirm("Questionário respondido com sucesso!")</script>';
 			
 			unset($data);
-			$this->v_listar($id);			
+			$this->v_dimensao($id, $idT, $idM, $idQ);			
 			
 		}
 

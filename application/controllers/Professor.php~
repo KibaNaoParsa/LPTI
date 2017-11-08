@@ -47,7 +47,7 @@ class Professor extends CI_Controller {
 			$this->db->where('MUT_has_QUESTIONARIO.USUARIO_idUSUARIO', $id);
 			$data['DISCIPLINA'] = $this->db->get()->result();
 						
-			$this->db->select("distinct(MUT_has_QUESTIONARIO.TURMA_idTURMA), TURMA.SERIE, CURSO.NOME as 'NOMECURSO', MODALIDADE.MODALIDADE, QUESTIONARIO.ANO");
+			$this->db->select("distinct(MUT_has_QUESTIONARIO.TURMA_idTURMA), TURMA.SERIE, CURSO.NOME as 'NOMECURSO', MODALIDADE.MODALIDADE");
 			$this->db->from("MUT_has_QUESTIONARIO");
 			$this->db->join('QUESTIONARIO', 'QUESTIONARIO.idQUESTIONARIO = MUT_has_QUESTIONARIO.QUESTIONARIO_idQUESTIONARIO', 'inner');
 			$this->db->join("MATERIA", "MATERIA.idMATERIA = MUT_has_QUESTIONARIO.MATERIA_idMATERIA", "inner");

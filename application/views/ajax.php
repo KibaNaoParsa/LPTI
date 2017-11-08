@@ -44,7 +44,7 @@
                 <div class="sidebar-nav navbar-collapse" id="btn">
                     <ul class="nav" id="side-menu">
                         <li>
-                            <a href="{url}Login/telaInicial">Início</a>
+                            <a href="{url}Login/loginAsAdm">Início</a>
                         </li>
                         <li>
                             <a href="{url}Listar/listar/0/0/0">Lista de Alunos<span class="fa arrow"></span></a>
