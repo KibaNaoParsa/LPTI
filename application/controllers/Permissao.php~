@@ -5,7 +5,6 @@
 
         public function __construct() {
             parent::__construct();
-			$this->load->library('session');
 			if(!$this->session->userdata('login')){
 				$this->load->view('login');
 			}
@@ -81,6 +80,7 @@
 		public function associar() {
 			$data['USUARIO_idUSUARIO'] = $this->input->post('idUSUARIO');
 			$data['TURMA_idTURMA'] = $this->input->post('idTURMA');
+			$data['ANO'] = $this->input->post('txt_ano')
 			$idusu = $this->input->post('idUSUARIO');
 			$item = $this->input->get_post('mut');
 			if(!empty($item)) {

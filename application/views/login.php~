@@ -82,8 +82,8 @@
                     </ul>
                     <hr class="small">
                     <?php
-                    	echo '<p class="text-muted">Copyright &copy; CristhSoft '.date("Y").' </p>';
-                    ?>
+                    	echo'
+                    <p class="text-muted">Copyright &copy; CristhSoft '.date("Y").' </p>';
                 </div>
             </div>
         </div>

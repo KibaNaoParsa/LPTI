@@ -80,6 +80,7 @@
 		public function associar() {
 			$data['USUARIO_idUSUARIO'] = $this->input->post('idUSUARIO');
 			$data['TURMA_idTURMA'] = $this->input->post('idTURMA');
+			$data['ANO'] = $this->input->post('txt_ano');
 			$idusu = $this->input->post('idUSUARIO');
 			$item = $this->input->get_post('mut');
 			if(!empty($item)) {

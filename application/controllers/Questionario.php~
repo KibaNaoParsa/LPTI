@@ -4,7 +4,6 @@
 
         public function __construct() {
             parent::__construct();
-			$this->load->library('session');
 			if(!$this->session->userdata('login')){
 				$this->load->view('login');
 			}
@@ -222,8 +221,7 @@
 						}								
 
 						$data['TURMA_idTURMA'] = $item[$i];
-						$this->db->insert('QUESTIONARIO_has_TURMA', $data);
-						unset($data['ANO']);						
+						$this->db->insert('QUESTIONARIO_has_TURMA', $data);						
 						$this->associacaoMUTQ($data);		
 					}
 			}			
@@ -237,6 +235,10 @@
 			$this->db->select('idPERGUNTA');
 			$this->db->from('PERGUNTA');
 			$this->db->where('idPERGUNTA', $idP);
+			
+			if(!$this->db->delete('PERGUNTA')) {
+				echo '<script>confirm("Questionário respondido com sucesso!")</script>';
+			}			
 			
 			if($this->db->delete('PERGUNTA')) {
 				redirect('Questionario/index');

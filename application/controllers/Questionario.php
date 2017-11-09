@@ -78,7 +78,7 @@
 		public function associacaoMUTQ($data) {
 
 			$mut = $this->db->query("select MUT.USUARIO_idUSUARIO, MUT.MATERIA_idMATERIA from MUT 
-												WHERE MUT.TURMA_idTURMA = ".$data['TURMA_idTURMA'])->result();
+												WHERE MUT.TURMA_idTURMA = ".$data['TURMA_idTURMA']." and MUT.ANO = ".$data['ANO'])->result();
 												
 			foreach($mut as $m) {
 				$data['USUARIO_idUSUARIO'] = $m->USUARIO_idUSUARIO;
@@ -221,8 +221,7 @@
 						}								
 
 						$data['TURMA_idTURMA'] = $item[$i];
-						$this->db->insert('QUESTIONARIO_has_TURMA', $data);
-						unset($data['ANO']);						
+						$this->db->insert('QUESTIONARIO_has_TURMA', $data);						
 						$this->associacaoMUTQ($data);		
 					}
 			}			
@@ -236,6 +235,10 @@
 			$this->db->select('idPERGUNTA');
 			$this->db->from('PERGUNTA');
 			$this->db->where('idPERGUNTA', $idP);
+			
+			if(!$this->db->delete('PERGUNTA')) {
+				echo '<script>confirm("Questionário respondido com sucesso!")</script>';
+			}			
 			
 			if($this->db->delete('PERGUNTA')) {
 				redirect('Questionario/index');

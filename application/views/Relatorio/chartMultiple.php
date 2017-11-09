@@ -1,73 +1,61 @@
-<?php
-echo '
-<script type="text/javascript">
-window.onload = function () {
+          <div id="page-wrapper">
+              <div class="row">
+                  <div class="col-lg-12">
+                      <h1 class="page-header">Criação de Relatórios</h1>
+                  </div>
+                  <!-- /.col-lg-12 -->
+              </div>
+              <!-- /.row -->
+              <div class="row">
+  		        	<div class="col-lg-12 col-md-12" id="btn">
 
-var chart = new CanvasJS.Chart("chartContainer", {
-	animationEnabled: true,
-	title:{
-		text: "Relatório total por classe"
-	},
-	axisY: {
-		title: "Classe: "
-	},
-	legend: {
-		cursor:"pointer",
-		itemclick : toggleDataSeries
-	},
-	toolTip: {
-		shared: true,
-		content: toolTipFormatter
-	},
-	data: ['.
-		foreach ($DIMENSAO as $d) {	
-	.'{
-		type: "bar",
-		showInLegend: true,
-		name: "Gold",
-		color: "gold",
-		dataPoints: [
-			{ y: 243, label: "Italy" },
-			{ y: 236, label: "China" },
-			{ y: 243, label: "France" },
-			{ y: 273, label: "Great Britain" },
-			{ y: 269, label: "Germany" },
-			{ y: 196, label: "Russia" },
-			{ y: 1118, label: "USA" }
-		]
-	},'.}.'
-	]
-});
-chart.render();
+									<?php
 
-function toolTipFormatter(e) {
-	var str = "";
-	var total = 0 ;
-	var str3;
-	var str2 ;
-	for (var i = 0; i < e.entries.length; i++){
-			var str1 = "<span style= \"color:"+e.entries[i].dataSeries.color + "\">" + e.entries[i].dataSeries.name + "</span>: <strong>"+  e.entries[i].dataPoint.y + "</strong> <br/>" ;
-		total = e.entries[i].dataPoint.y + total;
-		str = str.concat(str1);
-	}
-	str2 = "<strong>" + e.entries[0].dataPoint.label + "</strong> <br/>";
-	str3 = "<span style = \"color:Tomato\">Total: </span><strong>" + total + "</strong><br/>";
-	return (str2.concat(str)).concat(str3);
-}
+									$i = 0;
+									echo '<script>
+												window.onload = function () {
+	
+												var chart = new CanvasJS.Chart("chartContainer", {
+													animationEnabled: true,
+													exportEnabled: true,
+														
+													title:{
+														text:"Relatório de ocorrências por turma"
+													},
+													axisX:{
+														interval: 1
+													},
+													axisY2:{
+														interlacedColor: "rgba(1,77,101,.2)",
+														gridColor: "rgba(1,77,101,.1)",
+													},
+													
+													data: [{
+														type: "bar",
+														name: "companies",
+														axisYType: "secondary",
+														color: "#014D65",
+														dataPoints: [
+														';
+														
+									foreach ($RESPOSTA['NOME'] as $r) {
+										echo	'{ y: '.$RESPOSTA['TOTAL'][$i].', label: "'.$r.'" },';
+										$i++;
+									}
+									echo '			]
+													}]
+											});
+											chart.render();
 
-function toggleDataSeries(e) {
-	if (typeof (e.dataSeries.visible) === "undefined" || e.dataSeries.visible) {
-		e.dataSeries.visible = false;
-	}
-	else {
-		e.dataSeries.visible = true;
-	}
-	chart.render();
-}
+											}
+										</script>';
+				echo '<div id="chartContainer" style="height: 370px; width: 100%;"></div>';
+			
+				
 
-}
-</script>
-<div id="chartContainer" style="height: 370px; width: 100%;"></div>';
-?>
+
+									?>
 <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
-
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>

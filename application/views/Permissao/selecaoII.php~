@@ -22,13 +22,14 @@
 													$nomet = $n->NOME;
 												}
 												
-												
+												$ano = date("Y");	
 												echo "Identificação: ".$USUARIO[0]->LOGIN.br()."Turma: ".$TURMA[0]->SERIE."º ".$nomet.br();
 												$atributos = array('name'=>'formulario_cadastro', 'id'=>'formulario_cadastro');
-												$btn = array('name'=>'btm_cadastrar', 'id'=>'botao1', 'class'=>'btn btn-primary');
+												$btn = array('name'=>'btn_cadastrar', 'id'=>'botao1', 'class'=>'btn btn-success');
 												echo form_open('Permissao/associar', $atributos).
 													form_hidden('idUSUARIO', $USUARIO[0]->idUSUARIO).
-											     	form_hidden('idTURMA', $TURMA_has_MATERIA[0]->TURMA_idTURMA);
+											     	form_hidden('idTURMA', $TURMA_has_MATERIA[0]->TURMA_idTURMA).form_label("Ano: ", "txt_ano").
+													 form_input(array('name'=>'txt_ano', 'type'=>'number', 'min'=>$ano, 'max'=>1+$ano, 'value'=>$ano)).br();
 
 													foreach ($TURMA_has_MATERIA as $thm) {
 
@@ -41,13 +42,13 @@
 														}														
 														
 														echo
-														form_label( $valor, "txt_1i") .
-														form_checkbox("mut[]", $thm->MATERIA_idMATERIA, FALSE) . br();
+														form_checkbox("mut[]", $thm->MATERIA_idMATERIA, FALSE) .
+														form_label( $valor, "txt_1i") . br();
 													}
 													 echo
 													 form_submit("btn_cadastrar", " Salvar ", $btn).
 													 form_close().
-											     anchor('Permissao/v_selecao/'.$USUARIO[0]->idUSUARIO, "Cancelar", array('class'=>"btn btn-danger", 'id'=>"botao"));
+											     anchor('{url}Permissao/v_selecao/'.$USUARIO[0]->idUSUARIO, "Cancelar", array('class'=>"btn btn-danger", 'id'=>"botao"));
 													
 										
 									
