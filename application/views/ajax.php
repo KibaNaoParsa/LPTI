@@ -8,7 +8,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
-    <meta name="author" content="Alunos" >
+    <meta name="author" content="elyas" >
 
     <title>Início</title>
     <link href="{url}assets/css/bootstrap.min.css" rel="stylesheet">
@@ -17,6 +17,9 @@
     <link href="{url}assets/css/morris.css" rel="stylesheet">
     <link href="{url}assets/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href="{url}assets/css/estilo.css" rel="stylesheet" type="text/css">
+    <script>
+        {script1}
+    </script>
 </head>
 
 <body>
@@ -31,9 +34,7 @@
                         <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
                     </a>
                     <ul class="dropdown-menu dropdown-user">
-                        <li><a href="{url}Login/alterarSenha"><i class="fa fa-key fa-fw"></i> Alterar senha</a>
-                        </li>
-                 
+
                         <li><a href="{url}Login/efetuar_logout"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
                         </li>
                     </ul>
@@ -44,7 +45,7 @@
                 <div class="sidebar-nav navbar-collapse" id="btn">
                     <ul class="nav" id="side-menu">
                         <li>
-                            <a href="{url}Login/loginAsAdm">Início</a>
+                            <a href="{url}Login/telaInicial">Início</a>
                         </li>
                         <li>
                             <a href="{url}Listar/listar/0/0/0">Lista de Alunos<span class="fa arrow"></span></a>
@@ -174,9 +175,9 @@
                             <!-- /.nav-second-level -->
                         </li>
                         <li>
-                        	<a href="{url}Relatorio/index/0">Gerar relatórios</a>
+                            <a href="{url}Relatorio/index/0">Gerar relatórios</a>
                         </li>
-                                                                                <!--
+                        <!--
                         <li>
                             <a href="{url}Cadastro/addCurso">Cadastrar Curso</a>
                         </li>

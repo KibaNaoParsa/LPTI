@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
-    <meta name="author" content="Alunos" >
+    <meta name="author" content="alunos" >
 
     <title>Conselho de Classe</title>
 
@@ -33,22 +33,22 @@
             <br>
             <button type="button" class="btn btn-dark btn-lg" data-toggle="modal" data-target="#login-modal">Entrar</button>
             <div class="modal fade" id="login-modal">
-					<div class="modal-dialog">
-						<div class="loginmodal-container">
-							<h1>Entrar</h1><br>
-							<?php
-								$atributos = array('name'=>'formulario_login', 'id'=>'formulario_login');
-								echo form_open('login/efetuar_login', $atributos).
-								form_label("Nome: ", "txt_nome").br().
-								form_input('txt_nome').br().
-								form_label("Senha: ", "txt_senha").br().
-								form_password('txt_senha').br().
-								form_submit("btn_enviar", "Entrar", "login loginmodal-submit").form_close();
-							?>
-							{msg}
-						</div>
-					</div>
-				</div>
+                    <div class="modal-dialog">
+                        <div class="loginmodal-container">
+                            <h1>Entrar</h1><br>
+                            <?php
+                                $atributos = array('name'=>'formulario_login', 'id'=>'formulario_login');
+                                echo form_open('login/efetuar_login', $atributos).
+                                form_label("Nome: ", "txt_nome").br().
+                                form_input('txt_nome').br().
+                                form_label("Senha: ", "txt_senha").br().
+                                form_password('txt_senha').br().
+                                form_submit("btn_enviar", "Entrar", "login loginmodal-submit").form_close();
+                            ?>
+                            {msg}
+                        </div>
+                    </div>
+                </div>
         </div>
     </header>
 
@@ -82,7 +82,7 @@
                     </ul>
                     <hr class="small">
                     <?php
-                    	echo '<p class="text-muted">Copyright &copy; CristhSoft '.date("Y").' </p>';
+                        echo '<p class="text-muted">Copyright &copy; CristhSoft '.date("Y").' </p>';
                     ?>
                 </div>
             </div>
@@ -96,9 +96,9 @@
     <!-- Bootstrap Core JavaScript -->
     <script src="{url}assets/js/bootstrap.min.js"></script>
 
-	<script>
-		{modal}
-	</script>
+    <script>
+        {modal}
+    </script>
 </body>
 
 </html>
