@@ -3,8 +3,8 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: 20-Out-2017 às 13:45
--- Versão do servidor: 5.7.19-0ubuntu0.16.04.1
+-- Generation Time: 22-Nov-2017 às 10:22
+-- Versão do servidor: 5.7.18-0ubuntu0.16.04.1
 -- PHP Version: 7.0.23-1+ubuntu16.04.1+deb.sury.org+1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -353,7 +353,8 @@ CREATE TABLE `DIMENSAO` (
 INSERT INTO `DIMENSAO` (`idDIMENSAO`, `idQUESTIONARIO`, `DESCRICAO`) VALUES
 (2, 2, 'Afetiva'),
 (3, 2, 'Cognitiva'),
-(4, 2, 'Miscelânea');
+(4, 2, 'Miscelânea'),
+(5, 3, 'Afetiva');
 
 -- --------------------------------------------------------
 
@@ -386,7 +387,6 @@ CREATE TABLE `MATERIA` (
 --
 
 INSERT INTO `MATERIA` (`idMATERIA`, `NOME`, `QTD_AULAS`) VALUES
-(1, 'Matématica III', 80),
 (2, 'Matemática III', 80),
 (3, 'Física III', 80),
 (5, 'Literatura III', 80),
@@ -437,23 +437,24 @@ INSERT INTO `MODALIDADE` (`idMODALIDADE`, `MODALIDADE`) VALUES
 CREATE TABLE `MUT` (
   `USUARIO_idUSUARIO` int(11) NOT NULL,
   `TURMA_idTURMA` int(11) NOT NULL,
-  `MATERIA_idMATERIA` int(11) NOT NULL
+  `MATERIA_idMATERIA` int(11) NOT NULL,
+  `ANO` int(4) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Extraindo dados da tabela `MUT`
 --
 
-INSERT INTO `MUT` (`USUARIO_idUSUARIO`, `TURMA_idTURMA`, `MATERIA_idMATERIA`) VALUES
-(20, 11, 11),
-(20, 12, 6),
-(20, 13, 2),
-(21, 11, 10),
-(21, 12, 7),
-(21, 13, 3),
-(22, 11, 9),
-(22, 12, 8),
-(22, 13, 5);
+INSERT INTO `MUT` (`USUARIO_idUSUARIO`, `TURMA_idTURMA`, `MATERIA_idMATERIA`, `ANO`) VALUES
+(20, 11, 11, NULL),
+(20, 12, 6, NULL),
+(20, 13, 2, NULL),
+(21, 11, 10, NULL),
+(21, 12, 7, NULL),
+(21, 13, 3, NULL),
+(22, 11, 9, NULL),
+(22, 12, 8, NULL),
+(22, 13, 5, NULL);
 
 -- --------------------------------------------------------
 
@@ -539,7 +540,7 @@ CREATE TABLE `PERGUNTA` (
 --
 
 INSERT INTO `PERGUNTA` (`idPERGUNTA`, `idDIMENSAO`, `PERGUNTA`, `TIPO`) VALUES
-(2, 2, 'Lorem ipsum dolor sit amet?', 0),
+(2, 2, 'Deu o ku foi é poko?', 0),
 (3, 2, 'Lorem ipsum dolor sit amet?', 0),
 (4, 2, 'Lorem ipsum dolor sit amet?', 0),
 (5, 2, 'Lorem ipsum dolor sit amet?', 1),
@@ -549,7 +550,9 @@ INSERT INTO `PERGUNTA` (`idPERGUNTA`, `idDIMENSAO`, `PERGUNTA`, `TIPO`) VALUES
 (9, 3, 'Lorem ipsum dolor sit amet?', 0),
 (10, 4, 'Lorem ipsum dolor sit amet?', 1),
 (11, 4, 'Lorem ipsum dolor sit amet?', 1),
-(12, 4, 'Lorem ipsum dolor sit amet?', 1);
+(12, 4, 'Lorem ipsum dolor sit amet?', 1),
+(13, 5, 'Deu o ku foi é poko', 0),
+(14, 5, 'Mamou o Lazin', 0);
 
 -- --------------------------------------------------------
 
@@ -580,7 +583,8 @@ CREATE TABLE `QUESTIONARIO` (
 --
 
 INSERT INTO `QUESTIONARIO` (`idQUESTIONARIO`, `NOME`, `ANO`) VALUES
-(2, '1/2017', 2017);
+(2, '1/2017', 2017),
+(3, '1/2018', 2018);
 
 -- --------------------------------------------------------
 
@@ -601,7 +605,8 @@ CREATE TABLE `QUESTIONARIO_has_TURMA` (
 INSERT INTO `QUESTIONARIO_has_TURMA` (`QUESTIONARIO_idQUESTIONARIO`, `TURMA_idTURMA`, `ANO`) VALUES
 (2, 11, 2017),
 (2, 12, 2017),
-(2, 13, 2017);
+(2, 13, 2017),
+(3, 11, 2018);
 
 -- --------------------------------------------------------
 
@@ -1829,7 +1834,7 @@ ALTER TABLE `CURSO`
 -- AUTO_INCREMENT for table `DIMENSAO`
 --
 ALTER TABLE `DIMENSAO`
-  MODIFY `idDIMENSAO` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `idDIMENSAO` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `FREQUENCIA`
 --
@@ -1859,7 +1864,7 @@ ALTER TABLE `PARAMETRO_DE_RISCO`
 -- AUTO_INCREMENT for table `PERGUNTA`
 --
 ALTER TABLE `PERGUNTA`
-  MODIFY `idPERGUNTA` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `idPERGUNTA` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 --
 -- AUTO_INCREMENT for table `PROFESSOR`
 --
@@ -1869,7 +1874,7 @@ ALTER TABLE `PROFESSOR`
 -- AUTO_INCREMENT for table `QUESTIONARIO`
 --
 ALTER TABLE `QUESTIONARIO`
-  MODIFY `idQUESTIONARIO` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `idQUESTIONARIO` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `RESPOSTA`
 --
