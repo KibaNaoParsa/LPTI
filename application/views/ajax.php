@@ -177,6 +177,9 @@
                         <li>
                             <a href="{url}Relatorio/index/0">Gerar relatórios</a>
                         </li>
+                        <li>
+                            <a href="{url}Aprovacao/index">Aprovação</a>
+                        </li>
                         <!--
                         <li>
                             <a href="{url}Cadastro/addCurso">Cadastrar Curso</a>

@@ -287,7 +287,6 @@ Modalidade -> TURMA_has_ALUNO -> TURMA -> Modalidade
 Ano        -> TURMA_has_ALUNO"
 
 Elyas - "
-I. Tela de aprovação
 II. Fazer segundo relatório
 III. Descobrir coisas pra arrumar
 
