@@ -29,6 +29,15 @@ class Login extends CI_Controller {
                 $this->loginAsEst();
             else if($data[0]['TIPO'] == 5)
                 $this->loginAsProf($data[0]['idUSUARIO']);
+            else if($data[0]['TIPO'] == 7) {
+				 $this->session->sess_destroy();
+				$data['msg'] = 'Seu usuário está inativo. Contate a coordenação.';
+				$data['url'] = base_url();
+				$data['modal'] = "$(window).on('load',function(){
+                          $('#login-modal').modal('show');
+                          });";
+				$this->parser->parse('login', $data);	
+			}
             else if($data[0]['TIPO']){
                 $this->loginAsCoord($data[0]['TIPO']);
             }

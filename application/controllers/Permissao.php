@@ -31,6 +31,8 @@
 			$this->db->from('CURSO');
 			$this->db->join('TURMA', 'CURSO.idCURSO=TURMA.idCURSO', 'inner');
 			$this->db->join('MODALIDADE', 'CURSO.MODALIDADE = MODALIDADE.idMODALIDADE', 'inner');
+			$this->db->where('CURSO.idCURSO !=', 99);
+
 			$this->db->distinct();
 			$data['TURMA'] = $this->db->get()->result();
 		

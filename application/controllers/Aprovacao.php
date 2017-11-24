@@ -10,10 +10,11 @@ class Aprovacao extends CI_Controller {
         }
 
 		public function index() {
-			$this->db->select('CURSO.NOME, TURMA.SERIE, TURMA.idTURMA, MODALIDADE.MODALIDADE');
+			$this->db->select('CURSO.idCURSO, CURSO.NOME, TURMA.SERIE, TURMA.idTURMA, MODALIDADE.MODALIDADE');
 			$this->db->from('CURSO');
 			$this->db->join('TURMA', 'CURSO.idCURSO=TURMA.idCURSO', 'inner');
 			$this->db->join('MODALIDADE', 'CURSO.MODALIDADE = MODALIDADE.idMODALIDADE', 'inner');
+			$this->db->where('CURSO.idCURSO !=', 99);
 			$this->db->distinct();
 			$data['TURMA'] = $this->db->get()->result();
 			
@@ -30,6 +31,7 @@ class Aprovacao extends CI_Controller {
 			$this->db->from('CURSO');
 			$this->db->join('TURMA', 'CURSO.idCURSO=TURMA.idCURSO', 'inner');
 			$this->db->join('MODALIDADE', 'CURSO.MODALIDADE = MODALIDADE.idMODALIDADE', 'inner');
+			$this->db->where('CURSO.idCURSO !=', 99);
 			$this->db->distinct();
 			$data['TURMA'] = $this->db->get()->result();
 
@@ -52,6 +54,7 @@ class Aprovacao extends CI_Controller {
 			$data['ALUNO'] = $this->db->get()->result();
 			
 			$data['idTURMA'] = $idTURMA;
+			
 			$data['url'] = base_url();
 			
 			$this->parser->parse('ajax', $data);
@@ -85,6 +88,13 @@ class Aprovacao extends CI_Controller {
 					if(!empty($alunos[$i])) {
 						$dat['ALUNO_idALUNO'] = $alunos[$i];
 						$this->db->insert('TURMA_has_ALUNO', $dat);
+						
+						
+						if ($dat['TURMA_idTURMA'] == 99) {
+							$this->db->update('ALUNO.SITUACAO', 1);
+							$this->db->from('ALUNO');
+							$this->db->where('ALUNO.idALUNO', $dat['ALUNO_idALUNO']);
+						}
 					}
 			}
 			

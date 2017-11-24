@@ -54,7 +54,7 @@
 													echo "<td>";
 
                                                 echo form_radio("turma[]", 99, FALSE).
-												     form_label("LIMBO", "txt_li")."</td>".br();
+												     form_label("Formatura", "txt_li")."</td>".br();
 
 												echo "</tr></table>".br();
 												

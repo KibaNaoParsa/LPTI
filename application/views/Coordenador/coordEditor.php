@@ -19,24 +19,10 @@
 													 form_password('txt_senha').br().
 													 form_label("Confirmar senha: ", "txt_confirmarsenha").br().
 													 form_password('txt_confirmarsenha').br().
-													 form_radio("txt_tipo", '0', false).
-													 form_label("Administrador", "txt_tipo").br().
 													 form_radio("txt_tipo", '4', false).
 													 form_label("Estagiário", "txt_tipo").br().
-													 form_radio("txt_tipo", '5', false).
+													 form_radio("txt_tipo", '5', true).
 													 form_label("Professor", "txt_tipo").br().
-													 form_radio("txt_tipo", '1', false).
-													 form_label("Coordenador Informática", "txt_tipo").br().
-													 form_radio("txt_tipo", '2', false).
-													 form_label("Coordenador Mecatrônica", "txt_tipo").br().
-													 form_radio("txt_tipo", '3', false).
-													 form_label("Coordenador Edificações", "txt_tipo").br().
-													 form_radio("txt_tipo", '6', false).
-													form_label("Coordenador Formação Geral", "txt_tipo").br().
-													 form_radio("txt_tipo", '7', false).
-													form_label("Inativo", "txt_tipo").
-													
-													br().br().
 													 form_submit("btn_cadastrar", "Salvar Alterações", $btn).br().
 													 form_close().br().
 											     anchor('../Login/loginAsAdm', "Cancelar", array('class'=>"btn btn-danger", 'id'=>"botao"));
@@ -44,7 +30,7 @@
 											</div>
               </div>
           </div>
-       		</div>
+		</div>
 	</div>
 	<script src="{url}assets/js/jquery.min.js"></script>
 	<script src="{url}assets/js/bootstrap.min.js"></script>

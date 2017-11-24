@@ -105,7 +105,7 @@
 					}
 			}
 			
-			redirect("Materia/index");
+			redirect("Materia/v_listar_materias");
 			
 		}
 		

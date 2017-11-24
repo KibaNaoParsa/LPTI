@@ -289,9 +289,6 @@
 				
 				if ($relatorio == 0) {
 					$this->v_chartSingle($idQUESTIONARIO, $idTURMA, 0);				
-				}
-				if ($relatorio == 1) {
-					$this->v_chartMultiple($idQUESTIONARIO, $idTURMA);				
 				}		
 			
 			}	

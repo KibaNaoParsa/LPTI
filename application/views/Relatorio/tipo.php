@@ -27,8 +27,6 @@
 					
 										echo form_radio("relatorio[]", 0, FALSE).
 											  form_label("Relatório por dimensão", "txt_li2").br();
-										echo form_radio("relatorio[]", 1, FALSE).
-											  form_label("Relatório total", "txt_li2").br();
 					
 
 										echo br().form_submit("btn_cadastrar", " Confirmar ", 'class = "btn btn-success"').br().
