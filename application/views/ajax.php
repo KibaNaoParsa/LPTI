@@ -17,9 +17,6 @@
     <link href="{url}assets/css/morris.css" rel="stylesheet">
     <link href="{url}assets/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href="{url}assets/css/estilo.css" rel="stylesheet" type="text/css">
-    <script>
-        {script1}
-    </script>
 </head>
 
 <body>
@@ -34,9 +31,9 @@
                         <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
                     </a>
                     <ul class="dropdown-menu dropdown-user">
+                        <li><a href="{url}Login/alterarSenha"><i class="fa fa-key"></i> Alterar senha</a></li>                 
+                        <li><a href="{url}Login/efetuar_logout"><i class="fa fa-sign-out fa-fw"></i> Logout</a></li>
 
-                        <li><a href="{url}Login/efetuar_logout"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
-                        </li>
                     </ul>
                 </li>
             </ul>
@@ -174,12 +171,12 @@
                             </ul>
                             <!-- /.nav-second-level -->
                         </li>
-                        <li>
+                      <li>
                             <a href="{url}Relatorio/index/0">Gerar relatórios</a>
                         </li>
                         <li>
                             <a href="{url}Aprovacao/index">Aprovação</a>
-                        </li>
+</li>
                         <!--
                         <li>
                             <a href="{url}Cadastro/addCurso">Cadastrar Curso</a>

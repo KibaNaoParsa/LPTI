@@ -31,8 +31,7 @@
                         <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
                     </a>
                     <ul class="dropdown-menu dropdown-user">
-                        <li><a href="{url}Login/efetuar_logout"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
-                        </li>
+                        <li><a href="{url}Login/alterarSenha"><i class="fa fa-key"></i> Alterar senha</a></li>                                         <li><a href="{url}Login/efetuar_logout"><i class="fa fa-sign-out fa-fw"></i> Logout</a></li>
                     </ul>
                 </li>
             </ul>
@@ -43,8 +42,8 @@
                         <li>
                             <a href="{url}Login/telaInicial">Início</a>
                         </li>
-								<li>
-                            <a href="{url}Estagiario/aluCad">Cadastrar Aluno<span class="fa arrow"></span></a>
+                                <li>
+                            <a href="{url}Estagiario/aluCad">Cadastrar Turma<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
                                     <a href="{url}Estagiario/aluCad">Cadastro único</a>
@@ -54,7 +53,7 @@
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
-                        </li>                     
+                        </li>
                         <li>
                             <a href="{url}Estagiario/aluEdit">Editar Turmas</a>
                         </li>

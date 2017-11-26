@@ -30,7 +30,7 @@
                         <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
                     </a>
                     <ul class="dropdown-menu dropdown-user">
-                        <li><a href="{url}Login/efetuar_logout"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                          <li><a href="{url}Login/alterarSenha"><i class="fa fa-key"></i> Alterar senha</a></li>                                       <li><a href="{url}Login/efetuar_logout"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
                         </li>
 
                     </ul>
@@ -55,4 +55,4 @@
             </div>
             <!-- /.navbar-static-side -->
         </nav>
-        <div id="MainProf">
+<div id="MainProf">
