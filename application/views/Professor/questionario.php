@@ -100,7 +100,7 @@ $(window).on("load resize ", function() {
 
 
  echo ' <div class="tbl-header">
-    <table cellpadding="0" cellspacing="0" border="0">
+    <table cellpadding="0" cellspacing="0" border="0" style="overflow-x:auto">
       <thead>
         <tr>
           <th></th>';

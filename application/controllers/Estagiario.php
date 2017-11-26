@@ -1,8 +1,6 @@
 <?php
     defined('BASEPATH') OR exit('No direct script access allowed');
-
     class Estagiario extends CI_Controller {
-
         public function __construct(){
             parent::__construct();
             $this->load->library('session');
@@ -10,20 +8,16 @@
                     $this->load->view('login');
             }
         }
-
         public function aluCad(){
             $data['url'] = base_url();
             $this->parser->parse('ajaxEst', $data);
             $this->parser->parse('Estagiario/aluno', $data);
         }
-
         public function aluCadMassa(){
             $data['url'] = base_url();
             $this->parser->parse('ajaxEst', $data);
             $this->parser->parse('Estagiario/alunomassa', $data);
         }
-
-
         public function aluno(){
             $data['idALUNO'] = $this->input->post('txt_matricula');
             $data['NOME'] = $this->input->post('txt_nome');
@@ -48,24 +42,17 @@
                 $this->db->insert('TURMA_has_ALUNO', $dat);
                 redirect("Estagiario/aluCad");
             }
-
         }
-
         public function alunomassa(){
             $alunos = $this->input->post('txt_texto');
             $data['TURMA_idTURMA'] = $this->input->post('Turma');
             $data['ANO'] = $this->input->post('txt_ano');
-
             $aluno = explode(";", $alunos);
-
             foreach ($aluno as $a) {
-
                 $divorcio = explode(":", $a);
-
                 $dat['idALUNO'] = $divorcio[0];
                 $dat['NOME'] = $divorcio[1];
                 $data['ALUNO_idALUNO'] = $dat['idALUNO'];
-
                 if(($dat['idALUNO'] <= 100000000000) or ($dat['NOME'] == "") or ($data['TURMA_idTURMA'] == "") or ($data['ANO'] == "")){
                     $da['modal'] = "$(window).on('load',function(){
                           $('#erro-modal').modal('show');
@@ -78,12 +65,8 @@
                     $this->db->insert('TURMA_has_ALUNO', $data);
                 }
             }
-
             redirect("Login/loginAsEst");
-
         }
-
-
         public function aluno2(){
             $data['idALUNO'] = $this->input->post('txt_matricula');
             $data['NOME'] = $this->input->post('txt_nome');
@@ -103,9 +86,7 @@
                 $this->db->insert('TURMA_has_ALUNO', $dat);
                 redirect("Estagiario/aEdit/".$dat['TURMA_idTURMA']."/".$dat['ANO']);
             }
-
         }
-
         public function notCad(){
             $this->db->select('TURMA.idTURMA, TURMA.SERIE, TURMA_has_ALUNO.ANO, TURMA.idCURSO');
             $this->db->from('TURMA');
@@ -116,7 +97,6 @@
             $this->parser->parse('ajaxEst', $data);
             $this->parser->parse('Estagiario/nota', $data);
         }
-
         public function notInsert($id, $ano){
             $data['url'] = base_url();
             $this->db->select('MATERIA.idMATERIA, MATERIA.NOME, TURMA_has_MATERIA.TURMA_idTURMA, TURMA_has_MATERIA.MATERIA_idMATERIA, TURMA_has_MATERIA.ANO');
@@ -135,7 +115,6 @@
                 $this->parser->parse('Estagiario/notas', $data);
             }
         }
-
         public function nota($id, $ano){
             $notas = explode(':', $this->input->post('txt_notas'));
             for($i = 0; $i < count($notas); $i++)
@@ -163,7 +142,6 @@
 						location.href = "http://localhost/LPTI/Estagiario/notInsert/' .$id . '/' . $ano. '";</script>';
             }
         }
-
         public function aluEdit(){
             $this->db->select('TURMA.idTURMA, TURMA.SERIE, TURMA_has_ALUNO.ANO, TURMA.idCURSO');
             $this->db->from('TURMA');
@@ -174,7 +152,6 @@
             $this->parser->parse('ajaxEst', $data);
             $this->parser->parse('Estagiario/aEditar', $data);
         }
-
         public function aEdit($id, $ano){
             $this->db->select('TURMA_has_ALUNO.TURMA_idTURMA, TURMA_has_ALUNO.ALUNO_idALUNO, ALUNO.NOME, TURMA_has_ALUNO.TURMA_idTURMA, TURMA_has_ALUNO.ANO');
             $this->db->from('ALUNO');
@@ -186,13 +163,11 @@
             $this->parser->parse('ajaxEst', $data);
             $this->parser->parse('Estagiario/aEditor', $data);
         }
-
         public function aExcluir($id, $turma, $ano){
             $this->db->where('TURMA_has_ALUNO.ALUNO_idALUNO', $id);
             $this->db->delete('TURMA_has_ALUNO');
             redirect("Estagiario/aEdit/".$turma."/".$ano);
         }
-
     public function freqCad(){
             $this->db->select('TURMA.idTURMA, TURMA.SERIE, TURMA_has_ALUNO.ANO, TURMA.idCURSO');
             $this->db->from('TURMA');
@@ -203,7 +178,6 @@
             $this->parser->parse('ajaxEst', $data);
             $this->parser->parse('Estagiario/freq', $data);
         }
-
         public function freqInsert($id, $ano){
             $this->db->select('MATERIA.idMATERIA, MATERIA.NOME, TURMA_has_MATERIA.TURMA_idTURMA, TURMA_has_MATERIA.MATERIA_idMATERIA, TURMA_has_MATERIA.ANO');
             $this->db->from('TURMA_has_MATERIA');
@@ -222,7 +196,6 @@
 				$this->parser->parse('Estagiario/freqs', $data);
 			}
         }
-
         public function freq($id, $ano){
             $freq = explode(':', $this->input->post('txt_freq'));
             for($i = 0; $i < count($freq); $i++){
@@ -257,7 +230,6 @@
 						location.href = "http://localhost/LPTI/Estagiario/freqInsert/' .$id . '/' . $ano. '";</script>';
             }
     }
-
     public function notEdit(){
         $this->db->select('TURMA.idTURMA, TURMA.SERIE, TURMA_has_ALUNO.ANO, TURMA.idCURSO');
         $this->db->from('TURMA');
@@ -268,7 +240,6 @@
         $this->parser->parse('ajaxEst', $data);
         $this->parser->parse('Estagiario/notEdit', $data);
     }
-
     public function notEditar($id, $ano){
         $data['url'] = base_url();
         $this->db->select('MATERIA.idMATERIA, MATERIA.NOME, TURMA_has_MATERIA.TURMA_idTURMA, TURMA_has_MATERIA.MATERIA_idMATERIA, TURMA_has_MATERIA.ANO');
@@ -289,7 +260,6 @@
             $this->parser->parse('Estagiario/notEditar', $data);
 		}
     }
-
     public function notMatEditar($id, $ano){
         
         //SELECIONA ALUNO
@@ -304,19 +274,15 @@
         $this->db->where('TURMA.idTURMA', $id);
         $this->db->where('TURMA_has_ALUNO.ANO', $ano);
         $data['TURMA_has_ALUNO'] = $this->db->get()->result();
-
         $data['url'] = base_url();
         $data['id'] = $id;
         $data['ano'] = $ano;
-
 		//SELECIONA MATERIAS DA TURMA
-
         $this->db->select('TURMA_has_MATERIA.MATERIA_idMATERIA, TURMA_has_MATERIA.TURMA_idTURMA, MATERIA.idMATERIA, MATERIA.NOME');
         $this->db->from('MATERIA');
         $this->db->join('TURMA_has_MATERIA', 'TURMA_has_MATERIA.MATERIA_idMATERIA = MATERIA.idMATERIA', 'inner');
         $this->db->where('TURMA_has_MATERIA.TURMA_idTURMA', $id);
         $data['Materia'] = $this->db->get()->result();
-
         $materia = $this->input->post('txt_materia');
         
         //SELECIONA MATERIAS SELECIONADAS
@@ -325,7 +291,6 @@
         $this->db->from('MATERIA');
         $this->db->where('MATERIA.idMATERIA', $materia);
         $data['materia'] = $this->db->get()->result();
-
         $qtdAlunos = 0;
         foreach($data['TURMA_has_ALUNO'] as $band)
             $qtdAlunos++;
@@ -357,11 +322,12 @@
                 $data['NOTAS'][$i] += $band->NOTA;
 			}
         }
+        $data['bimestre'] = $bimestre;
         $this->parser->parse('ajaxEst', $data);
         $this->parser->parse('Estagiario/editarNota', $data);
     }
     
-    public function alterarNota($id, $ano, $materia, $serie, $curso, $modalidade, $turma){
+    public function alterarNota($id, $ano, $materia, $serie, $curso, $modalidade, $turma, $bim){
 		$data['url'] = base_url();
 		
         $this->db->select('*');
@@ -370,6 +336,13 @@
         $data['aluno'] = $this->db->get()->result();
         
         $data['ano'] = $ano;
+        
+        if($curso == 'Inform%C3%A1tica')
+			$curso = 'Informática';
+        else if($curso == 'Edifica%C3%A7%C3%B5es')
+			$curso = 'Edificações';
+		else
+			$curso = 'Mecatrônica';
         
         $data['turma'] = $serie . ' ' . $curso . ' ' . $modalidade;
         
@@ -386,7 +359,18 @@
 		$this->db->where('NOTA.idMATERIA', $materia);$this->input->post('txt_freq');
 		$this->db->where('TURMA_has_MATERIA.ANO', $ano);
 		$this->db->where('TURMA_has_MATERIA.TURMA_idTURMA', $turma);
+		if($bim <= 4)
+			$this->db->where('NOTA.BIMESTRE', $bim);
+		else if($bim == 12){
+			$where = "NOTA.BIMESTRE = 1 OR NOTA.BIMESTRE = 2";
+			$this->db->where($where);
+		}
+		else if($bim == 34){
+			$where = "NOTA.BIMESTRE = 3 OR NOTA.BIMESTRE = 4";
+			$this->db->where($where);
+		}
         $data['nota'] = $this->db->get()->result();
+        
         $this->parser->parse('ajaxEst', $data);
         $this->parser->parse('Estagiario/alterarNota', $data);
 		
@@ -447,23 +431,19 @@
         $this->db->where('TURMA.idTURMA', $id);
         $this->db->where('TURMA_has_ALUNO.ANO', $ano);
         $data['TURMA_has_ALUNO'] = $this->db->get()->result();
-
         $data['url'] = base_url();
         $data['id'] = $id;
         $data['ano'] = $ano;
-
         $this->db->select('TURMA_has_MATERIA.MATERIA_idMATERIA, TURMA_has_MATERIA.TURMA_idTURMA, MATERIA.idMATERIA, MATERIA.NOME');
         $this->db->from('MATERIA');
         $this->db->join('TURMA_has_MATERIA', 'TURMA_has_MATERIA.MATERIA_idMATERIA = MATERIA.idMATERIA', 'inner');
         $this->db->where('TURMA_has_MATERIA.TURMA_idTURMA', $id);
         $data['Materia'] = $this->db->get()->result();
-
         $materia = $this->input->post('txt_materia');
         $this->db->select('MATERIA.NOME, MATERIA.idMATERIA');
         $this->db->from('MATERIA');
         $this->db->where('MATERIA.idMATERIA', $materia);
         $data['materia'] = $this->db->get()->result();
-
         $qtdAlunos = 0;
         foreach($data['TURMA_has_ALUNO'] as $band)
             $qtdAlunos++;

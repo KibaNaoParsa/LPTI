@@ -34,6 +34,7 @@
                         <li><a href="{url}Login/alterarSenha"><i class="fa fa-key"></i> Alterar senha</a></li>                                         <li><a href="{url}Login/efetuar_logout"><i class="fa fa-sign-out fa-fw"></i> Logout</a></li>
                     </ul>
                 </li>
+                <li> <?php echo $this->session->userdata('nome');?> </li>
             </ul>
 
             <div class="navbar-default sidebar" role="navigation">
@@ -76,3 +77,4 @@
             <!-- /.navbar-static-side -->
         </nav>
         <div id="Main">
+

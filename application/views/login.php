@@ -81,7 +81,8 @@
                         </li>
                     </ul>
                     <hr class="small">
-                    <p class="text-muted">Copyright &copy; Conselho de Classe 2017</p>
+                    <?php echo '<p class="text-muted">Copyright &copy; CristhSoft '.date("Y").' </p>';
+                      ?>
                 </div>
             </div>
         </div>

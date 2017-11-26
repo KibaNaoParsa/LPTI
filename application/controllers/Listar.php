@@ -63,6 +63,7 @@
 			$this->db->join('TURMA', 'TURMA.idTURMA = TURMA_has_ALUNO.TURMA_idTURMA', 'inner');
 			$this->db->join('CURSO', 'CURSO.idCURSO = TURMA.idCURSO', 'inner');
 			$this->db->join('MODALIDADE', 'CURSO.MODALIDADE = MODALIDADE.idMODALIDADE', 'inner');
+						
 			$ano = date("Y");
 			if($id !=0)
 				$this->db->where('TURMA.idTURMA', $id);

@@ -17,6 +17,8 @@
     <link href="{url}assets/css/morris.css" rel="stylesheet">
     <link href="{url}assets/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href="{url}assets/css/estilo.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="http://cdn.datatables.net/responsive/1.0.2/css/dataTables.responsive.css"/>
+    
 </head>
 
 <body>
@@ -36,12 +38,13 @@
 
                     </ul>
                 </li>
+                <li> <?php echo $this->session->userdata('nome');?> </li>
             </ul>
 
             <div class="navbar-default sidebar" role="navigation">
                 <div class="sidebar-nav navbar-collapse" id="btn">
                     <ul class="nav" id="side-menu">
-                        <li>
+						<li>
                             <a href="{url}Login/telaInicial">Início</a>
                         </li>
                         <li>
@@ -168,15 +171,16 @@
                                 <li>
                                     <a href="{url}Materia/v_associar_materias">Associar disciplinas</a>
                                 </li>
-                            </ul>
-                            <!-- /.nav-second-level -->
-                        </li>
-                      <li>
+      </ul>                
+ <li>
                             <a href="{url}Relatorio/index/0">Gerar relatórios</a>
                         </li>
                         <li>
                             <a href="{url}Aprovacao/index">Aprovação</a>
 </li>
+                            <!-- /.nav-second-level -->
+                        </li>
+
                         <!--
                         <li>
                             <a href="{url}Cadastro/addCurso">Cadastrar Curso</a>

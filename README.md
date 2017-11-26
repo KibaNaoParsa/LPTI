@@ -1,6 +1,12 @@
-# Patch Notes v3.0
+# Patch Notes v3.1
 
-- União de projetos
+v3.0
+
 - Desativar usuário
 - Aprovação de alunos
+
+v3.1
+
+- FODENDO grande união dos projetos
+- Alteração de senha
 - Adição de bugs para correções futuras

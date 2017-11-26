@@ -53,10 +53,11 @@
 
 		public function v_associar($id) {
 			
-			$this->db->select('CURSO.NOME, TURMA.SERIE, TURMA.idTURMA');
+			$this->db->select('CURSO.NOME, TURMA.SERIE, TURMA.idTURMA, MODALIDADE.MODALIDADE');
 			$this->db->from('CURSO');
 			$this->db->join('TURMA', 'CURSO.idCURSO=TURMA.idCURSO', 'inner');
-						$this->db->where('CURSO.idCURSO !=', 99);
+			$this->db->join('MODALIDADE', 'CURSO.MODALIDADE = MODALIDADE.idMODALIDADE', 'inner');
+			$this->db->where('CURSO.idCURSO !=', 99);
 
 			$this->db->distinct();
 			$data['TURMA'] = $this->db->get()->result();
