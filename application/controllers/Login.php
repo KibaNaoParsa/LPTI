@@ -235,14 +235,18 @@ class Login extends CI_Controller {
 	public function alterarSenha(){
 		$tipo = $this->session->userdata('tipo');
 		$data['url'] = base_url();
-		if($tipo == 0)
+		if($tipo == 0) {
 			$this->parser->parse('ajax', $data);
-		if($tipo == 4)
+		} else 
+		if($tipo == 4) {
 			$this->parser->parse('ajaxEst', $data);
-		if($tipo == 4)
+		} else
+		if($tipo == 5) {
 			$this->parser->parse('ajaxProf', $data);
-		else
+		} else {
 			$this->parser->parse('ajaxCoord', $data);
+		}		
+
 		$this->parser->parse('mudaSenha', $data);
 	}
 	
