@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: 22-Nov-2017 às 10:22
--- Versão do servidor: 5.7.18-0ubuntu0.16.04.1
--- PHP Version: 7.0.23-1+ubuntu16.04.1+deb.sury.org+1
+-- Tempo de geração: 27/11/2017 às 04:18
+-- Versão do servidor: 5.7.19-0ubuntu0.16.04.1
+-- Versão do PHP: 7.0.22-0ubuntu0.16.04.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -17,13 +17,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `LPTI`
+-- Banco de dados: `LPTI`
 --
 
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `ALUNO`
+-- Estrutura para tabela `ALUNO`
 --
 
 CREATE TABLE `ALUNO` (
@@ -34,7 +34,7 @@ CREATE TABLE `ALUNO` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Extraindo dados da tabela `ALUNO`
+-- Fazendo dump de dados para tabela `ALUNO`
 --
 
 INSERT INTO `ALUNO` (`idALUNO`, `NOME`, `SITUACAO`, `FOTO`) VALUES
@@ -312,32 +312,31 @@ INSERT INTO `ALUNO` (`idALUNO`, `NOME`, `SITUACAO`, `FOTO`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `CURSO`
+-- Estrutura para tabela `CURSO`
 --
 
 CREATE TABLE `CURSO` (
   `idCURSO` int(11) NOT NULL,
   `NOME` varchar(45) NOT NULL,
-  `MODALIDADE` int(2) NOT NULL,
-  `PARAMETRO` int(11) NOT NULL
+  `MODALIDADE` int(2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Extraindo dados da tabela `CURSO`
+-- Fazendo dump de dados para tabela `CURSO`
 --
 
-INSERT INTO `CURSO` (`idCURSO`, `NOME`, `MODALIDADE`, `PARAMETRO`) VALUES
-(1, 'Informática', 1, 1),
-(2, 'Mecatrônica', 1, 2),
-(3, 'Edificações', 1, 3),
-(4, 'Informática', 2, 4),
-(5, 'Mecatrônica', 2, 5),
-(6, 'Edificações', 2, 6);
+INSERT INTO `CURSO` (`idCURSO`, `NOME`, `MODALIDADE`) VALUES
+(1, 'Informática', 1),
+(2, 'Mecatrônica', 1),
+(3, 'Edificações', 1),
+(4, 'Informática', 2),
+(5, 'Mecatrônica', 2),
+(6, 'Edificações', 2);
 
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `DIMENSAO`
+-- Estrutura para tabela `DIMENSAO`
 --
 
 CREATE TABLE `DIMENSAO` (
@@ -347,7 +346,7 @@ CREATE TABLE `DIMENSAO` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Extraindo dados da tabela `DIMENSAO`
+-- Fazendo dump de dados para tabela `DIMENSAO`
 --
 
 INSERT INTO `DIMENSAO` (`idDIMENSAO`, `idQUESTIONARIO`, `DESCRICAO`) VALUES
@@ -359,7 +358,7 @@ INSERT INTO `DIMENSAO` (`idDIMENSAO`, `idQUESTIONARIO`, `DESCRICAO`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `FREQUENCIA`
+-- Estrutura para tabela `FREQUENCIA`
 --
 
 CREATE TABLE `FREQUENCIA` (
@@ -370,10 +369,36 @@ CREATE TABLE `FREQUENCIA` (
   `BIMESTRE` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Fazendo dump de dados para tabela `FREQUENCIA`
+--
+
+INSERT INTO `FREQUENCIA` (`idFREQUENCIA`, `idALUNO`, `idMATERIA`, `FALTAS`, `BIMESTRE`) VALUES
+(1, 201518110110, 5, 1, 1),
+(2, 201518110111, 5, 2, 1),
+(3, 201518110104, 5, 3, 1),
+(4, 201518110109, 5, 4, 1),
+(5, 201518110103, 5, 5, 1),
+(6, 201518110116, 5, 6, 1),
+(7, 201518110117, 5, 7, 1),
+(8, 201518110108, 5, 8, 1),
+(9, 201518110118, 5, 9, 1),
+(10, 201518110107, 5, 10, 1),
+(11, 201518110113, 5, 11, 1),
+(12, 201518110100, 5, 12, 1),
+(13, 201518110112, 5, 13, 1),
+(14, 201518110119, 5, 14, 1),
+(15, 201518110106, 5, 15, 1),
+(16, 201518110115, 5, 16, 1),
+(17, 201518110102, 5, 17, 1),
+(18, 201518110114, 5, 18, 1),
+(19, 201518110105, 5, 19, 1),
+(20, 201518110101, 5, 20, 1);
+
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `MATERIA`
+-- Estrutura para tabela `MATERIA`
 --
 
 CREATE TABLE `MATERIA` (
@@ -383,7 +408,7 @@ CREATE TABLE `MATERIA` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Extraindo dados da tabela `MATERIA`
+-- Fazendo dump de dados para tabela `MATERIA`
 --
 
 INSERT INTO `MATERIA` (`idMATERIA`, `NOME`, `QTD_AULAS`) VALUES
@@ -400,7 +425,7 @@ INSERT INTO `MATERIA` (`idMATERIA`, `NOME`, `QTD_AULAS`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `MATERIA_has_PROFESSOR`
+-- Estrutura para tabela `MATERIA_has_PROFESSOR`
 --
 
 CREATE TABLE `MATERIA_has_PROFESSOR` (
@@ -412,7 +437,7 @@ CREATE TABLE `MATERIA_has_PROFESSOR` (
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `MODALIDADE`
+-- Estrutura para tabela `MODALIDADE`
 --
 
 CREATE TABLE `MODALIDADE` (
@@ -421,7 +446,7 @@ CREATE TABLE `MODALIDADE` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Extraindo dados da tabela `MODALIDADE`
+-- Fazendo dump de dados para tabela `MODALIDADE`
 --
 
 INSERT INTO `MODALIDADE` (`idMODALIDADE`, `MODALIDADE`) VALUES
@@ -431,7 +456,7 @@ INSERT INTO `MODALIDADE` (`idMODALIDADE`, `MODALIDADE`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `MUT`
+-- Estrutura para tabela `MUT`
 --
 
 CREATE TABLE `MUT` (
@@ -442,7 +467,7 @@ CREATE TABLE `MUT` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Extraindo dados da tabela `MUT`
+-- Fazendo dump de dados para tabela `MUT`
 --
 
 INSERT INTO `MUT` (`USUARIO_idUSUARIO`, `TURMA_idTURMA`, `MATERIA_idMATERIA`, `ANO`) VALUES
@@ -459,7 +484,7 @@ INSERT INTO `MUT` (`USUARIO_idUSUARIO`, `TURMA_idTURMA`, `MATERIA_idMATERIA`, `A
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `MUT_has_QUESTIONARIO`
+-- Estrutura para tabela `MUT_has_QUESTIONARIO`
 --
 
 CREATE TABLE `MUT_has_QUESTIONARIO` (
@@ -470,7 +495,7 @@ CREATE TABLE `MUT_has_QUESTIONARIO` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Extraindo dados da tabela `MUT_has_QUESTIONARIO`
+-- Fazendo dump de dados para tabela `MUT_has_QUESTIONARIO`
 --
 
 INSERT INTO `MUT_has_QUESTIONARIO` (`USUARIO_idUSUARIO`, `TURMA_idTURMA`, `MATERIA_idMATERIA`, `QUESTIONARIO_idQUESTIONARIO`) VALUES
@@ -487,7 +512,7 @@ INSERT INTO `MUT_has_QUESTIONARIO` (`USUARIO_idUSUARIO`, `TURMA_idTURMA`, `MATER
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `NOTA`
+-- Estrutura para tabela `NOTA`
 --
 
 CREATE TABLE `NOTA` (
@@ -498,34 +523,151 @@ CREATE TABLE `NOTA` (
   `BIMESTRE` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Fazendo dump de dados para tabela `NOTA`
+--
+
+INSERT INTO `NOTA` (`idNOTA`, `idALUNO`, `idMATERIA`, `NOTA`, `BIMESTRE`) VALUES
+(1, 201518110110, 5, 1, 1),
+(2, 201518110111, 5, 2, 1),
+(3, 201518110104, 5, 3, 1),
+(4, 201518110109, 5, 4, 1),
+(5, 201518110103, 5, 5, 1),
+(6, 201518110116, 5, 6, 1),
+(7, 201518110117, 5, 7, 1),
+(8, 201518110108, 5, 8, 1),
+(9, 201518110118, 5, 9, 1),
+(10, 201518110107, 5, 10, 1),
+(11, 201518110113, 5, 11, 1),
+(12, 201518110100, 5, 12, 1),
+(13, 201518110112, 5, 13, 1),
+(14, 201518110119, 5, 14, 1),
+(15, 201518110106, 5, 15, 1),
+(16, 201518110115, 5, 16, 1),
+(17, 201518110102, 5, 17, 1),
+(18, 201518110114, 5, 18, 1),
+(19, 201518110105, 5, 19, 1),
+(20, 201518110101, 5, 20, 1),
+(21, 201518110110, 5, 1, 1),
+(22, 201518110111, 5, 2, 1),
+(23, 201518110104, 5, 3, 1),
+(24, 201518110109, 5, 4, 1),
+(25, 201518110103, 5, 5, 1),
+(26, 201518110116, 5, 6, 1),
+(27, 201518110117, 5, 7, 1),
+(28, 201518110108, 5, 8, 1),
+(29, 201518110118, 5, 9, 1),
+(30, 201518110107, 5, 10, 1),
+(31, 201518110113, 5, 11, 1),
+(32, 201518110100, 5, 12, 1),
+(33, 201518110112, 5, 13, 1),
+(34, 201518110119, 5, 14, 1),
+(35, 201518110106, 5, 15, 1),
+(36, 201518110115, 5, 16, 1),
+(37, 201518110102, 5, 17, 1),
+(38, 201518110114, 5, 18, 1),
+(39, 201518110105, 5, 19, 1),
+(40, 201518110101, 5, 20, 1),
+(41, 201518110110, 5, 1, 2),
+(42, 201518110111, 5, 2, 2),
+(43, 201518110104, 5, 3, 2),
+(44, 201518110109, 5, 4, 2),
+(45, 201518110103, 5, 5, 2),
+(46, 201518110116, 5, 6, 2),
+(47, 201518110117, 5, 7, 2),
+(48, 201518110108, 5, 8, 2),
+(49, 201518110118, 5, 9, 2),
+(50, 201518110107, 5, 10, 2),
+(51, 201518110113, 5, 11, 2),
+(52, 201518110100, 5, 12, 2),
+(53, 201518110112, 5, 13, 2),
+(54, 201518110119, 5, 14, 2),
+(55, 201518110106, 5, 15, 2),
+(56, 201518110115, 5, 16, 2),
+(57, 201518110102, 5, 17, 2),
+(58, 201518110114, 5, 18, 2),
+(59, 201518110105, 5, 19, 2),
+(60, 201518110101, 5, 20, 2),
+(61, 201518110110, 5, 1, 3),
+(62, 201518110111, 5, 2, 3),
+(63, 201518110104, 5, 3, 3),
+(64, 201518110109, 5, 4, 3),
+(65, 201518110103, 5, 5, 3),
+(66, 201518110116, 5, 6, 3),
+(67, 201518110117, 5, 7, 3),
+(68, 201518110108, 5, 8, 3),
+(69, 201518110118, 5, 9, 3),
+(70, 201518110107, 5, 10, 3),
+(71, 201518110113, 5, 11, 3),
+(72, 201518110100, 5, 12, 3),
+(73, 201518110112, 5, 13, 3),
+(74, 201518110119, 5, 14, 3),
+(75, 201518110106, 5, 15, 3),
+(76, 201518110115, 5, 16, 3),
+(77, 201518110102, 5, 17, 3),
+(78, 201518110114, 5, 18, 3),
+(79, 201518110105, 5, 19, 3),
+(80, 201518110101, 5, 20, 3),
+(81, 201518110110, 5, 1, 4),
+(82, 201518110111, 5, 2, 4),
+(83, 201518110104, 5, 3, 4),
+(84, 201518110109, 5, 4, 4),
+(85, 201518110103, 5, 5, 4),
+(86, 201518110116, 5, 6, 4),
+(87, 201518110117, 5, 7, 4),
+(88, 201518110108, 5, 8, 4),
+(89, 201518110118, 5, 9, 4),
+(90, 201518110107, 5, 10, 4),
+(91, 201518110113, 5, 11, 4),
+(92, 201518110100, 5, 12, 4),
+(93, 201518110112, 5, 13, 4),
+(94, 201518110119, 5, 14, 4),
+(95, 201518110106, 5, 15, 4),
+(96, 201518110115, 5, 16, 4),
+(97, 201518110102, 5, 17, 4),
+(98, 201518110114, 5, 18, 4),
+(99, 201518110105, 5, 19, 4),
+(100, 201518110101, 5, 20, 4);
+
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `PARAMETRO_DE_RISCO`
+-- Estrutura para tabela `PARAMETRO_DE_RISCO`
 --
 
 CREATE TABLE `PARAMETRO_DE_RISCO` (
   `idPARAMETRO_DE_RISCO` int(11) NOT NULL,
   `FREQUENCIA` int(11) NOT NULL,
-  `NOTA` double NOT NULL
+  `NOTA` double NOT NULL,
+  `MATERIAS` int(11) NOT NULL,
+  `idTURMA` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Extraindo dados da tabela `PARAMETRO_DE_RISCO`
+-- Fazendo dump de dados para tabela `PARAMETRO_DE_RISCO`
 --
 
-INSERT INTO `PARAMETRO_DE_RISCO` (`idPARAMETRO_DE_RISCO`, `FREQUENCIA`, `NOTA`) VALUES
-(1, 60, 100),
-(2, 60, 60),
-(3, 60, 60),
-(4, 100, 60),
-(5, 60, 60),
-(6, 60, 60);
+INSERT INTO `PARAMETRO_DE_RISCO` (`idPARAMETRO_DE_RISCO`, `FREQUENCIA`, `NOTA`, `MATERIAS`, `idTURMA`) VALUES
+(1, 60, 100, 2, 11),
+(2, 60, 60, 0, 21),
+(3, 60, 60, 0, 31),
+(4, 90, 60, 3, 41),
+(5, 60, 60, 0, 51),
+(6, 60, 60, 1, 61),
+(7, 90, 40, 3, 11),
+(8, 90, 40, 3, 12),
+(9, 90, 40, 3, 13),
+(10, 40, 50, 12, 41),
+(11, 40, 50, 12, 42),
+(12, 50, 60, 12, 41),
+(13, 50, 60, 12, 42),
+(14, 50, 11, 4, 41),
+(15, 50, 11, 4, 42);
 
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `PERGUNTA`
+-- Estrutura para tabela `PERGUNTA`
 --
 
 CREATE TABLE `PERGUNTA` (
@@ -536,7 +678,7 @@ CREATE TABLE `PERGUNTA` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Extraindo dados da tabela `PERGUNTA`
+-- Fazendo dump de dados para tabela `PERGUNTA`
 --
 
 INSERT INTO `PERGUNTA` (`idPERGUNTA`, `idDIMENSAO`, `PERGUNTA`, `TIPO`) VALUES
@@ -557,7 +699,7 @@ INSERT INTO `PERGUNTA` (`idPERGUNTA`, `idDIMENSAO`, `PERGUNTA`, `TIPO`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `PROFESSOR`
+-- Estrutura para tabela `PROFESSOR`
 --
 
 CREATE TABLE `PROFESSOR` (
@@ -569,7 +711,7 @@ CREATE TABLE `PROFESSOR` (
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `QUESTIONARIO`
+-- Estrutura para tabela `QUESTIONARIO`
 --
 
 CREATE TABLE `QUESTIONARIO` (
@@ -579,7 +721,7 @@ CREATE TABLE `QUESTIONARIO` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Extraindo dados da tabela `QUESTIONARIO`
+-- Fazendo dump de dados para tabela `QUESTIONARIO`
 --
 
 INSERT INTO `QUESTIONARIO` (`idQUESTIONARIO`, `NOME`, `ANO`) VALUES
@@ -589,7 +731,7 @@ INSERT INTO `QUESTIONARIO` (`idQUESTIONARIO`, `NOME`, `ANO`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `QUESTIONARIO_has_TURMA`
+-- Estrutura para tabela `QUESTIONARIO_has_TURMA`
 --
 
 CREATE TABLE `QUESTIONARIO_has_TURMA` (
@@ -599,7 +741,7 @@ CREATE TABLE `QUESTIONARIO_has_TURMA` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Extraindo dados da tabela `QUESTIONARIO_has_TURMA`
+-- Fazendo dump de dados para tabela `QUESTIONARIO_has_TURMA`
 --
 
 INSERT INTO `QUESTIONARIO_has_TURMA` (`QUESTIONARIO_idQUESTIONARIO`, `TURMA_idTURMA`, `ANO`) VALUES
@@ -611,7 +753,7 @@ INSERT INTO `QUESTIONARIO_has_TURMA` (`QUESTIONARIO_idQUESTIONARIO`, `TURMA_idTU
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `RESPOSTA`
+-- Estrutura para tabela `RESPOSTA`
 --
 
 CREATE TABLE `RESPOSTA` (
@@ -624,7 +766,7 @@ CREATE TABLE `RESPOSTA` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Extraindo dados da tabela `RESPOSTA`
+-- Fazendo dump de dados para tabela `RESPOSTA`
 --
 
 INSERT INTO `RESPOSTA` (`idRESPOSTA`, `idPERGUNTA`, `idUSUARIO`, `idALUNO`, `RESPOSTA`, `RESPOSTA_ABERTA`) VALUES
@@ -1292,7 +1434,7 @@ INSERT INTO `RESPOSTA` (`idRESPOSTA`, `idPERGUNTA`, `idUSUARIO`, `idALUNO`, `RES
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `TURMA`
+-- Estrutura para tabela `TURMA`
 --
 
 CREATE TABLE `TURMA` (
@@ -1303,7 +1445,7 @@ CREATE TABLE `TURMA` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Extraindo dados da tabela `TURMA`
+-- Fazendo dump de dados para tabela `TURMA`
 --
 
 INSERT INTO `TURMA` (`idTURMA`, `idCURSO`, `SERIE`, `MODALIDADE`) VALUES
@@ -1326,7 +1468,7 @@ INSERT INTO `TURMA` (`idTURMA`, `idCURSO`, `SERIE`, `MODALIDADE`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `TURMA_has_ALUNO`
+-- Estrutura para tabela `TURMA_has_ALUNO`
 --
 
 CREATE TABLE `TURMA_has_ALUNO` (
@@ -1336,7 +1478,7 @@ CREATE TABLE `TURMA_has_ALUNO` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Extraindo dados da tabela `TURMA_has_ALUNO`
+-- Fazendo dump de dados para tabela `TURMA_has_ALUNO`
 --
 
 INSERT INTO `TURMA_has_ALUNO` (`ALUNO_idALUNO`, `TURMA_idTURMA`, `ANO`) VALUES
@@ -1421,25 +1563,44 @@ INSERT INTO `TURMA_has_ALUNO` (`ALUNO_idALUNO`, `TURMA_idTURMA`, `ANO`) VALUES
 (201618001018, 22, 2017),
 (201618001019, 22, 2017),
 (201618100100, 32, 2017),
+(201618100100, 33, 2018),
 (201618100101, 32, 2017),
+(201618100101, 33, 2018),
 (201618100102, 32, 2017),
 (201618100103, 32, 2017),
+(201618100103, 33, 2018),
 (201618100104, 32, 2017),
+(201618100104, 33, 2018),
 (201618100105, 32, 2017),
+(201618100105, 33, 2018),
 (201618100106, 32, 2017),
+(201618100106, 33, 2018),
 (201618100107, 32, 2017),
+(201618100107, 33, 2018),
 (201618100108, 32, 2017),
+(201618100108, 33, 2018),
 (201618100109, 32, 2017),
+(201618100109, 33, 2018),
 (201618100110, 32, 2017),
+(201618100110, 33, 2018),
 (201618100111, 32, 2017),
+(201618100111, 33, 2018),
 (201618100112, 32, 2017),
+(201618100112, 33, 2018),
 (201618100113, 32, 2017),
+(201618100113, 33, 2018),
 (201618100114, 32, 2017),
+(201618100114, 33, 2018),
 (201618100115, 32, 2017),
+(201618100115, 33, 2018),
 (201618100116, 32, 2017),
+(201618100116, 33, 2018),
 (201618100117, 32, 2017),
+(201618100117, 33, 2018),
 (201618100118, 32, 2017),
+(201618100118, 33, 2018),
 (201618100119, 32, 2017),
+(201618100119, 33, 2018),
 (201618110100, 12, 2017),
 (201618110101, 12, 2017),
 (201618110102, 12, 2017),
@@ -1614,7 +1775,7 @@ INSERT INTO `TURMA_has_ALUNO` (`ALUNO_idALUNO`, `TURMA_idTURMA`, `ANO`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `TURMA_has_MATERIA`
+-- Estrutura para tabela `TURMA_has_MATERIA`
 --
 
 CREATE TABLE `TURMA_has_MATERIA` (
@@ -1624,7 +1785,7 @@ CREATE TABLE `TURMA_has_MATERIA` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Extraindo dados da tabela `TURMA_has_MATERIA`
+-- Fazendo dump de dados para tabela `TURMA_has_MATERIA`
 --
 
 INSERT INTO `TURMA_has_MATERIA` (`TURMA_idTURMA`, `MATERIA_idMATERIA`, `ANO`) VALUES
@@ -1641,7 +1802,7 @@ INSERT INTO `TURMA_has_MATERIA` (`TURMA_idTURMA`, `MATERIA_idMATERIA`, `ANO`) VA
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `USUARIO`
+-- Estrutura para tabela `USUARIO`
 --
 
 CREATE TABLE `USUARIO` (
@@ -1653,7 +1814,7 @@ CREATE TABLE `USUARIO` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Extraindo dados da tabela `USUARIO`
+-- Fazendo dump de dados para tabela `USUARIO`
 --
 
 INSERT INTO `USUARIO` (`idUSUARIO`, `NOME`, `LOGIN`, `SENHA`, `TIPO`) VALUES
@@ -1669,35 +1830,35 @@ INSERT INTO `USUARIO` (`idUSUARIO`, `NOME`, `LOGIN`, `SENHA`, `TIPO`) VALUES
 (19, NULL, 'prof1', '356a192b7913b04c54574d18c28d46e6395428ab', 5),
 (20, NULL, 'rodrigo', '356a192b7913b04c54574d18c28d46e6395428ab', 5),
 (21, NULL, 'adriene', '356a192b7913b04c54574d18c28d46e6395428ab', 5),
-(22, NULL, 'joao', '356a192b7913b04c54574d18c28d46e6395428ab', 5);
+(22, NULL, 'joao', '356a192b7913b04c54574d18c28d46e6395428ab', 5),
+(23, NULL, 'mike', 'a17fed27eaa842282862ff7c1b9c8395a26ac320', 6);
 
 --
--- Indexes for dumped tables
+-- Índices de tabelas apagadas
 --
 
 --
--- Indexes for table `ALUNO`
+-- Índices de tabela `ALUNO`
 --
 ALTER TABLE `ALUNO`
   ADD PRIMARY KEY (`idALUNO`);
 
 --
--- Indexes for table `CURSO`
+-- Índices de tabela `CURSO`
 --
 ALTER TABLE `CURSO`
   ADD PRIMARY KEY (`idCURSO`),
-  ADD KEY `PARAMETRO` (`PARAMETRO`),
   ADD KEY `MODALIDADE` (`MODALIDADE`);
 
 --
--- Indexes for table `DIMENSAO`
+-- Índices de tabela `DIMENSAO`
 --
 ALTER TABLE `DIMENSAO`
   ADD PRIMARY KEY (`idDIMENSAO`),
   ADD KEY `fk_DIMENSAO_1_idx` (`idQUESTIONARIO`);
 
 --
--- Indexes for table `FREQUENCIA`
+-- Índices de tabela `FREQUENCIA`
 --
 ALTER TABLE `FREQUENCIA`
   ADD PRIMARY KEY (`idFREQUENCIA`),
@@ -1705,13 +1866,13 @@ ALTER TABLE `FREQUENCIA`
   ADD KEY `fk_FREQUENCIA_2_idx` (`idALUNO`);
 
 --
--- Indexes for table `MATERIA`
+-- Índices de tabela `MATERIA`
 --
 ALTER TABLE `MATERIA`
   ADD PRIMARY KEY (`idMATERIA`);
 
 --
--- Indexes for table `MATERIA_has_PROFESSOR`
+-- Índices de tabela `MATERIA_has_PROFESSOR`
 --
 ALTER TABLE `MATERIA_has_PROFESSOR`
   ADD PRIMARY KEY (`MATERIA_idMATERIA`,`PROFESSOR_idPROFESSOR`),
@@ -1719,13 +1880,13 @@ ALTER TABLE `MATERIA_has_PROFESSOR`
   ADD KEY `fk_MATERIA_has_PROFESSOR_MATERIA1_idx` (`MATERIA_idMATERIA`);
 
 --
--- Indexes for table `MODALIDADE`
+-- Índices de tabela `MODALIDADE`
 --
 ALTER TABLE `MODALIDADE`
   ADD PRIMARY KEY (`idMODALIDADE`);
 
 --
--- Indexes for table `MUT`
+-- Índices de tabela `MUT`
 --
 ALTER TABLE `MUT`
   ADD PRIMARY KEY (`USUARIO_idUSUARIO`,`TURMA_idTURMA`,`MATERIA_idMATERIA`),
@@ -1733,7 +1894,7 @@ ALTER TABLE `MUT`
   ADD KEY `fk_USUARIO_has_TURMA_has_MATERIA_USUARIO1_idx` (`USUARIO_idUSUARIO`);
 
 --
--- Indexes for table `MUT_has_QUESTIONARIO`
+-- Índices de tabela `MUT_has_QUESTIONARIO`
 --
 ALTER TABLE `MUT_has_QUESTIONARIO`
   ADD PRIMARY KEY (`USUARIO_idUSUARIO`,`TURMA_idTURMA`,`MATERIA_idMATERIA`,`QUESTIONARIO_idQUESTIONARIO`),
@@ -1741,7 +1902,7 @@ ALTER TABLE `MUT_has_QUESTIONARIO`
   ADD KEY `fk_MUT_has_QUESTIONARIO_MUT1_idx` (`USUARIO_idUSUARIO`,`TURMA_idTURMA`,`MATERIA_idMATERIA`);
 
 --
--- Indexes for table `NOTA`
+-- Índices de tabela `NOTA`
 --
 ALTER TABLE `NOTA`
   ADD PRIMARY KEY (`idNOTA`),
@@ -1749,32 +1910,33 @@ ALTER TABLE `NOTA`
   ADD KEY `fk_NOTA_2_idx` (`idMATERIA`);
 
 --
--- Indexes for table `PARAMETRO_DE_RISCO`
+-- Índices de tabela `PARAMETRO_DE_RISCO`
 --
 ALTER TABLE `PARAMETRO_DE_RISCO`
-  ADD PRIMARY KEY (`idPARAMETRO_DE_RISCO`);
+  ADD PRIMARY KEY (`idPARAMETRO_DE_RISCO`),
+  ADD KEY `idTURMA` (`idTURMA`) USING BTREE;
 
 --
--- Indexes for table `PERGUNTA`
+-- Índices de tabela `PERGUNTA`
 --
 ALTER TABLE `PERGUNTA`
   ADD PRIMARY KEY (`idPERGUNTA`),
   ADD KEY `fk_PERGUNTA_1_idx` (`idDIMENSAO`);
 
 --
--- Indexes for table `PROFESSOR`
+-- Índices de tabela `PROFESSOR`
 --
 ALTER TABLE `PROFESSOR`
   ADD PRIMARY KEY (`idPROFESSOR`);
 
 --
--- Indexes for table `QUESTIONARIO`
+-- Índices de tabela `QUESTIONARIO`
 --
 ALTER TABLE `QUESTIONARIO`
   ADD PRIMARY KEY (`idQUESTIONARIO`);
 
 --
--- Indexes for table `QUESTIONARIO_has_TURMA`
+-- Índices de tabela `QUESTIONARIO_has_TURMA`
 --
 ALTER TABLE `QUESTIONARIO_has_TURMA`
   ADD PRIMARY KEY (`QUESTIONARIO_idQUESTIONARIO`,`TURMA_idTURMA`),
@@ -1782,7 +1944,7 @@ ALTER TABLE `QUESTIONARIO_has_TURMA`
   ADD KEY `fk_QUESTIONARIO_has_TURMA_QUESTIONARIO1_idx` (`QUESTIONARIO_idQUESTIONARIO`);
 
 --
--- Indexes for table `RESPOSTA`
+-- Índices de tabela `RESPOSTA`
 --
 ALTER TABLE `RESPOSTA`
   ADD PRIMARY KEY (`idRESPOSTA`),
@@ -1791,7 +1953,7 @@ ALTER TABLE `RESPOSTA`
   ADD KEY `fk_RESPOSTA_3_idx` (`idALUNO`);
 
 --
--- Indexes for table `TURMA`
+-- Índices de tabela `TURMA`
 --
 ALTER TABLE `TURMA`
   ADD PRIMARY KEY (`idTURMA`),
@@ -1799,7 +1961,7 @@ ALTER TABLE `TURMA`
   ADD KEY `MODALIDADE` (`MODALIDADE`);
 
 --
--- Indexes for table `TURMA_has_ALUNO`
+-- Índices de tabela `TURMA_has_ALUNO`
 --
 ALTER TABLE `TURMA_has_ALUNO`
   ADD PRIMARY KEY (`ALUNO_idALUNO`,`TURMA_idTURMA`),
@@ -1807,7 +1969,7 @@ ALTER TABLE `TURMA_has_ALUNO`
   ADD KEY `fk_ALUNO_has_TURMA_ALUNO_idx` (`ALUNO_idALUNO`);
 
 --
--- Indexes for table `TURMA_has_MATERIA`
+-- Índices de tabela `TURMA_has_MATERIA`
 --
 ALTER TABLE `TURMA_has_MATERIA`
   ADD PRIMARY KEY (`TURMA_idTURMA`,`MATERIA_idMATERIA`),
@@ -1815,148 +1977,153 @@ ALTER TABLE `TURMA_has_MATERIA`
   ADD KEY `fk_TURMA_has_MATERIA_TURMA1_idx` (`TURMA_idTURMA`);
 
 --
--- Indexes for table `USUARIO`
+-- Índices de tabela `USUARIO`
 --
 ALTER TABLE `USUARIO`
   ADD PRIMARY KEY (`idUSUARIO`),
   ADD UNIQUE KEY `LOGIN_UNIQUE` (`LOGIN`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT de tabelas apagadas
 --
 
 --
--- AUTO_INCREMENT for table `CURSO`
+-- AUTO_INCREMENT de tabela `CURSO`
 --
 ALTER TABLE `CURSO`
   MODIFY `idCURSO` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
--- AUTO_INCREMENT for table `DIMENSAO`
+-- AUTO_INCREMENT de tabela `DIMENSAO`
 --
 ALTER TABLE `DIMENSAO`
   MODIFY `idDIMENSAO` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
--- AUTO_INCREMENT for table `FREQUENCIA`
+-- AUTO_INCREMENT de tabela `FREQUENCIA`
 --
 ALTER TABLE `FREQUENCIA`
-  MODIFY `idFREQUENCIA` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idFREQUENCIA` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 --
--- AUTO_INCREMENT for table `MATERIA`
+-- AUTO_INCREMENT de tabela `MATERIA`
 --
 ALTER TABLE `MATERIA`
   MODIFY `idMATERIA` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 --
--- AUTO_INCREMENT for table `MODALIDADE`
+-- AUTO_INCREMENT de tabela `MODALIDADE`
 --
 ALTER TABLE `MODALIDADE`
   MODIFY `idMODALIDADE` int(2) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
--- AUTO_INCREMENT for table `NOTA`
+-- AUTO_INCREMENT de tabela `NOTA`
 --
 ALTER TABLE `NOTA`
-  MODIFY `idNOTA` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idNOTA` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=101;
 --
--- AUTO_INCREMENT for table `PARAMETRO_DE_RISCO`
+-- AUTO_INCREMENT de tabela `PARAMETRO_DE_RISCO`
 --
 ALTER TABLE `PARAMETRO_DE_RISCO`
-  MODIFY `idPARAMETRO_DE_RISCO` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `idPARAMETRO_DE_RISCO` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 --
--- AUTO_INCREMENT for table `PERGUNTA`
+-- AUTO_INCREMENT de tabela `PERGUNTA`
 --
 ALTER TABLE `PERGUNTA`
   MODIFY `idPERGUNTA` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 --
--- AUTO_INCREMENT for table `PROFESSOR`
+-- AUTO_INCREMENT de tabela `PROFESSOR`
 --
 ALTER TABLE `PROFESSOR`
   MODIFY `idPROFESSOR` int(11) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT for table `QUESTIONARIO`
+-- AUTO_INCREMENT de tabela `QUESTIONARIO`
 --
 ALTER TABLE `QUESTIONARIO`
   MODIFY `idQUESTIONARIO` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
--- AUTO_INCREMENT for table `RESPOSTA`
+-- AUTO_INCREMENT de tabela `RESPOSTA`
 --
 ALTER TABLE `RESPOSTA`
   MODIFY `idRESPOSTA` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=661;
 --
--- AUTO_INCREMENT for table `TURMA`
+-- AUTO_INCREMENT de tabela `TURMA`
 --
 ALTER TABLE `TURMA`
   MODIFY `idTURMA` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=63;
 --
--- AUTO_INCREMENT for table `USUARIO`
+-- AUTO_INCREMENT de tabela `USUARIO`
 --
 ALTER TABLE `USUARIO`
-  MODIFY `idUSUARIO` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `idUSUARIO` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 --
--- Constraints for dumped tables
+-- Restrições para dumps de tabelas
 --
 
 --
--- Limitadores para a tabela `CURSO`
+-- Restrições para tabelas `CURSO`
 --
 ALTER TABLE `CURSO`
-  ADD CONSTRAINT `CURSO_ibfk_1` FOREIGN KEY (`PARAMETRO`) REFERENCES `PARAMETRO_DE_RISCO` (`idPARAMETRO_DE_RISCO`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `CURSO_ibfk_2` FOREIGN KEY (`MODALIDADE`) REFERENCES `MODALIDADE` (`idMODALIDADE`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Limitadores para a tabela `DIMENSAO`
+-- Restrições para tabelas `DIMENSAO`
 --
 ALTER TABLE `DIMENSAO`
   ADD CONSTRAINT `fk_DIMENSAO_1` FOREIGN KEY (`idQUESTIONARIO`) REFERENCES `QUESTIONARIO` (`idQUESTIONARIO`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Limitadores para a tabela `FREQUENCIA`
+-- Restrições para tabelas `FREQUENCIA`
 --
 ALTER TABLE `FREQUENCIA`
   ADD CONSTRAINT `fk_FREQUENCIA_1` FOREIGN KEY (`idMATERIA`) REFERENCES `MATERIA` (`idMATERIA`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_FREQUENCIA_2` FOREIGN KEY (`idALUNO`) REFERENCES `ALUNO` (`idALUNO`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Limitadores para a tabela `MATERIA_has_PROFESSOR`
+-- Restrições para tabelas `MATERIA_has_PROFESSOR`
 --
 ALTER TABLE `MATERIA_has_PROFESSOR`
   ADD CONSTRAINT `fk_MATERIA_has_PROFESSOR_MATERIA1` FOREIGN KEY (`MATERIA_idMATERIA`) REFERENCES `MATERIA` (`idMATERIA`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_MATERIA_has_PROFESSOR_PROFESSOR1` FOREIGN KEY (`PROFESSOR_idPROFESSOR`) REFERENCES `PROFESSOR` (`idPROFESSOR`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Limitadores para a tabela `MUT`
+-- Restrições para tabelas `MUT`
 --
 ALTER TABLE `MUT`
   ADD CONSTRAINT `fk_USUARIO_has_TURMA_has_MATERIA_TURMA_has_MATERIA1` FOREIGN KEY (`TURMA_idTURMA`,`MATERIA_idMATERIA`) REFERENCES `TURMA_has_MATERIA` (`TURMA_idTURMA`, `MATERIA_idMATERIA`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_USUARIO_has_TURMA_has_MATERIA_USUARIO1` FOREIGN KEY (`USUARIO_idUSUARIO`) REFERENCES `USUARIO` (`idUSUARIO`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Limitadores para a tabela `MUT_has_QUESTIONARIO`
+-- Restrições para tabelas `MUT_has_QUESTIONARIO`
 --
 ALTER TABLE `MUT_has_QUESTIONARIO`
   ADD CONSTRAINT `fk_MUT_has_QUESTIONARIO_MUT1` FOREIGN KEY (`USUARIO_idUSUARIO`,`TURMA_idTURMA`,`MATERIA_idMATERIA`) REFERENCES `MUT` (`USUARIO_idUSUARIO`, `TURMA_idTURMA`, `MATERIA_idMATERIA`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_MUT_has_QUESTIONARIO_QUESTIONARIO1` FOREIGN KEY (`QUESTIONARIO_idQUESTIONARIO`) REFERENCES `QUESTIONARIO` (`idQUESTIONARIO`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Limitadores para a tabela `NOTA`
+-- Restrições para tabelas `NOTA`
 --
 ALTER TABLE `NOTA`
   ADD CONSTRAINT `fk_NOTA_1` FOREIGN KEY (`idALUNO`) REFERENCES `ALUNO` (`idALUNO`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_NOTA_2` FOREIGN KEY (`idMATERIA`) REFERENCES `MATERIA` (`idMATERIA`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Limitadores para a tabela `PERGUNTA`
+-- Restrições para tabelas `PARAMETRO_DE_RISCO`
+--
+ALTER TABLE `PARAMETRO_DE_RISCO`
+  ADD CONSTRAINT `idTURMA` FOREIGN KEY (`idTURMA`) REFERENCES `TURMA` (`idTURMA`);
+
+--
+-- Restrições para tabelas `PERGUNTA`
 --
 ALTER TABLE `PERGUNTA`
   ADD CONSTRAINT `fk_PERGUNTA_1` FOREIGN KEY (`idDIMENSAO`) REFERENCES `DIMENSAO` (`idDIMENSAO`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Limitadores para a tabela `QUESTIONARIO_has_TURMA`
+-- Restrições para tabelas `QUESTIONARIO_has_TURMA`
 --
 ALTER TABLE `QUESTIONARIO_has_TURMA`
   ADD CONSTRAINT `fk_QUESTIONARIO_has_TURMA_QUESTIONARIO1` FOREIGN KEY (`QUESTIONARIO_idQUESTIONARIO`) REFERENCES `QUESTIONARIO` (`idQUESTIONARIO`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_QUESTIONARIO_has_TURMA_TURMA1` FOREIGN KEY (`TURMA_idTURMA`) REFERENCES `TURMA` (`idTURMA`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Limitadores para a tabela `RESPOSTA`
+-- Restrições para tabelas `RESPOSTA`
 --
 ALTER TABLE `RESPOSTA`
   ADD CONSTRAINT `fk_RESPOSTA_1` FOREIGN KEY (`idPERGUNTA`) REFERENCES `PERGUNTA` (`idPERGUNTA`) ON DELETE NO ACTION ON UPDATE NO ACTION,
@@ -1964,21 +2131,21 @@ ALTER TABLE `RESPOSTA`
   ADD CONSTRAINT `fk_RESPOSTA_3` FOREIGN KEY (`idALUNO`) REFERENCES `ALUNO` (`idALUNO`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Limitadores para a tabela `TURMA`
+-- Restrições para tabelas `TURMA`
 --
 ALTER TABLE `TURMA`
   ADD CONSTRAINT `TURMA_ibfk_1` FOREIGN KEY (`MODALIDADE`) REFERENCES `MODALIDADE` (`idMODALIDADE`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `fk_TURMA_1` FOREIGN KEY (`idCURSO`) REFERENCES `CURSO` (`idCURSO`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Limitadores para a tabela `TURMA_has_ALUNO`
+-- Restrições para tabelas `TURMA_has_ALUNO`
 --
 ALTER TABLE `TURMA_has_ALUNO`
   ADD CONSTRAINT `fk_ALUNO_has_TURMA_ALUNO` FOREIGN KEY (`ALUNO_idALUNO`) REFERENCES `ALUNO` (`idALUNO`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_ALUNO_has_TURMA_TURMA1` FOREIGN KEY (`TURMA_idTURMA`) REFERENCES `TURMA` (`idTURMA`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Limitadores para a tabela `TURMA_has_MATERIA`
+-- Restrições para tabelas `TURMA_has_MATERIA`
 --
 ALTER TABLE `TURMA_has_MATERIA`
   ADD CONSTRAINT `fk_TURMA_has_MATERIA_MATERIA1` FOREIGN KEY (`MATERIA_idMATERIA`) REFERENCES `MATERIA` (`idMATERIA`) ON DELETE NO ACTION ON UPDATE NO ACTION,
