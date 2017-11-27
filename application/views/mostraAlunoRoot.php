@@ -136,7 +136,7 @@
 											if($frequenciaParametro[0]->FREQUENCIA > $freq[0]->FREQUENCIA){
 												$situacao = 'Abaixo da parâmetro do coordenador';
 											}
-											else if($frequenciaParametro->FREQUENCIA == $freq->FALTAS){
+											else if($frequenciaParametro[0]->FREQUENCIA == $freq->FALTAS){
 												if($situacao != 'Abaixo da parâmetro do coordenador')
 												$situacao = 'Exatamente no parâmetro do coordenador';
 											}
@@ -196,7 +196,7 @@
 											if($notaParametro[0]->NOTA > $nota[0]->NOTA){
 												$situacao = 'Abaixo da parâmetro do coordenador';
 											}
-											else if($notaParametro->NOTA > $nota->NOTA){
+											else if($notaParametro[0]->NOTA > $nota[0]->NOTA){
 												if($situacao != 'Abaixo da parâmetro do coordenador')
 												$situacao = 'Exatamente no parâmetro do coordenador';
 											}
@@ -207,7 +207,7 @@
 											if($frequenciaParametro[0]->FREQUENCIA > $freq[0]->FREQUENCIA){
 												$situacao = 'Abaixo da parâmetro do coordenador';
 											}
-											else if($frequenciaParametro->FREQUENCIA == $freq->FALTAS){
+											else if($frequenciaParametro[0]->FREQUENCIA == $freq[0]->FALTAS){
 												if($situacao != 'Abaixo da parâmetro do coordenador')
 												$situacao = 'Exatamente no parâmetro do coordenador';
 											}
@@ -249,12 +249,52 @@
 	
 	
 	
-	<script src="{url}assets/js/bootstrap.min.js"></script>
+	    <script src="{url}assets/DataTables/media/js/jquery.dataTables.min.js"></script>
+
+
+    <script type="text/javascript">
+      $(document).ready(function(e){
+        $("#btn a").click(function(e){
+          e.preventDefault();
+          var href = $(this).attr('href');
+          $("#Main").load(href + " #Main", function(responseTxt, statusTxt, xhr){
+        if(statusTxt == "success")
+            $('#myTable').DataTable({
+                "bRetrieve": true,
+                "bPaginate": true,
+                "bJQueryUI": false,
+                "sPaginationType": "full_numbers",
+                "oLanguage": {
+                    "sUrl": "{url}assets/language/ptbr.txt"
+                }
+            });
+        if(statusTxt == "error")
+            alert("Error: " + xhr.status + ": " + xhr.statusText);
+    });
+        });
+      });
+    </script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="{url}assets/js/bootstrap.min.js"></script>
+
+
+    <!-- Metis Menu Plugin JavaScript -->
     <script src="{url}assets/js/metisMenu.min.js"></script>
+
+    <!-- Morris Charts JavaScript
     <script src="{url}assets/js/raphael.min.js"></script>
     <script src="{url}assets/js/morris.min.js"></script>
     <script src="{url}assets/js/morris-data.js"></script>
+
+    <!-- Custom Theme JavaScript -->
+
+    <script>
+        {modal}
+    </script>
     <script src="{url}assets/js/sb-admin-2.js"></script>
-    <script>{modal}</script>
-	</body>
+
+</body>
+
 </html>
+

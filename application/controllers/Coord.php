@@ -107,5 +107,12 @@
 						location.href = "http://localhost/LPTI/login/telaInicial";</script>';
 			}
 			$data['url'] = base_url();
+		}
+		
+		public function apagarParametro($id){
+			$this->db->where('idPARAMETRO_DE_RISCO', $id);
+			$this->db->delete('PARAMETRO_DE_RISCO');
+			
+			redirect(base_url('Login/telaInicial'));
 		}	
 	}
