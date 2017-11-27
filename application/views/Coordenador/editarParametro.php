@@ -10,8 +10,39 @@
 					<div class="col-lg-6">
 						<?php
 													$atributos = array('name'=>'formulario_cadastro', 'id'=>'formulario_cadastro');
-													$btn = array('name'=>'btn_cadastrar', 'id'=>'btn_cadastro', 'class'=>'btn btn-lg btn-primary');
-													echo  form_open('coord/editaParametro', $atributos).
+													$btn = array('name'=>'btn_cadastrar', 'id'=>'btn_cadastro', 'class'=>'btn btn-primary');
+													if($PARAMETRO[0]->idTURMA == 11)
+														$turma = '1º Informática integrado';
+													else if($PARAMETRO[0]->idTURMA == 12)
+														$turma = '2º Informática integrado';
+													else if($PARAMETRO[0]->idTURMA == 13)
+														$turma = '3º Informática integrado';
+													else if($PARAMETRO[0]->idTURMA == 21)
+														$turma = '1º Mecatrônica integrado';
+													else if($PARAMETRO[0]->idTURMA == 22)
+														$turma = '2º Mecatrônica integrado';
+													else if($PARAMETRO[0]->idTURMA == 23)
+														$turma = '3º Mecatrônica integrado';
+													else if($PARAMETRO[0]->idTURMA == 31)
+														$turma = '1º Edificações integrado';
+													else if($PARAMETRO[0]->idTURMA == 32)
+														$turma = '2º Edificações integrado';
+													else if($PARAMETRO[0]->idTURMA == 33)
+														$turma = '3º Edificações integrado';
+													else if($PARAMETRO[0]->idTURMA == 41)
+														$turma = '1º Informática subsequente';
+													else if($PARAMETRO[0]->idTURMA == 42)
+														$turma = '2º Informática subsequente';
+													else if($PARAMETRO[0]->idTURMA == 51)
+														$turma = '1º Mecatrônica subsequente';
+													else if($PARAMETRO[0]->idTURMA == 52)
+														$turma = '2º Mecatrônica subsequente';
+													else if($PARAMETRO[0]->idTURMA == 61)
+														$turma = '1º Edificações subsequente';
+													else if($PARAMETRO[0]->idTURMA == 62)
+														$turma = '2º Edificações subsequente';
+													echo  		form_open('coord/editaParametro', $atributos).
+																$turma.br().
 																form_hidden("txt_id", $PARAMETRO[0]->idPARAMETRO_DE_RISCO).
 																form_label("Nota: ", "txt_nota").br().
 																form_input('txt_nota', $PARAMETRO[0]->NOTA).br().
@@ -19,24 +50,10 @@
 																form_input('txt_freq', $PARAMETRO[0]->FREQUENCIA).br().
 																form_label("Matérias: ", "txt_materias").br().
 																form_input('txt_materias', $PARAMETRO[0]->MATERIAS).br().br();
-																if($Tipo != 6){
-																	$parametros = $PARAMETRO[0]->idTURMA/10;
-																	if(($parametros > 1) and ($parametros < 4)){
-																		echo form_radio("txt_mod", '1', true).
-																		form_label("Integrado", "txt_tipo").br();
-																	}
-																	else{
-																		echo form_radio("txt_mod", '2', true).
-																		form_label("Subsequente", "txt_tipo").br();
-																	}
-																}
-																else{
-																	echo form_hidden("txt_mod", '1');
-																}
 																echo form_submit("btn_cadastrar", "Editar", $btn).
 																form_close();
-																$btn = array('name'=>'btn_cadastrar', 'id'=>'btn_cadastro', 'class'=>'btn btn-lg btn-danger');
-																echo anchor(base_url('#'), 'Cancelar', $btn);
+																$btn = array('name'=>'btn_cadastrar', 'id'=>'btn_cadastro', 'class'=>'btn btn-danger');
+																echo anchor(base_url('coord/parametros'), 'Cancelar', $btn);
 												?>
 					</div>
               </div>

@@ -70,6 +70,9 @@
                         <li>
                             <a href="{url}Estagiario/freqEdit">Editar Frequência</a>
                         </li>
+                        <li>
+                            <a href="{url}Aprovacao/index">Aprovação</a>
+						</li>
                     </ul>
                 </div>
                 <!-- /.sidebar-collapse -->

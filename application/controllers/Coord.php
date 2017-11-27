@@ -11,49 +11,44 @@
 			}
 		}	
 		
-		public function parametros($script = 0){
+		public function parametros(){
 			$data['url'] = base_url();
-			$tipo = $this->session->userdata('tipo') * 10;
-			
-			$tipos = $tipo + 5;
-			
+			$tipo = $this->session->userdata('tipo');
 			$this->db->select('*');
 			$this->db->from('PARAMETRO_DE_RISCO');
-			$where = "PARAMETRO_DE_RISCO.idTURMA > ". $tipo . ' AND idTURMA < ' . $tipos;
-			
-			$this->db->where($where);
-			$data['PARAMETRO'] = $this->db->get()->result();
-			
-			$tipo += 30;
-			
-			$tipos += 30;
-			
-			$this->db->select('*');
-			$this->db->from('PARAMETRO_DE_RISCO');
-			$where = "PARAMETRO_DE_RISCO.idTURMA > ". $tipo . ' AND idTURMA < ' . $tipos;
-			
-			$this->db->where($where);
-			$data['PARAMETROS'] = $this->db->get()->result();
-			$dat['Tipo'] = $this->session->userdata('tipo');
-			$this->parser->parse('ajaxCoord', $dat);
+			if($tipo == 6){
+				$this->db->where('PARAMETRO_DE_RISCO.idTURMA <' ,40);
+				$data['parametro'] = $this->db->get()->result();
+				$this->db->select('*');
+				$this->db->from('PARAMETRO_DE_RISCO');
+				$this->db->where('PARAMETRO_DE_RISCO.idTURMA <' ,0);
+				$data['parametros'] = $this->db->get()->result();
+			}
+			else{
+				$this->db->where('PARAMETRO_DE_RISCO.idTURMA', $tipo . '1');
+				$this->db->or_where('PARAMETRO_DE_RISCO.idTURMA', $tipo . '2');
+				$this->db->or_where('PARAMETRO_DE_RISCO.idTURMA', $tipo . '3');
+				$data['parametro'] = $this->db->get()->result();
+				$tipo+=3;
+				$this->db->select('*');
+				$this->db->from('PARAMETRO_DE_RISCO');
+				$this->db->where('PARAMETRO_DE_RISCO.idTURMA', $tipo . '1');
+				$this->db->or_where('PARAMETRO_DE_RISCO.idTURMA', $tipo . '2');
+				$this->db->or_where('PARAMETRO_DE_RISCO.idTURMA', $tipo . '3');
+				$data['parametros'] = $this->db->get()->result();
+			}
+			$this->parser->parse('ajaxCoord', $data);
 			$this->parser->parse('Coordenador/addParametro', $data);
 		}
 		
 		public function parametro(){
-			/*$tipo = $this->input->post('id');
-			$data['FREQUENCIA'] = $this->input->post('txt_freq');
-			$data['NOTA'] = $this->input->post('txt_nota');
-			$this->db->where('idPARAMETRO_DE_RISCO', $tipo);
-			$this->db->update('PARAMETRO_DE_RISCO', $data);
-			*/
-			redirect(base_url('Coord/parametros'));
+			
 		}
 		
 		public function criarParametro($tipo){
 			$data['url'] = base_url();
-			$data['Tipo'] = $tipo;
-			$dat['Tipo'] = $this->session->userdata('tipo');
-			$this->parser->parse('ajaxCoord', $dat);
+			
+			$this->parser->parse('ajaxCoord', $data);
 			$this->parser->parse('Coordenador/insereParametro', $data);
 		}
 		
@@ -61,54 +56,56 @@
 			$data['NOTA'] = $this->input->post('txt_nota');
 			$data['FREQUENCIA'] = $this->input->post('txt_freq');
 			$data['MATERIAS'] = $this->input->post('txt_materias');
-			$mod = $this->input->post('txt_mod');
-			$tipo = $this->input->post('txt_tipo');
-			if($tipo == 6){
-				$turmas = array('11', '12', '13', '21', '22', '23', '31', '32', '33');
-				foreach($turmas as $turma){
-					$data['idTURMA'] = $turma;
-					$this->db->insert('PARAMETRO_DE_RISCO', $data);
-				}
+			$turmas = $this->input->post('txt_mod');
+			
+			$this->db->select('*');
+			$this->db->from('PARAMETRO_DE_RISCO');
+			if($turmas == 1){
+				$data['idTURMA'] = $this->session->userdata('tipo') . '1';
+				$this->db->insert('PARAMETRO_DE_RISCO', $data);
+				$data['idTURMA'] = $this->session->userdata('tipo') . '2';
+				$this->db->insert('PARAMETRO_DE_RISCO', $data);
+				$data['idTURMA'] = $this->session->userdata('tipo') . '3';
+				$this->db->insert('PARAMETRO_DE_RISCO', $data);
 			}
 			else{
-				if($mod == 1){
-					$turmas = array($tipo. '1', $tipo. '2', $tipo. '3');
-				}
-				else{
-					$tipos = $tipo+3;
-					$turmas = array($tipos. '1', $tipos. '2', $tipos. '3');
-				}
-				foreach($turmas as $turma){
-					$data['idTURMA'] = $turma;
-					$this->db->insert('PARAMETRO_DE_RISCO', $data);
-				}
+				$data['idTURMA'] = 3+$this->session->userdata('tipo') . '1';
+				$this->db->insert('PARAMETRO_DE_RISCO', $data);
+				$data['idTURMA'] = 3+$this->session->userdata('tipo') . '2';
+				$this->db->insert('PARAMETRO_DE_RISCO', $data);
 			}
-			$data['url'] = base_url();
-			$data['Tipo'] = $this->session->userdata('tipo');
-			$this->parser->parse('ajaxCoord', $data);
-			$this->parser->parse('telaCoord', $data);
+			
+			redirect(base_url('coord/parametros'));
 		}
 		
 		public function editarParametro($id){
+			$data['url'] = base_url();
+			
 			$this->db->select('*');
 			$this->db->from('PARAMETRO_DE_RISCO');
 			$this->db->where('PARAMETRO_DE_RISCO.idPARAMETRO_DE_RISCO', $id);
 			$data['PARAMETRO'] = $this->db->get()->result();
-			$data['url'] = base_url();
-			$data['Tipo'] = $this->session->userdata('tipo');
+			
 			$this->parser->parse('ajaxCoord', $data);
 			$this->parser->parse('Coordenador/editarParametro', $data);
 		}
 		
 		public function editaParametro(){
+			$data['idPARAMETRO_DE_RISCO'] = $this->input->post('txt_id');
 			$data['NOTA'] = $this->input->post('txt_nota');
 			$data['FREQUENCIA'] = $this->input->post('txt_freq');
 			$data['MATERIAS'] = $this->input->post('txt_materias');
-			$id = $this->input->post('txt_id');
 			$this->db->select('*');
 			$this->db->from('PARAMETRO_DE_RISCO');
-			$this->db->where('PARAMETRO_DE_RISCO.idPARAMETRO_DE_RISCO', $id);
-			$this->db->update('PARAMETRO_DE_RISCO', $data);
-			redirect(base_url('coord/parametros/1'));
+			$this->db->where('PARAMETRO_DE_RISCO.idPARAMETRO_DE_RISCO', $data['idPARAMETRO_DE_RISCO']);
+			if($this->db->update('PARAMETRO_DE_RISCO', $data)){
+				echo '<script type="text/javascript">alert("Atualização concluída");
+						location.href = "http://localhost/LPTI/login/telaInicial/";</script>';
+			}
+			else{
+				echo '<script type="text/javascript">alert("Algo deu errado");
+						location.href = "http://localhost/LPTI/login/telaInicial";</script>';
+			}
+			$data['url'] = base_url();
 		}	
 	}

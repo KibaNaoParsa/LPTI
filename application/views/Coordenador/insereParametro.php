@@ -12,14 +12,13 @@
 													$atributos = array('name'=>'formulario_cadastro', 'id'=>'formulario_cadastro');
 													$btn = array('name'=>'btn_cadastrar', 'id'=>'btn_cadastro', 'class'=>'btn btn-lg btn-primary');
 													echo  form_open('coord/insereParametro', $atributos).
-																form_hidden("txt_tipo", $Tipo).
 																form_label("Nota: ", "txt_nota").br().
 																form_input('txt_nota').br().
 																form_label("Frequência: ", "txt_freq").br().
 																form_input('txt_freq').br().
 																form_label("Matérias: ", "txt_materias").br().
 																form_input('txt_materias').br().br();
-																if($Tipo != 6){
+																if($this->session->userdata('tipo') != 6){
 																	echo form_radio("txt_mod", '1', false).
 																form_label("Integrado", "txt_tipo").br().
 																form_radio("txt_mod", '2', false).

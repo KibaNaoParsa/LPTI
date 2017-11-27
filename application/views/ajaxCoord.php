@@ -21,7 +21,7 @@
 		{script1}
 	</script>
 </head>
-
+<?php $Tipo[0] = $this->session->userdata('tipo');?>
 <body>
     <div id="wrapper">
         <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
@@ -45,7 +45,7 @@
                 <div class="sidebar-nav navbar-collapse" id="btn">
                     <ul class="nav" id="side-menu">
                         <li>
-                            <a href="{url}Login/telaInicial">Início</a>
+                            <a href="{url}login/telaInicial">Início</a>
                         </li>
                         <li>
                             <a href="{url}Listar/listar/0/0/0">Lista de Alunos<span class="fa arrow"></span></a>
@@ -107,6 +107,52 @@
 												}
 											?>		
 										</li>
+										<?php
+											if($Tipo[0]==6){
+												echo '<li>
+                                                    <a href="{url}Listar/listar/0/3/1">Edificações <span class="fa arrow"></span></a>
+                                                    <ul class="nav nav-fourth-level">
+                                                        <li>
+                                                            <a href="{url}Listar/listar/31/0/0">1° Ano</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="{url}Listar/listar/32/0/0">2° Ano</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="{url}Listar/listar/33/0/0">3° Ano</a>
+                                                        </li>
+                                                    </ul>
+                                                </li>
+                                                <li>
+                                                    <a href="{url}Listar/listar/0/1/1">Informática <span class="fa arrow"></span></a>
+                                                    <ul class="nav nav-fourth-level">
+                                                        <li>
+                                                            <a href="{url}Listar/listar/11/0/0">1° Ano</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="{url}Listar/listar/12/0/0">2° Ano</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="{url}Listar/listar/13/0/0">3° Ano</a>
+                                                        </li>
+                                                    </ul>
+                                                </li>
+                                                <li>
+                                                    <a href="{url}Listar/listar/0/2/1">Mecatrônica <span class="fa arrow"></span></a>
+                                                    <ul class="nav nav-fourth-level">
+                                                        <li>
+                                                            <a href="{url}Listar/listar/21/0/0">1° Ano</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="{url}Listar/listar/22/0/0">2° Ano</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="{url}Listar/listar/23/0/0">3° Ano</a>
+                                                        </li>
+                                                    </ul>
+                                                </li>';
+											}
+										?>
 									</ul>
                                 </li>
                                 <li>

@@ -19,7 +19,7 @@
 						$btn = array('name'=>'btm_cadastrar', 'id'=>'botao1', 'class'=>'btn btn-primary');
 						echo form_open('Grafico/mostrarCoord', $atributos).
 							 form_label("Selecionar gráficos a aparecer", "txt_graf").br();
-						if($this->session->userdata('tipo') != 0){
+						if($this->session->userdata('tipo') != 6){
 							if($this->session->userdata('tipo') == 1)
 								$curso = "Info";
 							else if($this->session->userdata('tipo') == 2)

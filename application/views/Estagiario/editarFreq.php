@@ -34,10 +34,6 @@
                             form_label("3º Bimestre", "txt_bimestre").
                             form_radio('txt_bimestre', 4, true). " " .
                             form_label("4º Bimestre", "txt_bimestre").
-                            form_radio('txt_bimestre', 12, true). " " .
-                            form_label("1º Semestre", "txt_bimestre").
-                            form_radio('txt_bimestre', 34, true). " " .
-                            form_label("2º Semestre", "txt_bimestre").
                             form_radio('txt_bimestre', 1234, true). " " .
                             form_label("Ano todo", "txt_bimestre").br().
                             form_submit("btn_cadastrar", "Escolher Matéria", $btn).
@@ -64,7 +60,7 @@
                                 "<td>".$TURMA_has_ALUNO[$i]->NOME_CURSO. "</td>".
                                 "<td>".$TURMA_has_ALUNO[$i]->MODALIDADE. "</td>".
                                 "<td>".$TURMA_has_ALUNO[$i]->ANO. "</td>".
-                                "<td>".$FREQUENCIA[$i]."</td>".
+                                "<td>".$FREQUENCIAS[$i]."</td>".
                                 "<td>" . anchor('/Estagiario/alterarFreq/'.$TURMA_has_ALUNO[$i]->idALUNO.'/'. $TURMA_has_ALUNO[$i]->ANO. '/'. $materia[0]->idMATERIA . '/' .$TURMA_has_ALUNO[$i]->SERIE. '/' . urlencode($TURMA_has_ALUNO[$i]->NOME_CURSO). '/' . $TURMA_has_ALUNO[$i]->MODALIDADE . '/' . $TURMA_has_ALUNO[$i]->idTURMA
                                 , ' Alterar ', 'class="btn btn-warning"').
                                 "</tr>";

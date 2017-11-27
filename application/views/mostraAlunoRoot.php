@@ -6,6 +6,11 @@
                   <!-- /.col-lg-12 -->
               </div>
               <!-- /.row -->
+              
+              <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+              <script>
+				  {script1}
+			  </script>
 			<div class="row">
 				<div class="col-lg-2" id="data2">
 					 <img id="image" src="/LPTI/assets/img/not-found.png"> 
@@ -71,10 +76,24 @@
 					</table>
 				</div>
 			</div>
+			<div class="row">
+				<div class="col-lg-4">
+					<div id="Geral" style="width: 100%; height: 300px; "></div>
+				</div>
+				<div class="col-lg-4">
+					<div id="Turma" style="width: 100%; height: 300px; "></div>
+				</div>
+				<div class="col-lg-4">
+					<div id="Pessoal" style="width: 100%; height: 300px; "></div>
+				</div>
+			</div>
           </div>
 		</div>
 	</div>
 	<script src="{url}assets/js/jquery.min.js"></script>
+	
+	
+	
 	<script src="{url}assets/js/bootstrap.min.js"></script>
     <script src="{url}assets/js/metisMenu.min.js"></script>
     <script src="{url}assets/js/raphael.min.js"></script>

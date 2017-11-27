@@ -416,11 +416,13 @@
         }
         else{
 			$this->parser->parse('ajaxEst', $data);
-            $this->parser->parse('Estagiario/notEditar', $data);
+            $this->parser->parse('Estagiario/freqEditar', $data);
 		}
     }
     
     public function freqMatEditar($id, $ano){
+        //SELECIONA ALUNO
+        
         $this->db->select('ALUNO.NOME AS NOME_ALUNO, ALUNO.idALUNO, TURMA_has_ALUNO.ANO, TURMA.idCURSO, CURSO.idCURSO, TURMA.SERIE, TURMA.MODALIDADE, MODALIDADE.idMODALIDADE, MODALIDADE.MODALIDADE, CURSO.NOME AS NOME_CURSO, TURMA.idTURMA');
         $this->db->from('ALUNO');
         $this->db->join('TURMA_has_ALUNO', 'TURMA_has_ALUNO.ALUNO_idALUNO = ALUNO.idALUNO', 'inner');
@@ -434,12 +436,16 @@
         $data['url'] = base_url();
         $data['id'] = $id;
         $data['ano'] = $ano;
+		//SELECIONA MATERIAS DA TURMA
         $this->db->select('TURMA_has_MATERIA.MATERIA_idMATERIA, TURMA_has_MATERIA.TURMA_idTURMA, MATERIA.idMATERIA, MATERIA.NOME');
         $this->db->from('MATERIA');
         $this->db->join('TURMA_has_MATERIA', 'TURMA_has_MATERIA.MATERIA_idMATERIA = MATERIA.idMATERIA', 'inner');
         $this->db->where('TURMA_has_MATERIA.TURMA_idTURMA', $id);
         $data['Materia'] = $this->db->get()->result();
         $materia = $this->input->post('txt_materia');
+        
+        //SELECIONA MATERIAS SELECIONADAS
+        
         $this->db->select('MATERIA.NOME, MATERIA.idMATERIA');
         $this->db->from('MATERIA');
         $this->db->where('MATERIA.idMATERIA', $materia);
@@ -449,14 +455,15 @@
             $qtdAlunos++;
         $bimestre = $this->input->post('txt_bimestre');
         for($i = 0; $i < $qtdAlunos; $i++){
-            $data['NOTAS'][$i] = 0;
+            $data['FREQUENCIAS'][$i] = 0;
+            
+            //SELECIONA AS NOTAS DAQUELA MATERIA NAQUELE BIMESTRE
+            
             $this->db->select('FREQUENCIA.FALTAS, ALUNO.idALUNO, MATERIA.idMATERIA, FREQUENCIA.BIMESTRE');
             $this->db->from('FREQUENCIA');
-            $this->db->join('ALUNO', 'ALUNO.idALUNO = NOTA.idALUNO', 'inner');
+            $this->db->join('ALUNO', 'ALUNO.idALUNO = FREQUENCIA.idALUNO', 'inner');
             $this->db->join('TURMA_has_ALUNO', 'TURMA_has_ALUNO.ALUNO_idALUNO = ALUNO.idALUNO', 'inner');
-            $this->db->join('MATERIA', 'MATERIA.idMATERIA = NOTA.idMATERIA', 'inner');
-            $this->db->where('ALUNO.idALUNO', $data['TURMA_has_ALUNO'][$i]->idALUNO);
-            $this->db->where('MATERIA.idMATERIA', $materia);
+            $this->db->join('MATERIA', 'MATERIA.idMATERIA = FREQUENCIA.idMATERIA', 'inner');
             if($bimestre == 12){
 				$where = "FREQUENCIA.BIMESTRE = 1 OR FREQUENCIA.BIMESTRE = 2";
 				$this->db->where($where);
@@ -467,10 +474,22 @@
 			}
 			else if($bimestre != 1234)
 				$this->db->where('FREQUENCIA.BIMESTRE', $bimestre);
-            $Notas = $this->db->get()->result();
-            foreach($Notas as $band)
-                $data['FREQUENCIA'][$i] += $band->NOTA;
+            $this->db->where('MATERIA.idMATERIA', $materia);
+            echo $data['TURMA_has_ALUNO'][$i]->idALUNO;
+            echo br().'------------------'.br();
+            $this->db->where('ALUNO.idALUNO', $data['TURMA_has_ALUNO'][$i]->idALUNO);
+            $frequencias = $this->db->get()->result();
+            foreach($frequencias as $band){
+				echo $band->FALTAS;
+				echo br().'------------------'.br();
+                $data['FREQUENCIAS'][$i] += $band->FALTAS;
+			}
         }
+        $data['bimestre'] = $bimestre;
+        foreach($data['FREQUENCIAS'] as $freq){
+			print_r($freq);
+			echo br().'------------------'.br();
+		}
         $this->parser->parse('ajaxEst', $data);
         $this->parser->parse('Estagiario/editarFreq', $data);
     }

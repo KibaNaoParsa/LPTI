@@ -12,7 +12,7 @@
                         $ano = date("Y");
 
                         echo anchor("Importacao/excel", "Baixar .xls", 'class = "btn btn-info"');
-                        echo anchor("Importacao/readme", "Baixar READ-ME", 'class = "btn btn-info"');
+                        echo anchor("Importacao/readmeTurma", "Instruções para a utilização do sistema", 'class = "btn btn-info"');
 
                         echo br().br();
 

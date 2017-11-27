@@ -108,7 +108,7 @@ class Login extends CI_Controller {
 				name: "notas",
 				axisYType: "secondary",
 				color: "#014D65",
-				dataPoints: [';
+				dataPoints: [ ';
 				foreach($valor as $medias)
 					$data['script1'] .= '{ y: '. $medias->SOMA . ', label: "'. $medias->NOME .'"},';
 				$data['script1'] = substr($data['script1'], 0, -1);

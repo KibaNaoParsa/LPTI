@@ -9,7 +9,7 @@
               <div class="row">
                 <?php
                 echo anchor("Importacao/excel3", "Baixar .xls", 'class = "btn btn-info"');
-                echo anchor("Importacao/readme", "Baixar READ-ME", 'class = "btn btn-info"');
+                echo anchor("Importacao/readmeFrequencias", "Instruções para a utilização do sistema", 'class = "btn btn-info"');
                     $atributos = array('name'=>'formulario_cadastro', 'id'=>'formulario_cadastro');
                     $btn = array('name'=>'btn_cadastrar', 'id'=>'btn_cadastro', 'class'=>'btn btn-lg btn-primary');
                     $i = 0;

@@ -13,10 +13,11 @@
 												$btn = array('name'=>'btn_cadastrar', 'id'=>'botao1', 'class'=>'btn btn-primary');
 												echo '<h3>Integrado</h3>' . br();
 												$cont = 0;
-												foreach($PARAMETRO as $data){
+												foreach($parametro as $data){
 													echo 'Nota: ' . $data->NOTA . br(). 
 												   	     'Frequência: ' . $data->FREQUENCIA . br().
-												   	     'Matérias: ' . $data->MATERIAS . br();
+												   	     'Matérias: ' . $data->MATERIAS . br().
+												   	     'Turma: ';
 												   	     if($data->idTURMA == 11)
 															 echo '1º Informática';
 														else if($data->idTURMA == 12)
@@ -35,7 +36,8 @@
 															echo '2º Edificações';
 														else if($data->idTURMA == 33)
 															echo '3º Edificações';
-												   	    echo br(). anchor(base_url('Coord/editarParametro/'. $data->idPARAMETRO_DE_RISCO), 'Editar', array("class"=>"btn btn-primary")) .br();
+												   	    echo br(). anchor(base_url('Coord/editarParametro/'. $data->idPARAMETRO_DE_RISCO), 'Editar', array("class"=>"btn btn-primary"));
+												   	    echo anchor(base_url('Coord/apagarParametro/'. $data->idPARAMETRO_DE_RISCO), 'Apagar', array("class"=>"btn btn-danger")).br();
 												}
 												?>
 						</div>
@@ -43,12 +45,12 @@
 							<?php
 												echo '<h3>Subsequente</h3>' . br();
 												$cont = 0;
-												foreach($PARAMETROS as $data){
-													echo br(). 'Nota: ' . $data->NOTA . br(). 
+												foreach($parametros as $data){
+													echo 'Nota: ' . $data->NOTA . br(). 
 												   	     'Frequência: ' . $data->FREQUENCIA . br().
-												   	     'Turma: ';
-												   	    'Matérias: ' . $data->MATERIAS . br();
-												   	     if($data->idTURMA == 41)
+												   	    'Matérias: ' . $data->MATERIAS . br().
+												   	    'Turma: ';
+												   	    if($data->idTURMA == 41)
 															 echo '1º Informática';
 														else if($data->idTURMA == 42)
 															echo '2º Informática';
@@ -60,12 +62,8 @@
 															echo '1º Edificações';
 														else if($data->idTURMA == 62)
 															echo '2º Edificações';
-												   	    echo br(). anchor(base_url('Coord/editarParametro/'. $data->idPARAMETRO_DE_RISCO), 'Editar', array("class"=>"btn btn-primary")) .br();
-													$cont ++;
-													if($cont == 3){
-														echo br().br();
-														$cont = 0;
-													}
+												   	    echo br(). anchor(base_url('Coord/editarParametro/'. $data->idPARAMETRO_DE_RISCO), 'Editar', array("class"=>"btn btn-primary"));
+												   	    echo anchor(base_url('Coord/apagarParametro/'. $data->idPARAMETRO_DE_RISCO), 'Apagar', array("class"=>"btn btn-danger")).br();
 												}
 												?>
 											</div>
@@ -75,6 +73,32 @@
         		</div>
 	</div>
 	<script src="{url}assets/js/jquery.min.js"></script>
+	
+	<script src="{url}assets/DataTables/media/js/jquery.dataTables.min.js"></script>
+    
+    <script type="text/javascript">
+      $(document).ready(function(e){
+        $("#btn a").click(function(e){
+          e.preventDefault();
+          var href = $(this).attr('href');
+          $("#Main").load(href + " #Main", function(responseTxt, statusTxt, xhr){
+        if(statusTxt == "success")
+            $('#myTable').DataTable({
+                "bRetrieve": true,
+                "bPaginate": true,
+                "bJQueryUI": false,
+                "sPaginationType": "full_numbers",
+                "oLanguage": {
+                    "sUrl": "{url}assets/language/ptbr.txt"
+                }
+            });
+        if(statusTxt == "error")
+            alert("Error: " + xhr.status + ": " + xhr.statusText);
+    });
+        });
+      });
+    </script>
+	
 	<script src="{url}assets/js/bootstrap.min.js"></script>
     <script src="{url}assets/js/metisMenu.min.js"></script>
     <script src="{url}assets/js/raphael.min.js"></script>

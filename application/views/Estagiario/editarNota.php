@@ -34,10 +34,6 @@
                             form_label("3º Bimestre", "txt_bimestre").
                             form_radio('txt_bimestre', 4, true). " " .
                             form_label("4º Bimestre", "txt_bimestre").
-                            form_radio('txt_bimestre', 12, true). " " .
-                            form_label("1º Semestre", "txt_bimestre").
-                            form_radio('txt_bimestre', 34, true). " " .
-                            form_label("2º Semestre", "txt_bimestre").
                             form_radio('txt_bimestre', 1234, true). " " .
                             form_label("Ano todo", "txt_bimestre").br().
                             form_submit("btn_cadastrar", "Escolher Matéria", $btn).
@@ -77,6 +73,32 @@
 		</div>
 	</div>
 	<script src="{url}assets/js/jquery.min.js"></script>
+	
+	<script src="{url}assets/DataTables/media/js/jquery.dataTables.min.js"></script>
+    
+    <script type="text/javascript">
+      $(document).ready(function(e){
+        $("#btn a").click(function(e){
+          e.preventDefault();
+          var href = $(this).attr('href');
+          $("#Main").load(href + " #Main")
+        });
+      }, function(responseTxt, statusTxt, xhr){
+        if(statusTxt == "success")
+            $('#myTable').DataTable({
+                "bRetrieve": true,
+                "bPaginate": true,
+                "bJQueryUI": false,
+                "sPaginationType": "full_numbers",
+                "oLanguage": {
+                    "sUrl": "{url}assets/language/ptbr.txt"
+                }
+            });
+        if(statusTxt == "error")
+            alert("Error: " + xhr.status + ": " + xhr.statusText);
+    });
+    </script>
+	
 	<script src="{url}assets/js/bootstrap.min.js"></script>
     <script src="{url}assets/js/metisMenu.min.js"></script>
     <script src="{url}assets/js/raphael.min.js"></script>

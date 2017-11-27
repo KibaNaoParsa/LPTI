@@ -268,7 +268,7 @@
 			$data['url'] = base_url();
 			//Seleciona o aluno
 			
-			$this->db->select('ALUNO.idALUNO, ALUNO.NOME AS ALUNO_NOME, TURMA.idTURMA, TURMA.SERIE, CURSO.NOME AS CURSO_NOME, CURSO.MODALIDADE');
+			$this->db->select('ALUNO.idALUNO, ALUNO.NOME AS ALUNO_NOME, TURMA.idTURMA AS TURMA, TURMA.SERIE, CURSO.NOME AS CURSO_NOME, CURSO.MODALIDADE');
 			$this->db->from('ALUNO');
 			$this->db->join('TURMA_has_ALUNO', 'TURMA_has_ALUNO.ALUNO_idALUNO = ALUNO.idALUNO', 'inner');
 			$this->db->join('TURMA', 'TURMA.idTURMA = TURMA_has_ALUNO.TURMA_idTURMA', 'inner');
@@ -283,7 +283,7 @@
 			$this->db->select('MATERIA.idMATERIA, MATERIA.NOME, TURMA_has_MATERIA.TURMA_idTURMA, TURMA_has_MATERIA.MATERIA_idMATERIA, TURMA_has_MATERIA.ANO');
 			$this->db->from('MATERIA');
 			$this->db->join('TURMA_has_MATERIA', 'TURMA_has_MATERIA.MATERIA_idMATERIA = MATERIA.idMATERIA', 'inner');
-			$this->db->where('TURMA_has_MATERIA.TURMA_idTURMA', $aluno[0]->idTURMA);
+			$this->db->where('TURMA_has_MATERIA.TURMA_idTURMA', $aluno[0]->TURMA);
 			$data['materias'] = $this->db->get()->result();
 			//Materias selecionadas
 			
@@ -341,13 +341,13 @@
 			
 			$this->db->select('PARAMETRO_DE_RISCO.NOTA, PARAMETRO_DE_RISCO.idTURMA');
 			$this->db->from('PARAMETRO_DE_RISCO');
-			$this->db->where('PARAMETRO_DE_RISCO.idTURMA', $aluno[0]->idTURMA);
+			$this->db->where('PARAMETRO_DE_RISCO.idTURMA', $aluno[0]->TURMA);
 			$this->db->order_by('PARAMETRO_DE_RISCO.NOTA', 'ASC');
 			$parametroNota = $this->db->get()->result();
 			
 			$this->db->select('PARAMETRO_DE_RISCO.FREQUENCIA, PARAMETRO_DE_RISCO.idTURMA');
 			$this->db->from('PARAMETRO_DE_RISCO');
-			$this->db->where('PARAMETRO_DE_RISCO.idTURMA', $aluno[0]->idTURMA);
+			$this->db->where('PARAMETRO_DE_RISCO.idTURMA', $aluno[0]->TURMA);
 			$this->db->order_by('PARAMETRO_DE_RISCO.FREQUENCIA', 'ASC');
 			$parametroFreq = $this->db->get()->result();
 			
@@ -397,6 +397,129 @@
 			
 			$data['aluno'] = null;
 			
+			
+			
+			$sql = "SELECT MATERIA.NOME,
+				AVG(NOTA.NOTA) AS 'SOMA'
+				FROM NOTA
+				INNER JOIN MATERIA ON MATERIA.idMATERIA = NOTA.idMATERIA
+				GROUP BY MATERIA.NOME";
+			$valor = $this->db->query($sql)->result();
+					
+			$data['script1'] = 'window.onload = function () {
+							var chart = new CanvasJS.Chart("Geral", {
+								height: 300,
+								animationEnabled: true,
+								exportEnabled: true,
+								zoomEnabled: true,
+								
+								title:{
+									text:"Média Geral da Escola"
+								},
+								axisX:{
+									interval: 1
+								},
+								axisY2:{
+									interlacedColor: "rgba(1,77,101,.2)",
+									gridColor: "rgba(1,77,101,.1)",
+									title: "Nota Média"
+								},
+								data: [{
+									type: "bar",
+									name: "notas",
+									axisYType: "secondary",
+									color: "#014D65",
+									dataPoints: [ ';
+									foreach($valor as $medias)
+										$data['script1'] .= '{ y: '. $medias->SOMA . ', label: "'. $medias->NOME .'"},';
+									$data['script1'] = substr($data['script1'], 0, -1);
+									$data['script1'] .= ']
+								}]
+							});';
+				$sql = "SELECT MATERIA.NOME,
+				AVG(NOTA.NOTA) AS 'SOMA'
+				FROM NOTA
+				INNER JOIN MATERIA ON MATERIA.idMATERIA = NOTA.idMATERIA
+				INNER JOIN TURMA_has_ALUNO ON TURMA_has_ALUNO.ALUNO_idALUNO = NOTA.idALUNO
+				WHERE TURMA_has_ALUNO.TURMA_idTURMA = " . $aluno[0]->TURMA . "
+				GROUP BY MATERIA.NOME";
+			$valor = $this->db->query($sql)->result();
+			
+			$data['script1'] .= '
+							var chart1 = new CanvasJS.Chart("Turma", {
+								height: 300,
+								animationEnabled: true,
+								exportEnabled: true,
+								zoomEnabled: true,
+								
+								title:{
+									text:"Média da Turma"
+								},
+								axisX:{
+									interval: 1
+								},
+								axisY2:{
+									interlacedColor: "rgba(1,77,101,.2)",
+									gridColor: "rgba(1,77,101,.1)",
+									title: "Nota Média"
+								},
+								data: [{
+									type: "bar",
+									name: "notas",
+									axisYType: "secondary",
+									color: "#014D65",
+									dataPoints: [ ';
+									foreach($valor as $medias)
+										$data['script1'] .= '{ y: '. $medias->SOMA . ', label: "'. $medias->NOME .'"},';
+									$data['script1'] = substr($data['script1'], 0, -1);
+									$data['script1'] .= ']
+								}]
+							});';
+								
+							$sql = "SELECT MATERIA.NOME,
+				AVG(NOTA.NOTA) AS 'SOMA'
+				FROM NOTA
+				INNER JOIN MATERIA ON MATERIA.idMATERIA = NOTA.idMATERIA
+				INNER JOIN TURMA_has_ALUNO ON TURMA_has_ALUNO.ALUNO_idALUNO = NOTA.idALUNO
+				WHERE TURMA_has_ALUNO.ALUNO_idALUNO = " . $aluno[0]->idALUNO . "
+				GROUP BY MATERIA.NOME";
+			$valor = $this->db->query($sql)->result();
+			
+			$data['script1'] .= '
+							var chart2 = new CanvasJS.Chart("Pessoal", {
+								height: 300,
+								animationEnabled: true,
+								exportEnabled: true,
+								zoomEnabled: true,
+								
+								title:{
+									text:"Média do Aluno"
+								},
+								axisX:{
+									interval: 1
+								},
+								axisY2:{
+									interlacedColor: "rgba(1,77,101,.2)",
+									gridColor: "rgba(1,77,101,.1)",
+									title: "Nota Média"
+								},
+								data: [{
+									type: "bar",
+									name: "notas",
+									axisYType: "secondary",
+									color: "#014D65",
+									dataPoints: [ ';
+									foreach($valor as $medias)
+										$data['script1'] .= '{ y: '. $medias->SOMA . ', label: "'. $medias->NOME .'"},';
+									$data['script1'] = substr($data['script1'], 0, -1);
+									$data['script1'] .= ']
+								}]
+							});	
+							chart.render();
+							chart1.render();
+							chart2.render();
+							}';
+							
 			if($this->session->userdata('tipo') == 0){
 				$this->parser->parse('ajax', $data);
 				$this->parser->parse('mostraAlunoRoot', $data);

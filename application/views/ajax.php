@@ -175,9 +175,6 @@
  <li>
                             <a href="{url}Relatorio/index/0">Gerar relatórios</a>
                         </li>
-                        <li>
-                            <a href="{url}Aprovacao/index">Aprovação</a>
-</li>
                             <!-- /.nav-second-level -->
                         </li>
 

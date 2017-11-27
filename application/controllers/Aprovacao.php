@@ -20,7 +20,7 @@ class Aprovacao extends CI_Controller {
 			
 			
 			$data['url'] = base_url();
-			$this->parser->parse('ajax', $data);
+			$this->parser->parse('ajaxEst', $data);
 			$this->parser->parse('Aprovacao/listar', $data);
 		}
 		
@@ -57,7 +57,7 @@ class Aprovacao extends CI_Controller {
 			
 			$data['url'] = base_url();
 			
-			$this->parser->parse('ajax', $data);
+			$this->parser->parse('ajaxEst', $data);
 			$this->parser->parse('Aprovacao/alunos', $data);
 			
 			
