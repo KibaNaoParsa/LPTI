@@ -146,8 +146,8 @@
                         </li>
                         <li>
                             <a href="{url}Permissao/v_tela_listagem">Ajustar permissões de usuário</a>
-                        </li>
-                                <li>
+                        </li> 
+                            <li>
                             <a href="{url}Questionario/v_cadastro">Questionários<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
@@ -159,20 +159,8 @@
                             </ul>
                             <!-- /.nav-second-level -->
                         </li>
-                                <li>
-                            <a href="{url}Materia/v_cadastrar_materias">Turmas e Disciplinas<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
-                                <li>
-                                    <a href="{url}Materia/v_cadastrar_materias">Cadastrar disciplinas </a>
-                                </li>
-                                <li>
-                                    <a href="{url}Materia/v_listar_materias">Listar disciplinas</a>
-                                </li>
-                                <li>
-                                    <a href="{url}Materia/v_associar_materias">Associar disciplinas</a>
-                                </li>
-      </ul>                
- <li>
+                        <li>
+						 <li>
                             <a href="{url}Relatorio/index/0">Gerar relatórios</a>
                         </li>
                             <!-- /.nav-second-level -->

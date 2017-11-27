@@ -35,6 +35,8 @@
 
                     </ul>
                 </li>
+                <li> <?php echo $this->session->userdata('nome');?> </li>
+
             </ul>
 
             <div class="navbar-default sidebar" role="navigation">

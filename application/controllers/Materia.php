@@ -12,8 +12,8 @@
 
 		public function index() {
 			$data['url'] = base_url();
-			$this->parser->parse('ajax', $data);
-			$this->parser->parse('telaAdm', $data);
+			$this->parser->parse('ajaxCoord', $data);
+			$this->parser->parse('telaCoord', $data);
 		}
 
 		
@@ -22,16 +22,37 @@
 
 
 		public function v_cadastrar_materias(){
-			$data['TURMA'] = $this->db->get('TURMA')->result();
+			$this->db->select('*');
+			$this->db->from('TURMA');
+			$this->db->where('TURMA.idCURSO', $this->session->userdata('tipo'));
+			$data['TURMA'] = $this->db->get()->result();
 			$data['url'] = base_url();
-			$this->parser->parse('ajax', $data);
+			$this->parser->parse('ajaxCoord', $data);
 			$this->parser->parse('Materia/cadastro_materias', $data);
 		}		
 		
 		public function v_listar_materias(){
-			$data['MATERIA'] = $this->db->get('MATERIA')->result();
+			if($this->session->userdata('tipo') != 6){
+				$mod = $this->session->userdata('tipo')+3;
+				$sql = "SELECT MATERIA.idMATERIA, MATERIA.NOME, MATERIA.QTD_AULAS, CURSO.idCURSO FROM MATERIA\n"
+				. "INNER JOIN TURMA_has_MATERIA ON TURMA_has_MATERIA.MATERIA_idMATERIA = MATERIA.idMATERIA\n"
+				. "INNER JOIN TURMA ON TURMA.idTURMA = TURMA_has_MATERIA.TURMA_idTURMA\n"
+				. "INNER JOIN CURSO ON CURSO.idCURSO = TURMA.idCURSO\n"
+				. "WHERE CURSO.idCURSO = " . $this->session->userdata('tipo')
+				. " OR CURSO.idCURSO = " . $mod;
+				$data['MATERIA'] = $this->db->query($sql)->result();
+				
+			}
+			else{
+				$sql = "SELECT MATERIA.idMATERIA, MATERIA.NOME, MATERIA.QTD_AULAS, CURSO.idCURSO FROM MATERIA\n"
+				. "INNER JOIN TURMA_has_MATERIA ON TURMA_has_MATERIA.MATERIA_idMATERIA = MATERIA.idMATERIA\n"
+				. "INNER JOIN TURMA ON TURMA.idTURMA = TURMA_has_MATERIA.TURMA_idTURMA\n"
+				. "INNER JOIN CURSO ON CURSO.idCURSO = TURMA.idCURSO\n"
+				. "WHERE TURMA.MODALIDADE <> 2";
+				$data['MATERIA'] = $this->db->query($sql)->result();
+			}
 			$data['url'] = base_url();
-			$this->parser->parse('ajax', $data);
+			$this->parser->parse('ajaxCoord', $data);
 			$this->parser->parse('Materia/listar_materias', $data);
 		}
 		
@@ -39,13 +60,30 @@
 			$this->db->where('idMATERIA', $id);
 			$data['MATERIA'] = $this->db->get('MATERIA')->result();
 			$data['url'] = base_url();
-			$this->parser->parse('ajax', $data);
+			$this->parser->parse('ajaxCoord', $data);
 			$this->parser->parse('Materia/editar_materias', $data);
 		}
 		
 		public function v_associar_materias() {
-			$data['MATERIA'] = $this->db->get('MATERIA')->result();
-			
+			if($this->session->userdata('tipo') != 6){
+				$mod = $this->session->userdata('tipo')+3;
+				$sql = "SELECT MATERIA.idMATERIA, MATERIA.NOME, MATERIA.QTD_AULAS, CURSO.idCURSO FROM MATERIA\n"
+				. "INNER JOIN TURMA_has_MATERIA ON TURMA_has_MATERIA.MATERIA_idMATERIA = MATERIA.idMATERIA\n"
+				. "INNER JOIN TURMA ON TURMA.idTURMA = TURMA_has_MATERIA.TURMA_idTURMA\n"
+				. "INNER JOIN CURSO ON CURSO.idCURSO = TURMA.idCURSO\n"
+				. "WHERE CURSO.idCURSO = " . $this->session->userdata('tipo')
+				. " OR CURSO.idCURSO = " . $mod;
+				$data['MATERIA'] = $this->db->query($sql)->result();
+				
+			}
+			else{
+				$sql = "SELECT MATERIA.idMATERIA, MATERIA.NOME, MATERIA.QTD_AULAS, CURSO.idCURSO FROM MATERIA\n"
+				. "INNER JOIN TURMA_has_MATERIA ON TURMA_has_MATERIA.MATERIA_idMATERIA = MATERIA.idMATERIA\n"
+				. "INNER JOIN TURMA ON TURMA.idTURMA = TURMA_has_MATERIA.TURMA_idTURMA\n"
+				. "INNER JOIN CURSO ON CURSO.idCURSO = TURMA.idCURSO\n"
+				. "WHERE TURMA.MODALIDADE <> 2";
+				$data['MATERIA'] = $this->db->query($sql)->result();
+			}
 			$data['url'] = base_url();
 			$this->parser->parse('ajax', $data);
 			$this->parser->parse('Materia/listar_materiasII', $data);
@@ -55,7 +93,7 @@
 			$this->db->where('idMATERIA', $id);
 			$data['MATERIA'] = $this->db->get('MATERIA')->result();
 			$data['url'] = base_url();
-			$this->parser->parse('ajax', $data);
+			$this->parser->parse('ajaxCoord', $data);
 			$this->parser->parse('Materia/associar_materias', $data);
 		}
 		
@@ -84,8 +122,8 @@
 
 			$this->db->update('MATERIA', $data);
 			$data['url'] = base_url();
-			$this->parser->parse('ajax', $data);
-			$this->parser->parse('telaAdm', $data);
+			$this->parser->parse('ajaxCoord', $data);
+			$this->parser->parse('telaCoord', $data);
 		}
 		
 		

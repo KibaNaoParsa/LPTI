@@ -264,140 +264,23 @@
         }
         
         public function alunoChamada($id){
-			$data['Tipo'] = $this->session->userdata('tipo');
+			
+			$data['id'] = $id;
+			
 			$data['url'] = base_url();
-			//Seleciona o aluno
 			
-			$this->db->select('ALUNO.idALUNO, ALUNO.NOME AS ALUNO_NOME, TURMA.idTURMA AS TURMA, TURMA.SERIE, CURSO.NOME AS CURSO_NOME, CURSO.MODALIDADE');
-			$this->db->from('ALUNO');
-			$this->db->join('TURMA_has_ALUNO', 'TURMA_has_ALUNO.ALUNO_idALUNO = ALUNO.idALUNO', 'inner');
-			$this->db->join('TURMA', 'TURMA.idTURMA = TURMA_has_ALUNO.TURMA_idTURMA', 'inner');
-			$this->db->join('CURSO', 'CURSO.idCURSO = TURMA.idCURSO', 'inner');
-			$this->db->where('ALUNO.idALUNO', $id);
-			$aluno = $this->db->get()->result();
+			$sql = "SELECT ALUNO.idALUNO AS MATRICULA, ALUNO.NOME AS NOME, TURMA.SERIE, CURSO.NOME AS CURSO, CURSO.MODALIDADE\n"
+			. "FROM ALUNO\n"
+			. "INNER JOIN TURMA_has_ALUNO ON TURMA_has_ALUNO.ALUNO_idALUNO = ALUNO.idALUNO\n"
+			. "INNER JOIN TURMA ON TURMA.idTURMA = TURMA_has_ALUNO.TURMA_idTURMA\n"
+			. "INNER JOIN CURSO ON CURSO.idCURSO = TURMA.idCURSO\n"
+			. "WHERE ALUNO.idALUNO = 201518110110";
+			$data['DADOS'] = $this->db->query($sql)->result();
 			
-			//Aluno selecionado
-			
-			//Seleciona as materias
-			
-			$this->db->select('MATERIA.idMATERIA, MATERIA.NOME, TURMA_has_MATERIA.TURMA_idTURMA, TURMA_has_MATERIA.MATERIA_idMATERIA, TURMA_has_MATERIA.ANO');
-			$this->db->from('MATERIA');
-			$this->db->join('TURMA_has_MATERIA', 'TURMA_has_MATERIA.MATERIA_idMATERIA = MATERIA.idMATERIA', 'inner');
-			$this->db->where('TURMA_has_MATERIA.TURMA_idTURMA', $aluno[0]->TURMA);
-			$data['materias'] = $this->db->get()->result();
-			//Materias selecionadas
-			
-			foreach($data['materias'] as $materia){
-				$somaNot[$materia->idMATERIA][1] = 0;
-				$somaNot[$materia->idMATERIA][2] = 0;
-				$somaNot[$materia->idMATERIA][3] = 0;
-				$somaNot[$materia->idMATERIA][4] = 0;
-				$somaFre[$materia->idMATERIA][1] = 0;
-				$somaFre[$materia->idMATERIA][2] = 0;
-				$somaFre[$materia->idMATERIA][3] = 0;
-				$somaFre[$materia->idMATERIA][4] = 0;
-			}
-			
-			//Selecionar as notas
-			
-				$this->db->select('NOTA.idALUNO, NOTA.idMATERIA, NOTA.NOTA, NOTA.BIMESTRE');
-				$this->db->from('NOTA');
-				$this->db->where('NOTA.idALUNO', $aluno[0]->idALUNO);
-				$notas = $this->db->get()->result();
-				
-			//Notas selecionadas
-			
-			
-			//Soma das notas
-			
-			foreach($notas as $nota){
-				$somaNot[$nota->idMATERIA][$nota->BIMESTRE] += $nota->NOTA;
-			}
-			$i=0;
-			foreach($somaNot as $soma)
-				$somaNota[$i] = $soma;
-			
-			//Notas somadas
-			
-			//Selecionar as frequencias
-			
-			$this->db->select('FREQUENCIA.idALUNO, FREQUENCIA.idMATERIA, FREQUENCIA.FALTAS, FREQUENCIA.BIMESTRE');
-			$this->db->from('FREQUENCIA');
-			$this->db->where('FREQUENCIA.idALUNO', $aluno[0]->idALUNO);
-			$frequencias = $this->db->get()->result();
-			
-			//Frequencias selecionadas
-			
-			//Somar as frequencias
-			
-			foreach($frequencias as $frequencia){
-				$somaFre[$frequencia->idMATERIA][$frequencia->BIMESTRE] += $frequencia->FALTAS;
-			}
-			$i=0;
-			foreach($somaFre as $soma)
-				$somaFreq[$i] = $soma;
-			
-			//Frequencias somadas
-			
-			$this->db->select('PARAMETRO_DE_RISCO.NOTA, PARAMETRO_DE_RISCO.idTURMA');
-			$this->db->from('PARAMETRO_DE_RISCO');
-			$this->db->where('PARAMETRO_DE_RISCO.idTURMA', $aluno[0]->TURMA);
-			$this->db->order_by('PARAMETRO_DE_RISCO.NOTA', 'ASC');
-			$parametroNota = $this->db->get()->result();
-			
-			$this->db->select('PARAMETRO_DE_RISCO.FREQUENCIA, PARAMETRO_DE_RISCO.idTURMA');
-			$this->db->from('PARAMETRO_DE_RISCO');
-			$this->db->where('PARAMETRO_DE_RISCO.idTURMA', $aluno[0]->TURMA);
-			$this->db->order_by('PARAMETRO_DE_RISCO.FREQUENCIA', 'ASC');
-			$parametroFreq = $this->db->get()->result();
-			
-			//print_r($aluno[0]);
-			
-			$data['aluno_nome'] = $aluno[0]->ALUNO_NOME;
-			$data['matricula'] = $aluno[0]->idALUNO;
-			$data['serie'] = $aluno[0]->SERIE;
-			$data['curso_nome'] = $aluno[0]->CURSO_NOME;
-			if($aluno[0]->MODALIDADE == 1)
-				$data['modalidade'] = 'Integrado';
+			if($data['DADOS'][0]->MODALIDADE == 1)
+				$data['DADOS'][0]->MODALIDADE = "Integrado";
 			else
-				$data['modalidade'] = 'Modalidade';
-			
-			$i = 0;
-			//echo "Teste: ".br();
-			//print_r($somaNota);
-			echo br();
-			foreach($somaNota as $somaNotas){
-				$data['notas'][$i] = $somaNotas;
-				if($somaNotas <= $parametroNota[0]->NOTA)
-					$data['situacao'][$i] = 'danger';
-				else
-					$data['situacao'][$i] = 'all-right';
-				$i++;
-			}
-			
-			foreach($somaFreq as $somaFreqs){
-				$data['freq'] = $somaFreqs;
-				if($somaFreqs <= $parametroFreq[0]->FREQUENCIA)
-					$data['situacao'][$i] = 'danger';
-				else
-					$data['situacao'][$i] = 'all-right';
-				$i++;
-			}
-			
-		//	print_r($data['aluno']);
-	//		echo br();
-//			print_r($data['materias']);
-			//echo br()." vc: ";
-		//	print_r($data['notas']);
-	//		echo br();
-//			print_r($data['freq']);
-			//echo br();
-			//print_r($data['situacao']);
-			//echo br();
-			
-			$data['aluno'] = null;
-			
-			
+				$data['DADOS'][0]->MODALIDADE = "Subsequente";
 			
 			$sql = "SELECT MATERIA.NOME,
 				AVG(NOTA.NOTA) AS 'SOMA'
@@ -436,12 +319,18 @@
 									$data['script1'] .= ']
 								}]
 							});';
+							
+							$this->db->select('TURMA_has_ALUNO.TURMA_idTURMA');
+								$this->db->from('TURMA_has_ALUNO');
+								$this->db->where('TURMA_has_ALUNO.ALUNO_idALUNO', $id);
+								$turma = $this->db->get()->result();
+							
 				$sql = "SELECT MATERIA.NOME,
 				AVG(NOTA.NOTA) AS 'SOMA'
 				FROM NOTA
 				INNER JOIN MATERIA ON MATERIA.idMATERIA = NOTA.idMATERIA
 				INNER JOIN TURMA_has_ALUNO ON TURMA_has_ALUNO.ALUNO_idALUNO = NOTA.idALUNO
-				WHERE TURMA_has_ALUNO.TURMA_idTURMA = " . $aluno[0]->TURMA . "
+				WHERE TURMA_has_ALUNO.TURMA_idTURMA = " . $turma[0]->TURMA_idTURMA . "
 				GROUP BY MATERIA.NOME";
 			$valor = $this->db->query($sql)->result();
 			
@@ -481,7 +370,7 @@
 				FROM NOTA
 				INNER JOIN MATERIA ON MATERIA.idMATERIA = NOTA.idMATERIA
 				INNER JOIN TURMA_has_ALUNO ON TURMA_has_ALUNO.ALUNO_idALUNO = NOTA.idALUNO
-				WHERE TURMA_has_ALUNO.ALUNO_idALUNO = " . $aluno[0]->idALUNO . "
+				WHERE NOTA.idALUNO = " . $id . "
 				GROUP BY MATERIA.NOME";
 			$valor = $this->db->query($sql)->result();
 			
@@ -527,7 +416,7 @@
 			else{
 				$data['tipo'] = $this->session->userdata('tipo');
 				$this->parser->parse('ajaxCoord', $data);
-				$this->parser->parse('mostraAluno', $data);
+				$this->parser->parse('mostraAlunoRoot', $data);
 			}
 		}
 

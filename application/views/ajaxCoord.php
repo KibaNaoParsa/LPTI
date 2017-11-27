@@ -220,8 +220,22 @@
 								<li>
 									<a href='{url}coord/parametros'>Editar</a>
 								</li>
-									</ul>
-								</li>
+							</ul>
+						</li>
+                        <li>
+							<a href="{url}Materia/v_cadastrar_materias">Turmas e Disciplinas<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="{url}Materia/v_cadastrar_materias">Cadastrar disciplinas </a>
+                                </li>
+                                <li>
+                                    <a href="{url}Materia/v_listar_materias">Listar disciplinas</a>
+                                </li>
+                                <li>
+                                    <a href="{url}Materia/v_associar_materias">Associar disciplinas</a>
+                                </li>
+							</ul>                
+						</li>
 							</ul>
                         </li>
                     </ul>

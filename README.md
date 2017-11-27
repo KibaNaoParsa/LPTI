@@ -1,4 +1,4 @@
-# Patch Notes v3.1
+# Patch Notes v3.2
 
 **v3.0**
 
@@ -9,4 +9,10 @@
 
 - FODENDO grande união dos projetos
 - Alteração de senha
+
+**v3.2**
+
+- Correção na parte de aprovação
+- Correção na alteração de senha
 - Adição de bugs para correções futuras
+

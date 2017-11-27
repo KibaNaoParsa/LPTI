@@ -13,21 +13,21 @@
 				<div class="col-lg-8" id="linha">
 					<div class="row">
 						<div class="col-lg-5" id="data">
-							<?php echo "Matrícula: ". $matricula?>
+							<?php echo "Matrícula: ". $DADOS[0]->MATRICULA?>
 						</div>
 						<div class="col-lg-7" id="data">
-							<?php echo "Nome: ". $aluno_nome?>
+							<?php echo "Nome: ". $DADOS[0]->NOME?>
 						</div>
 					</div>
 					<div class="row">
 						<div class="col-lg-4" id="data">
-							<?php echo "Série: ". $serie?>
+							<?php echo "Série: ". $DADOS[0]->SERIE?>
 						</div>
 						<div class="col-lg-4" id="data">
-							<?php echo "Curso: ". $curso_nome?>
+							<?php echo "Curso: ". $DADOS[0]->CURSO?>
 						</div>
 						<div class="col-lg-4" id="data">
-							<?php echo "Modalidade: ". $modalidade?>
+							<?php echo "Modalidade: ". $DADOS[0]->MODALIDADE?>
 						</div>
 					</div>
 				</div>

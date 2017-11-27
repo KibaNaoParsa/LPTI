@@ -25,6 +25,7 @@
 		}
 
 		public function cadastro(){
+			$data['NOME'] = $this->input->post('txt_nome');
 			$data['LOGIN'] = $this->input->post('txt_login');
 			$data['SENHA'] = $this->input->post('txt_senha');
 			$data['TIPO'] = $this->input->post('txt_tipo');
@@ -136,6 +137,7 @@
 		}
 
 		public function edit(){
+			$data['NOME'] = $this->input->post('txt_nome');
 			$data['LOGIN'] = $this->input->post('txt_login');
 			$data['SENHA'] = $this->input->post('txt_senha');
 			$data['TIPO'] = $this->input->post('txt_tipo');
@@ -188,4 +190,3 @@
 		}
 	}
 }
-

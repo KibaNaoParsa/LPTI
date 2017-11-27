@@ -91,9 +91,7 @@ class Aprovacao extends CI_Controller {
 						
 						
 						if ($dat['TURMA_idTURMA'] == 99) {
-							$this->db->update('ALUNO.SITUACAO', 1);
-							$this->db->from('ALUNO');
-							$this->db->where('ALUNO.idALUNO', $dat['ALUNO_idALUNO']);
+							$this->db->query('UPDATE ALUNO SET ALUNO.SITUACAO = 1 where ALUNO.idALUNO ='.$dat['ALUNO_idALUNO']);
 						}
 					}
 			}
@@ -103,4 +101,3 @@ class Aprovacao extends CI_Controller {
 
 
 }
-
