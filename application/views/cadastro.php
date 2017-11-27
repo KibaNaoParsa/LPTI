@@ -13,6 +13,8 @@
 													$atributos = array('name'=>'formulario_cadastro', 'id'=>'formulario_cadastro');
 													$btn = array('name'=>'btn_cadastrar', 'id'=>'btn_cadastro', 'class'=>'btn btn-lg btn-primary');
 													echo  form_open('cadastro/cadastro', $atributos).
+																form_label("Nome do usuário: ", "txt_nome").br().
+																form_input('txt_nome').br().
 																form_label("Login: ", "txt_login").br().
 																form_input('txt_login').br().
 																form_label("Senha: ", "txt_senha").br().
