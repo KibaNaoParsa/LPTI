@@ -1,4 +1,4 @@
-# Patch Notes v3.3
+# Patch Notes v3.4
 
 **v3.0**
 
@@ -16,6 +16,10 @@
 - Correção na alteração de senha
 
 **v3.3**
+
+- Nunca nem vi
+
+**v3.4**
 
 - Scripts de alerta para erros
 - FODENDO encriptação de URL

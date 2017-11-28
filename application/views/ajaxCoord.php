@@ -76,3 +76,172 @@
 												if($Tipo[0] == '2'){	
 													echo '<a href="{url}Listar/listar/0/2/1">Mecatrônica <span class="fa arrow"></span></a>';
 													echo '<ul class="nav nav-fourth-level">';
+														echo '<li>';
+															echo '<a href="{url}Listar/listar/21/0/0">1° Ano</a>';
+														echo '</li>';
+														echo '<li>';
+															echo '<a href="{url}Listar/listar/22/0/0">2° Ano</a>';
+														echo '</li>';
+														echo '<li>';
+															echo '<a href="{url}Listar/listar/23/0/0">3° Ano</a>';
+														echo '</li>';
+													echo '</ul>';
+												}
+											?>
+										</li>
+										<li>
+											<?php
+												if($Tipo[0] == '1'){	
+													echo '<a href="{url}Listar/listar/0/1/1">Informática <span class="fa arrow"></span></a>';
+													echo '<ul class="nav nav-fourth-level">';
+														echo '<li>';
+															echo '<a href="{url}Listar/listar/11/0/0">1° Ano</a>';
+														echo '</li>';
+														echo '<li>';
+															echo '<a href="{url}Listar/listar/12/0/0">2° Ano</a>';
+														echo '</li>';
+														echo '<li>';
+															echo '<a href="{url}Listar/listar/13/0/0">3° Ano</a>';
+														echo '</li>';
+													echo '</ul>';
+												}
+											?>		
+										</li>
+										<?php
+											if($Tipo[0]==6){
+												echo '<li>
+                                                    <a href="{url}Listar/listar/0/3/1">Edificações <span class="fa arrow"></span></a>
+                                                    <ul class="nav nav-fourth-level">
+                                                        <li>
+                                                            <a href="{url}Listar/listar/31/0/0">1° Ano</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="{url}Listar/listar/32/0/0">2° Ano</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="{url}Listar/listar/33/0/0">3° Ano</a>
+                                                        </li>
+                                                    </ul>
+                                                </li>
+                                                <li>
+                                                    <a href="{url}Listar/listar/0/1/1">Informática <span class="fa arrow"></span></a>
+                                                    <ul class="nav nav-fourth-level">
+                                                        <li>
+                                                            <a href="{url}Listar/listar/11/0/0">1° Ano</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="{url}Listar/listar/12/0/0">2° Ano</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="{url}Listar/listar/13/0/0">3° Ano</a>
+                                                        </li>
+                                                    </ul>
+                                                </li>
+                                                <li>
+                                                    <a href="{url}Listar/listar/0/2/1">Mecatrônica <span class="fa arrow"></span></a>
+                                                    <ul class="nav nav-fourth-level">
+                                                        <li>
+                                                            <a href="{url}Listar/listar/21/0/0">1° Ano</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="{url}Listar/listar/22/0/0">2° Ano</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="{url}Listar/listar/23/0/0">3° Ano</a>
+                                                        </li>
+                                                    </ul>
+                                                </li>';
+											}
+										?>
+									</ul>
+                                </li>
+                                <li>
+									<?php if($Tipo[0]!=6){
+										echo '<a href="{url}Listar/listar/0/0/2">Subsequente<span class="fa arrow"></span></a>
+									<ul class="nav nav-third-level">
+												<li>';
+														if($Tipo[0] == '3'){	
+															echo '<a href="{url}Listar/listar/0/6/2">Edificações <span class="fa arrow"></span></a>';
+															echo '<ul class="nav nav-fourth-level">';
+																echo '<li>';
+																	echo '<a href="{url}Listar/listar/61/0/0">1° Ano</a>';
+																echo '</li>';
+																echo '<li>';
+																	echo '<a href="{url}Listar/listar/62/0/0">2° Ano</a>';
+																echo '</li>';
+															echo '</ul>';
+														}
+												echo '</li>';
+												echo '<li>';
+														if($Tipo[0] == '2'){	
+															echo '<a href="{url}Listar/listar/0/5/2">Mecatrônica <span class="fa arrow"></span></a>';
+															echo '<ul class="nav nav-fourth-level">';
+																echo '<li>';
+																	echo '<a href="{url}Listar/listar/51/0/0">1° Ano</a>';
+																echo '</li>';
+																echo '<li>';
+																	echo '<a href="{url}Listar/listar/52/0/0">2° Ano</a>';
+																echo '</li>';
+															echo '</ul>';
+														}
+												echo '</li>
+												<li>';
+														if($Tipo[0] == '1'){	
+															echo '<a href="{url}Listar/listar/0/4/2">Informática <span class="fa arrow"></span></a>';
+															echo '<ul class="nav nav-fourth-level">';
+																echo '<li>';
+																	echo '<a href="{url}Listar/listar/41/0/0">1° Ano</a>';
+																echo '</li>';
+																echo '<li>';
+																	echo '<a href="{url}Listar/listar/42/0/0">2° Ano</a>';
+																echo '</li>';
+															echo '</ul>';
+														}
+												echo '</li>
+									</ul>';
+									}
+								?>
+                                </li>
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li>
+                        <li>
+                            <a href="{url}Cadastro/cadastrar">Cadastrar usuários</a>
+                        </li>
+                        <li>
+                            <a href="{url}Cadastro/editar">Editar usuários</a>
+                        </li>
+                        <li>
+                            <a href= "{url}Coord/parametros">Parâmetros de Risco<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+									<?php echo anchor(base_url('coord/criarParametro/'.$Tipo[0]), 'Criar');?>
+								</li>
+								<li>
+									<a href='{url}coord/parametros'>Editar</a>
+								</li>
+							</ul>
+						</li>
+                        <li>
+							<a href="{url}Materia/v_cadastrar_materias">Turmas e Disciplinas<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="{url}Materia/v_cadastrar_materias">Cadastrar disciplinas </a>
+                                </li>
+                                <li>
+                                    <a href="{url}Materia/v_listar_materias">Listar disciplinas</a>
+                                </li>
+                                <li>
+                                    <a href="{url}Materia/v_associar_materias">Associar disciplinas</a>
+                                </li>
+							</ul>                
+						</li>
+							</ul>
+                        </li>
+                    </ul>
+                </div>
+                <!-- /.sidebar-collapse -->
+            </div>
+            <!-- /.navbar-static-side -->
+        </nav>
+        <div id="Main">
