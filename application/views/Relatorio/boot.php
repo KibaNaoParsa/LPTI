@@ -54,10 +54,10 @@
 										echo '<div class="dropdown">
   													<button class="dropbtn">DIMENSÃO</button>
   													<div class="dropdown-content">';
-										echo '<a href="{url}Relatorio/v_chartSingle/'.$idQUESTIONARIO.'/'.$idTURMA.'/0">-</a>';										
+										echo '<a href="{url}Relatorio/v_chartSingle/'.base64_encode($idQUESTIONARIO).'/'.base64_encode($idTURMA).'/'.base64_encode(0).'">-</a>';										
 										foreach($DIMENSAO as $d) {
 											
-											echo '<a href="{url}Relatorio/v_chartSingle/'.$idQUESTIONARIO.'/'.$idTURMA.'/'.$d->idDIMENSAO.'">'.$d->DESCRICAO.'</a>';
+											echo '<a href="{url}Relatorio/v_chartSingle/'.base64_encode($idQUESTIONARIO).'/'.base64_encode($idTURMA).'/'.base64_encode($d->idDIMENSAO).'">'.$d->DESCRICAO.'</a>';
 
 										}
 

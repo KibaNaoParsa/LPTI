@@ -138,7 +138,7 @@ class Professor extends CI_Controller {
 			
 			}
 			
-			$this->v_listar(base64_encode($id));
+			$this->v_listar($id);
 			$this->parser->parse('Professor/listarII', $data);
 			$this->parser->parse('Professor/fechamento', $data);
 		}

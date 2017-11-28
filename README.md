@@ -1,4 +1,4 @@
-# Patch Notes v3.2
+# Patch Notes v3.3
 
 **v3.0**
 
@@ -14,5 +14,11 @@
 
 - Correção na parte de aprovação
 - Correção na alteração de senha
+
+**v3.3**
+
+- Scripts de alerta para erros
+- FODENDO encriptação de URL
+- Scripts de tables
 - Adição de bugs para correções futuras
 

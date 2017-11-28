@@ -3,14 +3,14 @@
 
 <head>
 
-    <title>S.G.A. v1.1</title>
+    <title>Inicio</title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
-    <meta name="author" content="elyas" >
+    <meta name="author" content="Alunos" >
 
-    <title>S.G.A. v1.1</title>
+    <title>Início</title>
     <link href="{url}assets/css/bootstrap.min.css" rel="stylesheet">
     <link href="{url}assets/css/metisMenu.min.css" rel="stylesheet">
     <link href="{url}assets/css/sb-admin-2.css" rel="stylesheet">
@@ -23,7 +23,7 @@
     <div id="wrapper">
         <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
             <div class="navbar-header">
-                <a class="navbar-brand" href="{url}login/loginAsEst">S.G.A. v1.1</a>
+                <a class="navbar-brand" href="{url}login/loginAsEst">Conselho de Classe</a>
             </div>
             <ul class="nav navbar-top-links navbar-right">
                 <li class="dropdown">

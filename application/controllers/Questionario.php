@@ -17,7 +17,6 @@
 			$this->parser->parse('telaAdm', $data);
 		}
 
-
 		// Início de chamada de view
 		
 		
@@ -37,7 +36,9 @@
 			$this->parser->parse('Questionario/listar', $data);
 		}
 		
-		public function v_editar($id) {
+		public function v_editar($ide) {
+			$id = base64_decode($ide);
+
 			$this->db->where('idQUESTIONARIO', $id);
 			$data['QUESTIONARIO'] = $this->db->get('QUESTIONARIO')->result();
 			
@@ -51,7 +52,8 @@
 			$this->parser->parse('Questionario/editar', $data);
 		}
 
-		public function v_associar($id) {
+		public function v_associar($ide) {
+			$id = base64_decode($ide);
 			
 			$this->db->select('CURSO.NOME, TURMA.SERIE, TURMA.idTURMA, MODALIDADE.MODALIDADE');
 			$this->db->from('CURSO');
@@ -106,7 +108,8 @@
 			$codigo = $this->db->query("SELECT idQUESTIONARIO from QUESTIONARIO ORDER BY idQUESTIONARIO desc limit 1")->result();
 			
 			foreach($codigo as $c) {
-				$this->v_editar($c->idQUESTIONARIO);			
+				$quest = base64_encode($c->idQUESTIONARIO);
+				$this->v_editar($quest);			
 			}
 			
 			//$data['url'] = base_url();
@@ -125,7 +128,8 @@
 			
 			$this->db->update('QUESTIONARIO', $data);
 
-			$this->v_editar($idusu);
+			$idusue = base64_encode($idusu);
+			$this->v_editar($idusue);
 
 			
 		}
@@ -139,27 +143,35 @@
 			$data['DESCRICAO'] = $this->input->post('txt_dimensao');
 			$this->db->insert('DIMENSAO', $data);
 			
-			$this->v_editar($idusu);
+			$idusue = base64_encode($idusu);
+			$this->v_editar($idusue);
 		
 			
 		}
 		
-		public function excluir_dimensao($id) {
+		public function excluir_dimensao($ide, $idQe) {
+			$id = base64_decode($ide);
+			$idQ = base64_decode($idQe);						
 			
+			$query = $this->db->query('select PERGUNTA.idPERGUNTA from PERGUNTA where PERGUNTA.idDIMENSAO = '.$id);
 			
+			if ($query->num_rows() == 0) {
 			
-			$this->db->select('idDIMENSAO');
-			$this->db->from('DIMENSAO');
-			$this->db->where('idDIMENSAO', $id);
+				$this->db->select('idDIMENSAO');
+				$this->db->from('DIMENSAO');
+				$this->db->where('idDIMENSAO', $id);
 			
-			if($this->db->delete('DIMENSAO')) {
+				if($this->db->delete('DIMENSAO')) {
 				
-				$data['url'] = base_url();
-				$this->parser->parse('telaAdm', $data);
-				redirect("Questionario/index");			
+					redirect('Questionario/v_editar/'.$idQe);
+					
+				}
 			
 			} else {
-				echo "Exclusão impossível";
+                echo '<script type="text/javascript">confirm("Há alguma pergunta cadastrada com essa dimensão. Apague a pergunta primeiro.");</script>';
+					$this->v_editar($idQe);                
+                			
+			
 			}
 			
 		}		
@@ -196,7 +208,8 @@
 			
 			$this->db->insert('PERGUNTA', $data);
 			
-			$this->v_editar($idusu);
+			$idusue = base64_encode($idusu);
+			$this->v_editar($idusue);
 		
 	
 			
@@ -217,31 +230,41 @@
 				$qtd = count($item);
 			}
 			
+			$bool = false;
+			
 			for ($i = 0; $i < $qtd; $i++) {
 					if(!empty($item[$i])) {
 						foreach($ano as $a) {
 							$data['ANO'] = $a->ANO;		
 						}								
 
-						$data['TURMA_idTURMA'] = $item[$i];
-						$this->db->insert('QUESTIONARIO_has_TURMA', $data);						
-						$this->associacaoMUTQ($data);		
+						$query = $this->db->query('select QUESTIONARIO_has_TURMA.QUESTIONARIO_idQUESTIONARIO from QUESTIONARIO_has_TURMA 
+																										where QUESTIONARIO_has_TURMA.QUESTIONARIO_idQUESTIONARIO = '.$data['QUESTIONARIO_idQUESTIONARIO'].' 
+																										and QUESTIONARIO_has_TURMA.TURMA_idTURMA = '.$item[$i].' 
+																										and QUESTIONARIO_has_TURMA.ANO = '.$data['ANO']);
+						if ($query->num_rows() == 0) {
+							$data['TURMA_idTURMA'] = $item[$i];
+							$this->db->insert('QUESTIONARIO_has_TURMA', $data);						
+							$this->associacaoMUTQ($data);		
+						} else {
+							$bool = true;						
+						}			
 					}
 			}			
 			
-			
-			redirect("Questionario/index");
+			if ($bool == true) {
+                echo '<script type="text/javascript">confirm("Alguma turma escolhida já foi relacionada a esse questionário.");</script>';			
+			}
+			$this->index();
+
 		}
 
-		public function excluirPergunta($idP) {
+		public function excluirPergunta($idPe) {
+			$idP = base64_decode($idPe);			
 			
 			$this->db->select('idPERGUNTA');
 			$this->db->from('PERGUNTA');
 			$this->db->where('idPERGUNTA', $idP);
-			
-			if(!$this->db->delete('PERGUNTA')) {
-				echo '<script>confirm("Questionário respondido com sucesso!")</script>';
-			}			
 			
 			if($this->db->delete('PERGUNTA')) {
 				redirect('Questionario/index');

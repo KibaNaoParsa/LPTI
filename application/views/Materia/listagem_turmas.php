@@ -19,8 +19,6 @@
             </div>
           </div>
           </div>
-
-
     <!-- jQuery -->
     <script src="{url}assets/js/jquery.min.js"></script>
 

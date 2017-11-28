@@ -11,7 +11,7 @@
 									<?php
 										foreach($MATERIA as $m){
 											echo "Disciplina: " . $m->NOME.br()."Quantidade de Aulas: " . $m->QTD_AULAS.br();
-											echo anchor("Materia/v_editar/".$m->idMATERIA, " Editar ", 'class="btn btn-info"').
+											echo anchor("Materia/v_editar/".base64_encode($m->idMATERIA), " Editar ", 'class="btn btn-info"').
 													br().br();
 										}
 									?>

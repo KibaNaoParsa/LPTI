@@ -11,7 +11,7 @@
 									<?php																								
 											
 										foreach($DIMENSAO as $d) {
-											echo anchor('Professor/v_questionario/'.$USUARIO_idUSUARIO."/".$TURMA_idTURMA."/".$MATERIA_idMATERIA."/".$QUESTIONARIO_idQUESTIONARIO."/".$d->idDIMENSAO,
+											echo anchor('Professor/v_questionario/'.$idUSUARIO."/".$TURMA_idTURMA."/".$MATERIA_idMATERIA."/".$QUESTIONARIO_idQUESTIONARIO."/".$d->idDIMENSAO,
 															'Dimensão '.$d->DESCRICAO, 'class = "btn btn-info"').br();										
 										}
 		

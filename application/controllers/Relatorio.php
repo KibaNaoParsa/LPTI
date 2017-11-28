@@ -43,7 +43,8 @@
         
         // Início de chamada de view
 
-			public function v_turmas($idQ) { 
+			public function v_turmas($idQe) { 
+				$idQ = base64_decode($idQe);
     
     			$this->db->select('QUESTIONARIO_has_TURMA.TURMA_idTURMA, TURMA.SERIE, CURSO.NOME, MODALIDADE.MODALIDADE');
     			$this->db->from('QUESTIONARIO_has_TURMA');
@@ -67,7 +68,11 @@
 							
 			}    
 			
-			public function v_chartSingle($idQ, $idT, $idD) {
+			public function v_chartSingle($idQe, $idTe, $idDe) {
+				$idQ = base64_decode($idQe);
+				$idT = base64_decode($idTe);
+				$idD = base64_decode($idDe); 			
+			
 			
 				$data['url'] = base_url();		
 				$data['idQUESTIONARIO'] = $idQ;
@@ -288,7 +293,7 @@
 				}
 				
 				if ($relatorio == 0) {
-					$this->v_chartSingle($idQUESTIONARIO, $idTURMA, 0);				
+					$this->v_chartSingle(base64_encode($idQUESTIONARIO), base64_encode($idTURMA), base64_encode(0));				
 				}		
 			
 			}	

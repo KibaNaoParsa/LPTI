@@ -25,7 +25,7 @@
 												echo "<table>
 															<tr>";												
 												foreach ($TURMA as $t) {
-													echo "<td>". anchor("Permissao/v_selecaoII/".$USUARIO[0]->idUSUARIO."/".$t->idTURMA, 
+													echo "<td>". anchor("Permissao/v_selecaoII/".base64_encode($USUARIO[0]->idUSUARIO)."/".base64_encode($t->idTURMA), 
 																				$t->SERIE."° ".$t->NOME." ".$t->MODALIDADE, 'class="btn btn-info"')."</td>";
 													if (($i == 2) || ($i == 5) || ($i == 8) || ($i == 10) || ($i == 12) || ($i == 14)) {
 														echo "</tr><tr>";													
@@ -40,7 +40,6 @@
           </div>
         </div>
       </div>
-
 
     <!-- jQuery -->
     <script src="{url}assets/js/jquery.min.js"></script>

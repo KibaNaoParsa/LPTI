@@ -11,7 +11,7 @@
 									<?php
 										foreach($MATERIA as $m){
 											echo "Disciplina: " . $m->NOME.br();
-											echo anchor("Materia/v_associar/".$m->idMATERIA, " Associar ", 'class="btn btn-info"').
+											echo anchor("Materia/v_associar/".base64_encode($m->idMATERIA), " Associar ", 'class="btn btn-info"').
 													br().br();
 										}
 									?>
@@ -20,7 +20,6 @@
           </div>
 				</div>
 			</div>
-
 
     <!-- jQuery -->
     <script src="{url}assets/js/jquery.min.js"></script>

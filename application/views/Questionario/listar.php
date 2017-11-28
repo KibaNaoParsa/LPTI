@@ -11,7 +11,7 @@
 									<?php
 										foreach($QUESTIONARIO as $q){
 											echo "Nome: " . $q->NOME.br();
-											echo anchor("Questionario/v_editar/".$q->idQUESTIONARIO, " Editar ", 'class="btn btn-info"').
+											echo anchor("Questionario/v_editar/".base64_encode($q->idQUESTIONARIO), " Editar ", 'class="btn btn-info"').
 													br().br().br();
 										}
 									?>

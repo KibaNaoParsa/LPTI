@@ -10,8 +10,9 @@
   		        	<div class="col-lg-12 col-md-12" id="btn">
 									<?php
 										foreach($USUARIO as $u){
+											
 											echo "Login: " . $u->LOGIN.br();
-											echo anchor("Permissao/v_selecao/".$u->idUSUARIO, " Permissões ", 'class="btn btn-info"').
+											echo anchor("Permissao/v_selecao/".base64_encode($u->idUSUARIO), " Permissões ", 'class="btn btn-info"').
 													br().br();
 										}
 									?>

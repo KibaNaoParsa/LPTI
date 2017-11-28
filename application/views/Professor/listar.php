@@ -54,9 +54,9 @@
 										echo '<div class="dropdown">
   													<button class="dropbtn">QUESTIONÁRIO</button>
   													<div class="dropdown-content">';
-										echo '<a href="{url}Professor/v_drop/0/0/0/'.$idUSUARIO.'">-</a>';										
+										echo '<a href="{url}Professor/v_drop/'.base64_encode(0).'/'.base64_encode(0).'/'.base64_encode(0).'/'.base64_encode($idUSUARIO).'">-</a>';										
 										foreach($QUESTIONARIO as $q) {
-												echo '<a href="{url}Professor/v_drop/'.$q->QUESTIONARIO_idQUESTIONARIO.'/0/0/'.$idUSUARIO.'">'.$q->NOMEQUESTIONARIO.'</a>';
+												echo '<a href="{url}Professor/v_drop/'.base64_encode($q->QUESTIONARIO_idQUESTIONARIO).'/'.base64_encode(0).'/'.base64_encode(0).'/'.base64_encode($idUSUARIO).'">'.$q->NOMEQUESTIONARIO.'</a>';
 
 
 										}
@@ -69,10 +69,10 @@
 										echo '<div class="dropdown">
   													<button class="dropbtn">TURMA</button>
   													<div class="dropdown-content">';
-										echo '<a href="{url}Professor/v_drop/0/0/0/'.$idUSUARIO.'">-</a>';										
+										echo '<a href="{url}Professor/v_drop/'.base64_encode(0).'/'.base64_encode(0).'/'.base64_encode(0).'/'.base64_encode($idUSUARIO).'">-</a>';										
 										foreach($TURMA as $q) {
 											
-											echo '<a href="{url}Professor/v_drop/0/0/'.$q->TURMA_idTURMA.'/'.$idUSUARIO.'">'.$q->SERIE."° ".$q->NOMECURSO." ".$q->MODALIDADE.'</a>';
+											echo '<a href="{url}Professor/v_drop/0/0/'.base64_encode($q->TURMA_idTURMA).'/'.base64_encode($idUSUARIO).'">'.$q->SERIE."° ".$q->NOMECURSO." ".$q->MODALIDADE.'</a>';
 
 										}
 
@@ -83,10 +83,10 @@
 										echo '<div class="dropdown">
   													<button class="dropbtn">DISCIPLINA</button>
   													<div class="dropdown-content">';
-										echo '<a href="{url}Professor/v_drop/0/0/0/'.$idUSUARIO.'">-</a>';										
+										echo '<a href="{url}Professor/v_drop/'.base64_encode(0).'/'.base64_encode(0).'/'.base64_encode(0).'/'.base64_encode($idUSUARIO).'">-</a>';										
 										foreach($DISCIPLINA as $q) {
 											
-											echo '<a href="{url}Professor/v_drop/0/'.$q->MATERIA_idMATERIA.'/0/'.$idUSUARIO.'">'.$q->NOMEMATERIA.'</a>';
+											echo '<a href="{url}Professor/v_drop/'.base64_encode(0).'/'.base64_encode($q->MATERIA_idMATERIA).'/'.base64_encode(0).'/'.base64_encode($idUSUARIO).'">'.$q->NOMEMATERIA.'</a>';
 
 										}
 

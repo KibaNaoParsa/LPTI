@@ -44,7 +44,7 @@
 
                                         foreach($DIMENSAO as $d) {
                                             echo "<tr><td>".$d->DESCRICAO."</td>
-                                            <td>".anchor("Questionario/excluir_dimensao/".$d->idDIMENSAO,
+                                            <td>".anchor("Questionario/excluir_dimensao/".base64_encode($d->idDIMENSAO)."/".base64_encode($QUESTIONARIO[0]->idQUESTIONARIO),
                                             " Excluir ", 'class= "btn btn-danger"')."</td></tr>";
                                         }
 
@@ -70,7 +70,7 @@
                                 		} else {
 													$text = 'Pergunta aberta';                                		
                                 		}
-                                    echo anchor("Questionario/excluirPergunta/".$p->idPERGUNTA,
+                                    echo anchor("Questionario/excluirPergunta/".base64_encode($p->idPERGUNTA),
                                                 " Excluir ", 'class= "btn btn-danger"');
                                     echo $p->PERGUNTA." - ".$p->DESCRICAO." - ".$text.br();
                                 }
@@ -108,7 +108,7 @@
 
                                 // Chamada de próxima tela
                                 echo br().br();
-                                echo anchor('Questionario/v_associar/'.$QUESTIONARIO[0]->idQUESTIONARIO, " Continuar ",'class="btn btn-success btn-lg"');
+                                echo anchor('Questionario/v_associar/'.base64_encode($QUESTIONARIO[0]->idQUESTIONARIO), " Continuar ",'class="btn btn-success btn-lg"');
 
 
                             ?>

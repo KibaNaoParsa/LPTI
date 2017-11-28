@@ -7,9 +7,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
-    <meta name="author" content="elyas" >
+    <meta name="author" content="alunos" >
 
-    <title>S.G.A. v1.1</title>
+    <title>Conselho de Classe</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="{url}assets/css/bootstrap.min.css" rel="stylesheet">
@@ -28,8 +28,8 @@
     <!-- Header -->
     <header id="top" class="header">
         <div class="text-vertical-center">
-            <h1>S.G.A. CEFET-MG</h1>
-            <h3>Sistema de Gerenciamento Acadêmico do CEFET-MG Varginha</h3>
+            <h1>Conselho de Classe</h1>
+            <h3>Sistema de conselho de classe CEFET-MG Varginha</h3>
             <br>
             <button type="button" class="btn btn-dark btn-lg" data-toggle="modal" data-target="#login-modal">Entrar</button>
             <div class="modal fade" id="login-modal">

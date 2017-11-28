@@ -84,30 +84,16 @@ class Aprovacao extends CI_Controller {
 				$qtd = count($alunos);
 			}
 			
-			$bool = false;
-			
 			for ($i = 0; $i < $qtd; $i++) {
 					if(!empty($alunos[$i])) {
+						$dat['ALUNO_idALUNO'] = $alunos[$i];
+						$this->db->insert('TURMA_has_ALUNO', $dat);
 						
-						$query = $this->db->query('select TURMA_has_ALUNO.ALUNO_idALUNO from TURMA_has_ALUNO WHERE TURMA_has_ALUNO.ANO = '.$dat['ANO'].' 
-																					and TURMA_has_ALUNO.ALUNO_idALUNO = '.$alunos[$i]);
 						
-						if ($query->num_rows() == 0) {
-							$dat['ALUNO_idALUNO'] = $alunos[$i];
-							$this->db->insert('TURMA_has_ALUNO', $dat);						
-							
-							if ($dat['TURMA_idTURMA'] == 99) {
-								$this->db->query('UPDATE ALUNO SET ALUNO.SITUACAO = 1 where ALUNO.idALUNO ='.$dat['ALUNO_idALUNO']);
-							}
-						} else {
-							$bool = true;
+						if ($dat['TURMA_idTURMA'] == 99) {
+							$this->db->query('UPDATE ALUNO SET ALUNO.SITUACAO = 1 where ALUNO.idALUNO ='.$dat['ALUNO_idALUNO']);
 						}
 					}
-			}
-			
-			if ($bool == true) {
-                echo '<script type="text/javascript">alert("Algum aluno selecionado já foi aprovado.");
-						location.href="index";</script>';			
 			}
 			
 			$this->index();
@@ -115,4 +101,3 @@ class Aprovacao extends CI_Controller {
 
 
 }
-
